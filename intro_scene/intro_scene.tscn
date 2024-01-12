@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dhd8r8ji7gn64"]
 
+[ext_resource type="Script" path="res://intro_scene/intro_scene.gd" id="1_2bc8n"]
 [ext_resource type="VideoStream" path="res://intro_scene/gerappa.ogv" id="1_juopf"]
-[ext_resource type="Script" path="res://intro_scene/intro.gd" id="2_qphy3"]
 [ext_resource type="AudioStream" uid="uid://bpxjsd3l00pui" path="res://intro_scene/gerappa.mp3" id="3_vx6xj"]
 
 [sub_resource type="Animation" id="Animation_c3wj6"]
@@ -44,6 +44,7 @@ _data = {
 [node name="IntroScene" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_2bc8n")
 
 [node name="Background" type="ColorRect" parent="."]
 y_sort_enabled = true
@@ -65,7 +66,6 @@ offset_bottom = 732.0
 layout_mode = 2
 stream = ExtResource("1_juopf")
 expand = true
-script = ExtResource("2_qphy3")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AspectRatioContainer/VideoStreamPlayer"]
 stream = ExtResource("3_vx6xj")
@@ -89,5 +89,5 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[connection signal="animation_finished" from="AnimationPlayer" to="AspectRatioContainer/VideoStreamPlayer" method="_on_animation_player_animation_finished"]
-[connection signal="timeout" from="Timer" to="AspectRatioContainer/VideoStreamPlayer" method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -11,9 +11,8 @@ config_version=5
 [application]
 
 config/name="ItsSpreadingTheGame"
-run/main_scene="res://menu_scene/menu_scene.tscn"
+run/main_scene="res://intro_scene/intro_scene.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
-config/icon="res://icon.svg"
 
 [display]
 

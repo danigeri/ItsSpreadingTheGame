@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://kubgtrctyecc"]
 
-[ext_resource type="PackedScene" uid="uid://dhd8r8ji7gn64" path="res://intro_scene/intro_scene.tscn" id="1_y0pjc"]
+[ext_resource type="Script" path="res://menu_scene/menu_scene.gd" id="1_jecns"]
 
 [node name="menu_scene" type="Control"]
 layout_mode = 3
@@ -9,5 +9,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jecns")
 
-[node name="IntroScene" parent="." instance=ExtResource("1_y0pjc")]
+[node name="MenuBackground" type="TextureRect" parent="."]
+layout_mode = 1
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 10.0
+offset_right = 118.0
+offset_bottom = 41.0
+text = "Start Game"
+
+[node name="HowToPlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 44.0
+offset_right = 123.0
+offset_bottom = 75.0
+text = "How To Play"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
