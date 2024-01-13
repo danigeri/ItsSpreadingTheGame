@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4lr117hipltv"]
+
+[sub_resource type="GDScript" id="GDScript_6oq7a"]
+script/source = "extends Control
+
+
+func _on_back_to_main_menu_button_pressed() -> void:
+	var menu_scene = preload(\"res://menu_scene/menu_scene.tscn\").instantiate()
+	SceneTransition.change_scene(menu_scene)
+"
+
+[node name="GameOverScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_6oq7a")
+
+[node name="DummyLabel" type="Label" parent="."]
+offset_right = 138.0
+offset_bottom = 26.0
+text = "GAME OVER
+
+"
+
+[node name="BackToMainMenuButton" type="Button" parent="."]
+offset_left = -1.0
+offset_top = 25.0
+offset_right = 146.0
+offset_bottom = 56.0
+text = "BackToMainMenu"
+
+[connection signal="pressed" from="BackToMainMenuButton" to="." method="_on_back_to_main_menu_button_pressed"]

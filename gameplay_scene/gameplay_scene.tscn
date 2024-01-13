@@ -1,9 +1,21 @@
-[gd_scene format=3 uid="uid://c2wufkw7dnbfg"]
+[gd_scene load_steps=2 format=3 uid="uid://c2wufkw7dnbfg"]
+
+[ext_resource type="Script" path="res://gameplay_scene/gameplay_scene.gd" id="1_kpjtu"]
 
 [node name="GameplayScene" type="Node2D"]
+script = ExtResource("1_kpjtu")
 
 [node name="DummyLabel" type="Label" parent="."]
 offset_right = 138.0
 offset_bottom = 26.0
 text = "GAMEPLAY SCENE
 "
+
+[node name="LoseButton" type="Button" parent="."]
+offset_left = 11.0
+offset_top = 24.0
+offset_right = 115.0
+offset_bottom = 55.0
+text = "PressToLose"
+
+[connection signal="pressed" from="LoseButton" to="." method="_on_lose_button_pressed"]
