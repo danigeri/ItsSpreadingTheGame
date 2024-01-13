@@ -17,6 +17,6 @@ func _on_timer_timeout() -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	var menu_scene = preload("res://menu_scene/menu_scene.tscn").instantiate()
 	SceneTransition.change_scene(menu_scene)
-	
-	
+
+
 
