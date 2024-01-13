@@ -14,6 +14,10 @@ config/name="ItsSpreadingTheGame"
 run/main_scene="res://intro_scene/intro_scene.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 
+[autoload]
+
+SceneTransition="*res://utils/scene_transition.gd"
+
 [display]
 
 window/size/viewport_width=1920
