@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://yn6hai303u5m"]
+
+[ext_resource type="Texture2D" uid="uid://b37kd5ih7vuhv" path="res://truck_scene/truck_spritesheet.png" id="1_yrf8g"]
+
+[node name="TruckScene" type="Node2D"]
+
+[node name="TruckToTheLeft" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_yrf8g")
+hframes = 4
+
+[node name="TruckGoingStraight" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_yrf8g")
+hframes = 4
+
+[node name="TruckToTheRight" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_yrf8g")
+hframes = 4
