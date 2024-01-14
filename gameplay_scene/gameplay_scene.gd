@@ -4,7 +4,8 @@ extends Node2D
 @onready var right_truck = $RoadScene/RightTruckScene
 @onready var left_truck = $RoadScene/LeftTruckScene
 
-var shift_speed : float = 0.0
+var shift_speed_right : float = 0.0
+var shift_speed_left : float = 0.0
 
 
 func _on_lose_button_pressed() -> void:
@@ -13,9 +14,16 @@ func _on_lose_button_pressed() -> void:
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("ui_right"):
-		shift_speed += 0.1
+		shift_speed_right += 0.1
 
 	if Input.is_action_pressed("ui_left"):
-		shift_speed -= 0.1
+		shift_speed_right -= 0.1
 
-	right_truck.translate(Vector2(10*shift_speed, 0))
+	if Input.is_action_pressed("LeftTruckToTheRight"):
+		shift_speed_left += 0.1
+
+	if Input.is_action_pressed("LeftTruckToTheLeft"):
+		shift_speed_left += 0.1
+
+	right_truck.translate(Vector2(10*shift_speed_right, 0))
+	left_truck.translate(Vector2(10*shift_speed_left, 0))
