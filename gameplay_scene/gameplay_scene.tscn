@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2wufkw7dnbfg"]
+[gd_scene load_steps=3 format=3 uid="uid://c2wufkw7dnbfg"]
 
 [ext_resource type="Script" path="res://gameplay_scene/gameplay_scene.gd" id="1_kpjtu"]
+[ext_resource type="PackedScene" uid="uid://bgrdxj4n70ckc" path="res://road_scene/road_scene.tscn" id="2_e7rti"]
 
 [node name="GameplayScene" type="Node2D"]
 script = ExtResource("1_kpjtu")
@@ -17,5 +18,7 @@ offset_top = 24.0
 offset_right = 115.0
 offset_bottom = 55.0
 text = "PressToLose"
+
+[node name="RoadScene" parent="." instance=ExtResource("2_e7rti")]
 
 [connection signal="pressed" from="LoseButton" to="." method="_on_lose_button_pressed"]
