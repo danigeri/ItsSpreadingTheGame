@@ -20,5 +20,6 @@ offset_bottom = 55.0
 text = "PressToLose"
 
 [node name="RoadScene" parent="." instance=ExtResource("2_e7rti")]
+cam_y_position = 1200
 
 [connection signal="pressed" from="LoseButton" to="." method="_on_lose_button_pressed"]

@@ -4,8 +4,6 @@ extends Node2D
 const WIDTH : int = 1920
 const HEIGHT : int = 1080
 
-const GREEN1 := Color(0, 1, 0)
-const GREEN2 := Color(0.5, 1, 0)
 const BLACK := Color(0, 0, 0)
 const WHITE := Color(1, 1, 1)
 const GREY1 := Color(0.42, 0.42, 0.42)
@@ -13,9 +11,14 @@ const GREY2 := Color(0.4, 0.4, 0.4)
 const RED := Color(1, 0, 0)
 const TRANSPARENT := Color(0, 0, 0, 0)
 
-const LILA1 = Color8(82, 67, 152)
-const LILA2 = Color8(111, 91, 152)
-const DIVIDER = Color8(250, 195, 76)
+
+@export var GRASS1 := Color8(253, 166, 97)
+@export var GRASS2 := Color8(246, 129, 73)
+@export var ROAD1 = Color8(82, 67, 152)
+@export var ROAD2 = Color8(111, 91, 152)
+@export var DIVIDER = Color8(250, 195, 76)
+@export var BORDER1 = Color(1, 1, 1)
+@export var BORDER2 = Color(1, 0, 0)
 
 @onready var truck = $TruckScene
 
@@ -33,6 +36,7 @@ var position_px : int
 # The perspective scale can be adjusted
 @export var camera_q : float = 1.0
 
+@export var horizon_ratio : float = 3.0
 
 func _ready() -> void:
 	add_truck()
@@ -134,7 +138,7 @@ func get_perspective(segment, cam_x, cam_y, cam_z) -> Dictionary:
 
 	var perspective = {
 		X = (1 + scale*(segment.x - cam_x)) * WIDTH/2,
-		Y = (1 - scale*(segment.y - cam_y)) * HEIGHT/2,
+		Y = (1 - scale*(segment.y - cam_y)) * HEIGHT/horizon_ratio,
 		W = scale * road_width_px * (WIDTH/2)
 	}
 
@@ -143,10 +147,10 @@ func get_perspective(segment, cam_x, cam_y, cam_z) -> Dictionary:
 
 func get_alternated_colors(segment_number : int) -> Dictionary:
 	var Colors = {
-		border = WHITE if (segment_number/3)%2 else RED,
-		road = LILA1 if (segment_number/3)%2 else LILA2,
+		border = BORDER1 if (segment_number/3)%2 else BORDER2,
+		road = ROAD1 if (segment_number/3)%2 else ROAD2,
 		divider = DIVIDER if (segment_number/9)%2 else TRANSPARENT,
-		grass = GREEN1 if (segment_number/9)%2 else GREEN2
+		grass = GRASS1 if (segment_number/9)%2 else GRASS2
 	}
 
 	return Colors
