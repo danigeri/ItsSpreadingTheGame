@@ -19,6 +19,7 @@ grow_vertical = 2
 script = SubResource("GDScript_6oq7a")
 
 [node name="DummyLabel" type="Label" parent="."]
+layout_mode = 0
 offset_right = 138.0
 offset_bottom = 26.0
 text = "GAME OVER
@@ -26,6 +27,7 @@ text = "GAME OVER
 "
 
 [node name="BackToMainMenuButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = -1.0
 offset_top = 25.0
 offset_right = 146.0
