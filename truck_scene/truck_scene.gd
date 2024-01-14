@@ -1,17 +1,21 @@
 extends Node2D
 
-var sprite_frames = [0,1,2,3]
-var t : float = 0
-var direction = 2
-var active_sprite
-
 enum {LEFT, STRAIGHT, RIGHT}
+
+var sprite_frames : Array = [0,1,2,3]
+var t : float = 0
+var direction : int = STRAIGHT
+var active_sprite : Sprite2D
 
 @export var frame_change_time_s : float = 0.025
 
+@onready var truck_to_the_left : Sprite2D = $TruckLeft
+@onready var truck_straight : Sprite2D = $TruckStraight
+@onready var truck_to_the_right : Sprite2D = $TruckRight
+
 
 func _ready() -> void:
-	active_sprite = $TruckStraight
+	active_sprite = truck_straight
 	set_process(true)
 
 
@@ -22,17 +26,20 @@ func _process(delta: float) -> void:
 
 func update_steering_animation() -> void:
 	if direction == LEFT:
-		active_sprite = $TruckLeft
-		$TruckStraight.hide()
-		$TruckRight.hide()
+		active_sprite = truck_to_the_left
+
+		truck_straight.hide()
+		truck_to_the_right.hide()
 	elif direction == STRAIGHT:
-		active_sprite = $TruckStraight
-		$TruckLeft.hide()
-		$TruckRight.hide()
+		active_sprite = truck_straight
+
+		truck_to_the_left.hide()
+		truck_to_the_right.hide()
 	elif direction == RIGHT:
-		active_sprite = $TruckRight
-		$TruckLeft.hide()
-		$TruckStraight.hide()
+		active_sprite = truck_to_the_right
+
+		truck_to_the_left.hide()
+		truck_straight.hide()
 
 
 func update_idle_animation(delta: float) -> void:
