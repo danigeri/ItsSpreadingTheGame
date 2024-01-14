@@ -13,6 +13,10 @@ const GREY2 := Color(0.4, 0.4, 0.4)
 const RED := Color(1, 0, 0)
 const TRANSPARENT := Color(0, 0, 0, 0)
 
+const LILA1 = Color8(82, 67, 152)
+const LILA2 = Color8(111, 91, 152)
+const DIVIDER = Color8(250, 195, 76)
+
 @onready var truck = $TruckScene
 
 var segment_length_px : int = 200
@@ -140,8 +144,8 @@ func get_perspective(segment, cam_x, cam_y, cam_z) -> Dictionary:
 func get_alternated_colors(segment_number : int) -> Dictionary:
 	var Colors = {
 		border = WHITE if (segment_number/3)%2 else RED,
-		road = GREY1 if (segment_number/3)%2 else GREY2,
-		divider = BLACK if (segment_number/9)%2 else TRANSPARENT,
+		road = LILA1 if (segment_number/3)%2 else LILA2,
+		divider = DIVIDER if (segment_number/9)%2 else TRANSPARENT,
 		grass = GREEN1 if (segment_number/9)%2 else GREEN2
 	}
 
