@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgrdxj4n70ckc"]
+
+[ext_resource type="Script" path="res://road_scene/road_scene.gd" id="1_gcsdn"]
+[ext_resource type="PackedScene" uid="uid://yn6hai303u5m" path="res://truck_scene/truck_scene.tscn" id="2_be4fs"]
+
+[node name="RoadScene" type="Node2D"]
+script = ExtResource("1_gcsdn")
+
+[node name="TruckScene" parent="." instance=ExtResource("2_be4fs")]
