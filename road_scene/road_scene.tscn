@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgrdxj4n70ckc"]
+[gd_scene load_steps=4 format=3 uid="uid://bgrdxj4n70ckc"]
 
 [ext_resource type="Script" path="res://road_scene/road_scene.gd" id="1_gcsdn"]
 [ext_resource type="PackedScene" uid="uid://yn6hai303u5m" path="res://truck_scene/truck_scene.tscn" id="2_be4fs"]
+[ext_resource type="Texture2D" uid="uid://hummj4k52syd" path="res://RoadBackGround.jpg" id="3_tnxu7"]
 
 [node name="RoadScene" type="Node2D"]
 script = ExtResource("1_gcsdn")
 
 [node name="TruckScene" parent="." instance=ExtResource("2_be4fs")]
+
+[node name="Wp2754931" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1914, 472)
+scale = Vector2(1.05741, 1.05741)
+texture = ExtResource("3_tnxu7")
