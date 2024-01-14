@@ -19,7 +19,7 @@ var segment_length_px : int = 200
 var segments : Array
 
 # The trucks start at the end of the track so the length of the track for now
-var position_px = 32000
+var position_px : int
 
 # Vertical position of the camera in pixels
 @export var cam_y_position : int = 500
@@ -35,6 +35,8 @@ func _ready() -> void:
 	set_process(true)
 
 	segments = get_road_segments()
+
+	position_px = segments.size()
 
 
 func _process(delta: float) -> void:
@@ -52,7 +54,7 @@ func add_truck() -> void:
 func get_road_segments() -> Array:
 	var road_segments : Array = []
 
-	# TODO: This creates 200 straight segment
+	# TODO:
 	# This should'nt be created runtime
 	# This should be loaded
 
@@ -140,7 +142,7 @@ func get_alternated_colors(segment_number : int) -> Dictionary:
 		border = WHITE if (segment_number/3)%2 else RED,
 		road = GREY1 if (segment_number/3)%2 else GREY2,
 		divider = BLACK if (segment_number/9)%2 else TRANSPARENT,
-		grass = GREEN1 if (segment_number/9)%2 else GREEN1
+		grass = GREEN1 if (segment_number/9)%2 else GREEN2
 	}
 
 	return Colors
