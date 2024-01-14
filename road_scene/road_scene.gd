@@ -4,12 +4,35 @@ extends Node2D
 const WIDTH : int = 1920
 const HEIGHT : int = 1080
 
+const GREY := Color(0.42, 0.42, 0.42)
+const WHITE := Color(1, 1, 1)
+
 @onready var truck = $TruckScene
+
+var segment_length_px : int = 200
+var segments : Array
+
+# The trucks start at the end of the track so the length of the track for now
+var position_px = 32000
+
+# Vertical position of the camera in pixels
+@export var cam_y_position : int = 500
+
+@export var road_width_px : int = 2000
+
+# The perspective scale can be adjusted
+@export var camera_q : float = 1.0
 
 
 func _ready() -> void:
 	add_truck()
 	set_process(true)
+
+	segments = get_road_segments()
+
+
+func _process(delta: float) -> void:
+	queue_redraw()
 
 
 func add_truck() -> void:
@@ -18,3 +41,76 @@ func add_truck() -> void:
 	# 1.5 and 1.5 is adhoc
 	truck.position = Vector2(WIDTH/2+200, HEIGHT-300)
 	truck.scale = Vector2(1.5,1.5)
+
+
+func get_road_segments() -> Array:
+	var road_segments : Array = []
+
+	# TODO: This creates 200 straight segment
+	# This should'nt be created runtime
+	# This should be loaded
+
+	for i in range(32000):
+		var segment = {
+			x = 0,
+		 	y = 0,
+			z = i * segment_length_px,
+			curve = 0
+			}
+
+		road_segments.push_back(segment)
+
+	return road_segments
+
+
+func _draw():
+	position_px -= segment_length_px
+
+	var current_segment = position_px/segment_length_px
+
+	var x = 0
+	var dx = 0
+
+	var prev_perspective = {X = 0, Y = 0, W = 0}
+
+	for i in range(current_segment, current_segment+300):
+		var perspective = get_perspective(segments[i], -x, cam_y_position, position_px)
+
+		x += dx
+		dx += segments[i].curve
+
+		if perspective.Y < HEIGHT:
+			draw_quadrangle(
+				WHITE,
+			 	prev_perspective.X, prev_perspective.Y, prev_perspective.W *1.2,
+				perspective.X, perspective.Y, perspective.W *1.2)
+			draw_quadrangle(
+				GREY,
+			 	prev_perspective.X, prev_perspective.Y, prev_perspective.W,
+				perspective.X, perspective.Y, perspective.W)
+
+
+		prev_perspective = perspective
+
+
+func get_perspective(segment, cam_x, cam_y, cam_z) -> Dictionary:
+	var scale = camera_q/(segment.z - cam_z)
+
+	var perspective = {
+		X = (1 + scale*(segment.x - cam_x)) * WIDTH/2,
+		Y = (1 - scale*(segment.y - cam_y)) * HEIGHT/2,
+		W = scale * road_width_px * (WIDTH/2)
+	}
+
+	return perspective
+
+
+func draw_quadrangle(col, x1, y1, w1, x2, y2, w2):
+	var point = [
+		Vector2(int(x1-w1), int(y1)),
+		Vector2(int(x2-w2), int(y2)),
+		Vector2(int(x2+w2), int(y2)),
+		Vector2(int(x1+w1), int(y1))
+	]
+
+	draw_primitive(PackedVector2Array(point), PackedColorArray([col,col,col,col]), PackedVector2Array([]))
