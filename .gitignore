@@ -17,3 +17,4 @@ mono_crash.*.json
 
 # VSCode workspace
 *.code-workspace
+.vscode/settings.json
