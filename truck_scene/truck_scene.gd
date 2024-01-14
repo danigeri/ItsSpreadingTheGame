@@ -3,15 +3,15 @@ extends Node2D
 enum {LEFT, STRAIGHT, RIGHT}
 
 var sprite_frames : Array = [0,1,2,3]
-var t : float = 0
+var frame_timer : float = 0
 var direction : int = STRAIGHT
 var active_sprite : Sprite2D
 
 @export var frame_change_time_s : float = 0.025
 
-@onready var truck_to_the_left : Sprite2D = $TruckLeft
-@onready var truck_straight : Sprite2D = $TruckStraight
-@onready var truck_to_the_right : Sprite2D = $TruckRight
+@onready var truck_to_the_left : Sprite2D = $TruckToTheLeft
+@onready var truck_straight : Sprite2D = $TruckGoingStraight
+@onready var truck_to_the_right : Sprite2D = $TruckToTheRight
 
 
 func _ready() -> void:
@@ -43,9 +43,9 @@ func update_steering_animation() -> void:
 
 
 func update_idle_animation(delta: float) -> void:
-	t += delta
-	if t >= frame_change_time_s:
+	frame_timer += delta
+	if frame_timer >= frame_change_time_s:
 		active_sprite.set_frame(sprite_frames[0])
 		sprite_frames.push_back(sprite_frames[0])
 		sprite_frames.pop_front()
-		t = 0
+		frame_timer = 0
