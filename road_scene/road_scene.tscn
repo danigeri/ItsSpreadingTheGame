@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgrdxj4n70ckc"]
+[gd_scene load_steps=5 format=3 uid="uid://bgrdxj4n70ckc"]
 
 [ext_resource type="Script" path="res://road_scene/road_scene.gd" id="1_gcsdn"]
 [ext_resource type="PackedScene" uid="uid://yn6hai303u5m" path="res://truck_scene/truck_scene.tscn" id="2_be4fs"]
+[ext_resource type="PackedScene" uid="uid://bb6p4623e21uu" path="res://left_truck_scene/left_truck_scene.tscn" id="3_03tih"]
 [ext_resource type="Texture2D" uid="uid://hummj4k52syd" path="res://RoadBackGround.jpg" id="3_tnxu7"]
 
 [node name="RoadScene" type="Node2D"]
 script = ExtResource("1_gcsdn")
 
-[node name="TruckScene" parent="." instance=ExtResource("2_be4fs")]
+[node name="RightTruckScene" parent="." instance=ExtResource("2_be4fs")]
+position = Vector2(1210, 300)
+scale = Vector2(2.2, 2.2)
+
+[node name="LeftTruckScene" parent="." instance=ExtResource("3_03tih")]
 position = Vector2(700, 300)
 scale = Vector2(2.2, 2.2)
 

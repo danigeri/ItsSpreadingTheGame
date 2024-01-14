@@ -1,7 +1,8 @@
 extends Node2D
 
 @onready var game_over_scene : PackedScene = load("res://game_over_scene/game_over_scene.tscn")
-@onready var right_truck = $RoadScene/TruckScene
+@onready var right_truck = $RoadScene/RightTruckScene
+@onready var left_truck = $RoadScene/LeftTruckScene
 
 var shift_speed : float = 0.0
 

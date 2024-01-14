@@ -20,7 +20,9 @@ const TRANSPARENT := Color(0, 0, 0, 0)
 @export var BORDER1 = Color(1, 1, 1)
 @export var BORDER2 = Color(1, 0, 0)
 
-@onready var truck = $TruckScene
+# TODO: Not used here but is referenced through the RoadScene from Gameplay
+@onready var right_truck = $RightTruckScene
+@onready var left_truck = $LeftTruckScene
 
 var segment_length_px : int = 200
 var segments : Array
