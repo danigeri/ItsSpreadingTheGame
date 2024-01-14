@@ -56,7 +56,7 @@ func get_road_segments() -> Array:
 	# This should'nt be created runtime
 	# This should be loaded
 
-	for i in range(1600):
+	for i in range(160000):
 		var segment = {
 			x = 0,
 		 	y = 0,
@@ -70,7 +70,7 @@ func get_road_segments() -> Array:
 
 
 func _draw():
-	update_position(position_px)
+	position_px = get_updated_position(position_px)
 
 	var current_segment = position_px/segment_length_px
 
@@ -113,12 +113,14 @@ func _draw():
 		prev_perspective = perspective
 
 
-func update_position(position : int) -> void:
-	position -= segment_length_px
+func get_updated_position(position : int) -> int:
+	var new_position = position - segment_length_px
 
 	# Reset track if reached the end
-	if position == 0:
-		position = segments.size()
+	if new_position == 0:
+		new_position = segments.size()
+
+	return new_position
 
 
 func get_perspective(segment, cam_x, cam_y, cam_z) -> Dictionary:
