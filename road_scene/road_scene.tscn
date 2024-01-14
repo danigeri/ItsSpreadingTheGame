@@ -8,9 +8,11 @@
 script = ExtResource("1_gcsdn")
 
 [node name="TruckScene" parent="." instance=ExtResource("2_be4fs")]
+position = Vector2(700, 450)
+scale = Vector2(2.5, 2.5)
 
 [node name="Wp2754931" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(1914, 472)
+position = Vector2(1767, 393)
 scale = Vector2(1.05741, 1.05741)
 texture = ExtResource("3_tnxu7")
