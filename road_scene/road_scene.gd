@@ -4,8 +4,14 @@ extends Node2D
 const WIDTH : int = 1920
 const HEIGHT : int = 1080
 
-const GREY := Color(0.42, 0.42, 0.42)
+const GREEN1 := Color(0, 1, 0)
+const GREEN2 := Color(0.5, 1, 0)
+const BLACK := Color(0, 0, 0)
 const WHITE := Color(1, 1, 1)
+const GREY1 := Color(0.42, 0.42, 0.42)
+const GREY2 := Color(0.4, 0.4, 0.4)
+const RED := Color(1, 0, 0)
+const TRANSPARENT := Color(0, 0, 0, 0)
 
 @onready var truck = $TruckScene
 
@@ -80,14 +86,28 @@ func _draw():
 		dx += segments[i].curve
 
 		if perspective.Y < HEIGHT:
+			var colors = get_alternated_colors(i)
+
 			draw_quadrangle(
-				WHITE,
+				colors.grass,
+			 	0, prev_perspective.Y, WIDTH,
+				0, perspective.Y, WIDTH)
+
+			# 1.05 for W means that the border will be .05 wider than the road
+			draw_quadrangle(
+				colors.border,
 			 	prev_perspective.X, prev_perspective.Y, prev_perspective.W *1.05,
 				perspective.X, perspective.Y, perspective.W *1.05)
+
 			draw_quadrangle(
-				GREY,
+				colors.road,
 			 	prev_perspective.X, prev_perspective.Y, prev_perspective.W,
 				perspective.X, perspective.Y, perspective.W)
+
+			draw_quadrangle(
+				colors.divider,
+				prev_perspective.X, prev_perspective.Y, prev_perspective.W*0.01,
+				perspective.X, perspective.Y, perspective.W*0.01)
 
 
 		prev_perspective = perspective
@@ -111,6 +131,17 @@ func get_perspective(segment, cam_x, cam_y, cam_z) -> Dictionary:
 	}
 
 	return perspective
+
+
+func get_alternated_colors(segment_number : int) -> Dictionary:
+	var Colors = {
+		border = WHITE if (segment_number/3)%2 else RED,
+		road = GREY1 if (segment_number/3)%2 else GREY2,
+		divider = BLACK if (segment_number/9)%2 else TRANSPARENT,
+		grass = GREEN1 if (segment_number/9)%2 else GREEN1
+	}
+
+	return Colors
 
 
 func draw_quadrangle(col, x1, y1, w1, x2, y2, w2):
