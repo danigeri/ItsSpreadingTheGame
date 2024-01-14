@@ -50,7 +50,7 @@ func get_road_segments() -> Array:
 	# This should'nt be created runtime
 	# This should be loaded
 
-	for i in range(32000):
+	for i in range(1600):
 		var segment = {
 			x = 0,
 		 	y = 0,
@@ -64,7 +64,7 @@ func get_road_segments() -> Array:
 
 
 func _draw():
-	position_px -= segment_length_px
+	update_position(position_px)
 
 	var current_segment = position_px/segment_length_px
 
@@ -82,8 +82,8 @@ func _draw():
 		if perspective.Y < HEIGHT:
 			draw_quadrangle(
 				WHITE,
-			 	prev_perspective.X, prev_perspective.Y, prev_perspective.W *1.2,
-				perspective.X, perspective.Y, perspective.W *1.2)
+			 	prev_perspective.X, prev_perspective.Y, prev_perspective.W *1.05,
+				perspective.X, perspective.Y, perspective.W *1.05)
 			draw_quadrangle(
 				GREY,
 			 	prev_perspective.X, prev_perspective.Y, prev_perspective.W,
@@ -91,6 +91,14 @@ func _draw():
 
 
 		prev_perspective = perspective
+
+
+func update_position(position : int) -> void:
+	position -= segment_length_px
+
+	# Reset track if reached the end
+	if position == 0:
+		position = segments.size()
 
 
 func get_perspective(segment, cam_x, cam_y, cam_z) -> Dictionary:
