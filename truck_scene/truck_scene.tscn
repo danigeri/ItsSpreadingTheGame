@@ -1,22 +1,66 @@
-[gd_scene load_steps=3 format=3 uid="uid://yn6hai303u5m"]
+[gd_scene load_steps=5 format=3 uid="uid://yn6hai303u5m"]
 
 [ext_resource type="Script" path="res://truck_scene/truck_scene.gd" id="1_7gccb"]
 [ext_resource type="Texture2D" uid="uid://b37kd5ih7vuhv" path="res://truck_scene/truck_spritesheet.png" id="1_yrf8g"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xxpk"]
+size = Vector2(134, 217)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wf121"]
+size = Vector2(990.5, 43)
+
 [node name="TruckScene" type="Node2D"]
 script = ExtResource("1_7gccb")
 
-[node name="TruckToTheLeft" type="Sprite2D" parent="."]
+[node name="LeftTruckBody" type="RigidBody2D" parent="."]
+position = Vector2(1150, 650)
+
+[node name="TruckToTheRight" type="Sprite2D" parent="LeftTruckBody"]
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_yrf8g")
 hframes = 4
 
-[node name="TruckGoingStraight" type="Sprite2D" parent="."]
+[node name="TruckToTheLeft" type="Sprite2D" parent="LeftTruckBody"]
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_yrf8g")
 hframes = 4
 
-[node name="TruckToTheRight" type="Sprite2D" parent="."]
+[node name="TruckGoingStraight" type="Sprite2D" parent="LeftTruckBody"]
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_yrf8g")
 hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftTruckBody"]
+position = Vector2(1, 1.5)
+shape = SubResource("RectangleShape2D_5xxpk")
+
+[node name="RightTruckBody" type="RigidBody2D" parent="."]
+position = Vector2(800, 650)
+
+[node name="TruckToTheRight" type="Sprite2D" parent="RightTruckBody"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_yrf8g")
+hframes = 4
+
+[node name="TruckToTheLeft" type="Sprite2D" parent="RightTruckBody"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_yrf8g")
+hframes = 4
+
+[node name="TruckGoingStraight" type="Sprite2D" parent="RightTruckBody"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_yrf8g")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightTruckBody"]
+position = Vector2(1, 1.5)
+shape = SubResource("RectangleShape2D_5xxpk")
+
+[node name="RoadBody" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoadBody"]
+position = Vector2(978, 816)
+shape = SubResource("RectangleShape2D_wf121")
+
+[connection signal="body_entered" from="LeftTruckBody" to="." method="_on_rigid_body_2d_body_entered"]
+[connection signal="body_entered" from="RightTruckBody" to="." method="_on_rigid_body_2d_body_entered"]
