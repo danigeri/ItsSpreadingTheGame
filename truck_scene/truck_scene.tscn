@@ -8,13 +8,13 @@
 size = Vector2(248, 408)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf121"]
-size = Vector2(990.5, 43)
+size = Vector2(1920, 20)
 
 [node name="TruckScene" type="Node2D"]
 script = ExtResource("1_7gccb")
 
 [node name="LeftTruckBody" type="RigidBody2D" parent="."]
-position = Vector2(1150, 410)
+position = Vector2(1210, 320)
 
 [node name="TruckToTheRight" type="Sprite2D" parent="LeftTruckBody"]
 scale = Vector2(0.4, 0.4)
@@ -36,7 +36,7 @@ position = Vector2(1, 1.5)
 shape = SubResource("RectangleShape2D_5xxpk")
 
 [node name="RightTruckBody" type="RigidBody2D" parent="."]
-position = Vector2(800, 410)
+position = Vector2(700, 320)
 
 [node name="TruckToTheRight" type="Sprite2D" parent="RightTruckBody"]
 scale = Vector2(0.4, 0.4)
@@ -57,8 +57,7 @@ hframes = 4
 shape = SubResource("RectangleShape2D_5xxpk")
 
 [node name="RoadBody" type="StaticBody2D" parent="."]
-position = Vector2(980, 640)
-scale = Vector2(1.52332, 1)
+position = Vector2(960, 540)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoadBody"]
 shape = SubResource("RectangleShape2D_wf121")
