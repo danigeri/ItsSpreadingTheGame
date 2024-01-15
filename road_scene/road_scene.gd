@@ -20,8 +20,6 @@ const TRANSPARENT := Color(0, 0, 0, 0)
 @export var BORDER1 = Color(1, 1, 1)
 @export var BORDER2 = Color(1, 0, 0)
 
-@onready var truck = $TruckScene
-
 var segment_length_px : int = 200
 var segments : Array
 
@@ -37,6 +35,8 @@ var position_px : int
 @export var camera_q : float = 1.0
 
 @export var horizon_ratio : float = 3.0
+
+signal crashed_received
 
 func _ready() -> void:
 	add_truck()
@@ -165,3 +165,7 @@ func draw_quadrangle(col, x1, y1, w1, x2, y2, w2):
 	]
 
 	draw_primitive(PackedVector2Array(point), PackedColorArray([col,col,col,col]), PackedVector2Array([]))
+
+
+func _on_truck_scene_crashed() -> void:
+	crashed_received.emit()

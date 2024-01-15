@@ -7,12 +7,19 @@ var frame_timer : float = 0
 var direction : int = STRAIGHT
 var active_sprite : Sprite2D
 
+var shift_speed_left = 0
+var shift_speed_right = 0
+
 @export var frame_change_time_s : float = 0.025
 
-@onready var truck_to_the_left : Sprite2D = $TruckToTheLeft
-@onready var truck_straight : Sprite2D = $TruckGoingStraight
-@onready var truck_to_the_right : Sprite2D = $TruckToTheRight
+@onready var truck_to_the_left : Sprite2D = $LeftTruckBody/TruckToTheLeft
+@onready var truck_straight : Sprite2D = $LeftTruckBody/TruckGoingStraight
+@onready var truck_to_the_right : Sprite2D = $LeftTruckBody/TruckToTheRight
 
+@onready var left_truck : RigidBody2D = $LeftTruckBody
+@onready var right_truck : RigidBody2D = $RightTruckBody
+
+signal crashed
 
 func _ready() -> void:
 	active_sprite = truck_straight
@@ -22,6 +29,30 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	update_steering_animation()
 	update_idle_animation(delta)
+
+func _physics_process(delta: float) -> void:
+	if Input.is_action_pressed("ui_right"):
+		shift_speed_left += delta * 50
+
+	if Input.is_action_pressed("ui_left"):
+		shift_speed_left -= delta * 50
+
+	if Input.is_action_pressed("LeftTruckToTheRight"):
+		shift_speed_right += delta * 50
+
+	if Input.is_action_pressed("LeftTruckToTheLeft"):
+		shift_speed_right -= delta * 50
+
+
+
+	var collision : KinematicCollision2D = left_truck.move_and_collide(Vector2(shift_speed_left, 0))
+	if collision != null:
+		if(collision.get_collider() != $RoadBody):
+			crashed.emit()
+	collision = right_truck.move_and_collide(Vector2(shift_speed_right, 0))
+	if collision != null:
+		if(collision.get_collider() != $RoadBody):
+			crashed.emit()
 
 
 func update_steering_animation() -> void:
