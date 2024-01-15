@@ -17,5 +17,9 @@ func _on_lose_button_pressed() -> void:
 	trigger_game_over()
 
 
+func _on_road_scene_crashed_received() -> void:
+	trigger_game_over()
+
+
 func trigger_game_over() -> void:
 	SceneTransition.change_scene(game_over_scene.instantiate())

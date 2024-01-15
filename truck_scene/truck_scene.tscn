@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://yn6hai303u5m"]
+[gd_scene load_steps=8 format=3 uid="uid://yn6hai303u5m"]
 
 [ext_resource type="Script" path="res://truck_scene/truck_scene.gd" id="1_7gccb"]
 [ext_resource type="Texture2D" uid="uid://dahj7altpncom" path="res://truck_scene/truck_spritesheet_2500.png" id="2_ytgob"]
@@ -9,6 +9,14 @@ size = Vector2(248, 408)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf121"]
 size = Vector2(1920, 20)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_w6b0d"]
+a = Vector2(300, 0)
+b = Vector2(300, 1080)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_p008i"]
+a = Vector2(1620, 1080)
+b = Vector2(1620, 0)
 
 [node name="TruckScene" type="Node2D"]
 script = ExtResource("1_7gccb")
@@ -61,6 +69,16 @@ position = Vector2(960, 540)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoadBody"]
 shape = SubResource("RectangleShape2D_wf121")
+
+[node name="RoadBorderL" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoadBorderL"]
+shape = SubResource("SegmentShape2D_w6b0d")
+
+[node name="RoadBorderR" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoadBorderR"]
+shape = SubResource("SegmentShape2D_p008i")
 
 [connection signal="body_entered" from="LeftTruckBody" to="." method="_on_rigid_body_2d_body_entered"]
 [connection signal="body_entered" from="RightTruckBody" to="." method="_on_rigid_body_2d_body_entered"]

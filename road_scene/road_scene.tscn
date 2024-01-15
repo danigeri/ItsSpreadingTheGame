@@ -14,3 +14,5 @@ scale = Vector2(1.05741, 1.05741)
 texture = ExtResource("3_tnxu7")
 
 [node name="TruckScene" parent="." instance=ExtResource("2_be4fs")]
+
+[connection signal="crashed" from="TruckScene" to="." method="_on_truck_scene_crashed"]

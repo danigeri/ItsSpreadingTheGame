@@ -36,6 +36,8 @@ var position_px : int
 
 @export var horizon_ratio : float = 3.0
 
+signal crashed_received
+
 func _ready() -> void:
 	add_truck()
 	set_process(true)
@@ -163,3 +165,7 @@ func draw_quadrangle(col, x1, y1, w1, x2, y2, w2):
 	]
 
 	draw_primitive(PackedVector2Array(point), PackedColorArray([col,col,col,col]), PackedVector2Array([]))
+
+
+func _on_truck_scene_crashed() -> void:
+	crashed_received.emit()
