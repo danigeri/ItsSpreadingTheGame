@@ -3,8 +3,6 @@ extends Node2D
 @export var steering_sensitivity = 10
 
 @onready var game_over_scene : PackedScene = load("res://game_over_scene/game_over_scene.tscn")
-@onready var right_truck = $RoadScene/RightTruckScene
-@onready var left_truck = $RoadScene/LeftTruckScene
 
 var shift_speed_right : float
 var shift_speed_left : float
@@ -14,22 +12,10 @@ func _ready() -> void:
 	shift_speed_right = 0.01
 	shift_speed_left = -0.02
 
+
 func _on_lose_button_pressed() -> void:
+	trigger_game_over()
+
+
+func trigger_game_over() -> void:
 	SceneTransition.change_scene(game_over_scene.instantiate())
-
-
-func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("ui_right"):
-		shift_speed_right += 0.1
-
-	if Input.is_action_pressed("ui_left"):
-		shift_speed_right -= 0.1
-
-	if Input.is_action_pressed("LeftTruckToTheRight"):
-		shift_speed_left += 0.1
-
-	if Input.is_action_pressed("LeftTruckToTheLeft"):
-		shift_speed_left -= 0.1
-
-	right_truck.translate(Vector2(steering_sensitivity*shift_speed_right, 0))
-	left_truck.translate(Vector2(steering_sensitivity*shift_speed_left, 0))

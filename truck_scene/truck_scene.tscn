@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://yn6hai303u5m"]
+[gd_scene load_steps=6 format=3 uid="uid://yn6hai303u5m"]
 
 [ext_resource type="Script" path="res://truck_scene/truck_scene.gd" id="1_7gccb"]
-[ext_resource type="Texture2D" uid="uid://b37kd5ih7vuhv" path="res://truck_scene/truck_spritesheet.png" id="1_yrf8g"]
+[ext_resource type="Texture2D" uid="uid://dahj7altpncom" path="res://truck_scene/truck_spritesheet_2500.png" id="2_ytgob"]
+[ext_resource type="Texture2D" uid="uid://clop8vln7sw7y" path="res://truck_scene/left_truck_spritesheet_2500.png" id="3_qcr5v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xxpk"]
-size = Vector2(134, 217)
+size = Vector2(248, 408)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf121"]
 size = Vector2(990.5, 43)
@@ -13,21 +14,21 @@ size = Vector2(990.5, 43)
 script = ExtResource("1_7gccb")
 
 [node name="LeftTruckBody" type="RigidBody2D" parent="."]
-position = Vector2(1150, 650)
+position = Vector2(1150, 410)
 
 [node name="TruckToTheRight" type="Sprite2D" parent="LeftTruckBody"]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_yrf8g")
+texture = ExtResource("2_ytgob")
 hframes = 4
 
 [node name="TruckToTheLeft" type="Sprite2D" parent="LeftTruckBody"]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_yrf8g")
+texture = ExtResource("2_ytgob")
 hframes = 4
 
 [node name="TruckGoingStraight" type="Sprite2D" parent="LeftTruckBody"]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_yrf8g")
+texture = ExtResource("2_ytgob")
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftTruckBody"]
@@ -35,31 +36,31 @@ position = Vector2(1, 1.5)
 shape = SubResource("RectangleShape2D_5xxpk")
 
 [node name="RightTruckBody" type="RigidBody2D" parent="."]
-position = Vector2(800, 650)
+position = Vector2(800, 410)
 
 [node name="TruckToTheRight" type="Sprite2D" parent="RightTruckBody"]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_yrf8g")
+texture = ExtResource("3_qcr5v")
 hframes = 4
 
 [node name="TruckToTheLeft" type="Sprite2D" parent="RightTruckBody"]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_yrf8g")
+texture = ExtResource("3_qcr5v")
 hframes = 4
 
 [node name="TruckGoingStraight" type="Sprite2D" parent="RightTruckBody"]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_yrf8g")
+texture = ExtResource("3_qcr5v")
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightTruckBody"]
-position = Vector2(1, 1.5)
 shape = SubResource("RectangleShape2D_5xxpk")
 
 [node name="RoadBody" type="StaticBody2D" parent="."]
+position = Vector2(980, 640)
+scale = Vector2(1.52332, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoadBody"]
-position = Vector2(978, 816)
 shape = SubResource("RectangleShape2D_wf121")
 
 [connection signal="body_entered" from="LeftTruckBody" to="." method="_on_rigid_body_2d_body_entered"]
