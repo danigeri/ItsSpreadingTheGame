@@ -16,8 +16,8 @@ var shift_speed_right = 0
 @onready var truck_straight : Sprite2D = $LeftTruckBody/TruckGoingStraight
 @onready var truck_to_the_right : Sprite2D = $LeftTruckBody/TruckToTheRight
 
-@onready var left_truck : RigidBody2D = $LeftTruckBody
-@onready var right_truck : RigidBody2D = $RightTruckBody
+@onready var left_truck : StaticBody2D = $LeftTruckBody
+@onready var right_truck : StaticBody2D = $RightTruckBody
 
 signal crashed
 
