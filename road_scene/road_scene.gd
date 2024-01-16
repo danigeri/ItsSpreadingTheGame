@@ -20,9 +20,10 @@ const TRANSPARENT := Color(0, 0, 0, 0)
 @export var BORDER1 = Color(1, 1, 1)
 @export var BORDER2 = Color(1, 0, 0)
 
+var speed : float = 0.05
 var segment_length_px : int = 200
 var segments : Array
-
+var t : float = 0.0
 # The trucks start at the end of the track so the length of the track for now
 var position_px : int
 
@@ -32,7 +33,7 @@ var position_px : int
 @export var road_width_px : int = 2000
 
 # The perspective scale can be adjusted
-@export var camera_q : float = 1.0
+var camera_q : float = 1.0
 
 @export var horizon_ratio : float = 3.0
 
@@ -48,7 +49,10 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	queue_redraw()
+	t += delta
+	if t >= speed:
+		queue_redraw()
+		t = 0
 
 
 func add_truck() -> void:
