@@ -19,7 +19,7 @@ const HEIGHT : int = 1080
 @export var horizon_ratio : float = 3.0
 
 var redraw_freq_s : float = 0.05
-var segment_length_px : int = 200
+var segment_length_px : int = 100
 var segments : Array
 var t : float = 0.0
 var distance : int = 0
@@ -157,11 +157,11 @@ func _on_truck_scene_crashed() -> void:
 
 
 func increase_road_speed() -> void:
-	redraw_freq_s -= 0.005
+	redraw_freq_s -= 0.001
 
 
 func get_road_speed() -> int:
-	return int(1/redraw_freq_s)
+	return int(300/redraw_freq_s)
 
 
 func get_distance() -> int:
