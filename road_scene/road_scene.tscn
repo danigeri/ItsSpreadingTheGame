@@ -7,7 +7,7 @@
 [node name="RoadScene" type="Node2D"]
 script = ExtResource("1_gcsdn")
 
-[node name="Wp2754931" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(1767, 393)
 scale = Vector2(1.05741, 1.05741)
