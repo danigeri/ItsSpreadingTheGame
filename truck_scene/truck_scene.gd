@@ -9,9 +9,9 @@ var active_sprite : Sprite2D
 
 var shift_speed_left = 0
 var shift_speed_right = 0
-var steering_sensitivity = 10
+var steering_sensitivity = 5
 
-@export var frame_change_time_s : float = 0.025
+@export var animation_speed = 0.5
 
 @onready var truck_to_the_left : Sprite2D = $LeftTruckBody/TruckToTheLeft
 @onready var truck_straight : Sprite2D = $LeftTruckBody/TruckGoingStraight
@@ -77,12 +77,13 @@ func update_steering_animation() -> void:
 
 func update_idle_animation(delta: float) -> void:
 	frame_timer += delta
-	if frame_timer >= frame_change_time_s:
+	if frame_timer >= 1/animation_speed:
 		active_sprite.set_frame(sprite_frames[0])
 		sprite_frames.push_back(sprite_frames[0])
 		sprite_frames.pop_front()
 		frame_timer = 0
 
 
-func increase_steering_sensitivity():
-	steering_sensitivity += 1
+func increase_speed():
+	steering_sensitivity += 0.1
+	animation_speed += 0.01

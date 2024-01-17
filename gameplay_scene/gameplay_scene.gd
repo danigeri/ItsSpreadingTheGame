@@ -13,7 +13,7 @@ func trigger_game_over() -> void:
 
 func _on_speed_increase_timer_timeout() -> void:
 	road_scene.increase_road_speed()
-	truck_scene.increase_steering_sensitivity()
+	truck_scene.increase_speed()
 
 
 func _on_ui_update_timer_timeout() -> void:
