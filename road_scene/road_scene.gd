@@ -36,7 +36,7 @@ func _ready() -> void:
 	set_process(true)
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	t += delta
 	if t >= redraw_freq_s:
 		queue_redraw()
