@@ -9,6 +9,7 @@ var active_sprite : Sprite2D
 
 var shift_speed_left = 0
 var shift_speed_right = 0
+var steering_sensitivity = 50
 
 @export var frame_change_time_s : float = 0.025
 
@@ -32,16 +33,16 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("ui_right"):
-		shift_speed_left += delta * 50
+		shift_speed_left += delta * steering_sensitivity
 
 	if Input.is_action_pressed("ui_left"):
-		shift_speed_left -= delta * 50
+		shift_speed_left -= delta * steering_sensitivity
 
 	if Input.is_action_pressed("LeftTruckToTheRight"):
-		shift_speed_right += delta * 50
+		shift_speed_right += delta * steering_sensitivity
 
 	if Input.is_action_pressed("LeftTruckToTheLeft"):
-		shift_speed_right -= delta * 50
+		shift_speed_right -= delta * steering_sensitivity
 
 
 

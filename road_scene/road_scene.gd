@@ -4,60 +4,45 @@ extends Node2D
 const WIDTH : int = 1920
 const HEIGHT : int = 1080
 
-const BLACK := Color(0, 0, 0)
-const WHITE := Color(1, 1, 1)
-const GREY1 := Color(0.42, 0.42, 0.42)
-const GREY2 := Color(0.4, 0.4, 0.4)
-const RED := Color(1, 0, 0)
-const TRANSPARENT := Color(0, 0, 0, 0)
-
-
 @export var GRASS1 := Color8(253, 166, 97)
 @export var GRASS2 := Color8(246, 129, 73)
 @export var ROAD1 = Color8(82, 67, 152)
 @export var ROAD2 = Color8(111, 91, 152)
-@export var DIVIDER = Color8(250, 195, 76)
+@export var DIVIDER1 = Color8(250, 195, 76)
+@export var DIVIDER2 := Color(0, 0, 0, 0)
 @export var BORDER1 = Color(1, 1, 1)
 @export var BORDER2 = Color(1, 0, 0)
 
-var segment_length_px : int = 200
-var segments : Array
-
-# The trucks start at the end of the track so the length of the track for now
-var position_px : int
-
 # Vertical position of the camera in pixels
 @export var cam_y_position : int = 500
-
 @export var road_width_px : int = 2000
-
-# The perspective scale can be adjusted
-@export var camera_q : float = 1.0
-
 @export var horizon_ratio : float = 3.0
+
+var redraw_freq_s : float = 0.05
+var segment_length_px : int = 100
+var segments : Array
+var t : float = 0.0
+var distance : int = 0
+var position_px : int
 
 signal crashed_received
 
 func _ready() -> void:
-	add_truck()
-	set_process(true)
-
 	segments = get_road_segments()
 
+	# The trucks start at the end of the track so the length of the track for now
 	position_px = segments.size()
 
-
-func _process(delta: float) -> void:
-	queue_redraw()
+	set_process(true)
 
 
-func add_truck() -> void:
-	# TODO: 200 is the half of the presumed asset width
-	# 300 is the distance from the bottom of the screen
-	# 1.5 and 1.5 is adhoc
-#	truck.position = Vector2(WIDTH/2+200, HEIGHT-300)
-#	truck.scale = Vector2(1.5,1.5)
-	pass
+func _physics_process(delta: float) -> void:
+	t += delta
+	if t >= redraw_freq_s:
+		queue_redraw()
+		distance += 1
+		t = 0
+
 
 func get_road_segments() -> Array:
 	var road_segments : Array = []
@@ -134,7 +119,7 @@ func get_updated_position(position : int) -> int:
 
 
 func get_perspective(segment, cam_x, cam_y, cam_z) -> Dictionary:
-	var scale = camera_q/(segment.z - cam_z)
+	var scale = 1.0/(segment.z - cam_z)
 
 	var perspective = {
 		X = (1 + scale*(segment.x - cam_x)) * WIDTH/2,
@@ -149,7 +134,7 @@ func get_alternated_colors(segment_number : int) -> Dictionary:
 	var Colors = {
 		border = BORDER1 if (segment_number/3)%2 else BORDER2,
 		road = ROAD1 if (segment_number/3)%2 else ROAD2,
-		divider = DIVIDER if (segment_number/9)%2 else TRANSPARENT,
+		divider = DIVIDER1 if (segment_number/9)%2 else DIVIDER2,
 		grass = GRASS1 if (segment_number/9)%2 else GRASS2
 	}
 
@@ -169,3 +154,15 @@ func draw_quadrangle(col, x1, y1, w1, x2, y2, w2):
 
 func _on_truck_scene_crashed() -> void:
 	crashed_received.emit()
+
+
+func increase_road_speed() -> void:
+	redraw_freq_s -= 0.001
+
+
+func get_road_speed() -> int:
+	return int(300/redraw_freq_s)
+
+
+func get_distance() -> int:
+	return distance
