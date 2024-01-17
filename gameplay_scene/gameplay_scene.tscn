@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2wufkw7dnbfg"]
+[gd_scene load_steps=5 format=3 uid="uid://c2wufkw7dnbfg"]
 
 [ext_resource type="Script" path="res://gameplay_scene/gameplay_scene.gd" id="1_kpjtu"]
 [ext_resource type="PackedScene" uid="uid://bgrdxj4n70ckc" path="res://road_scene/road_scene.tscn" id="2_e7rti"]
 [ext_resource type="Script" path="res://gameplay_scene/UI.gd" id="3_ob5as"]
+[ext_resource type="PackedScene" uid="uid://yn6hai303u5m" path="res://truck_scene/truck_scene.tscn" id="4_1go4w"]
 
 [node name="GameplayScene" type="Node2D"]
 script = ExtResource("1_kpjtu")
@@ -51,6 +52,8 @@ text = "0 m"
 wait_time = 0.05
 autostart = true
 
-[connection signal="crashed_received" from="RoadScene" to="." method="_on_road_scene_crashed_received"]
+[node name="TruckScene" parent="." instance=ExtResource("4_1go4w")]
+
 [connection signal="timeout" from="SpeedIncreaseTimer" to="." method="_on_speed_increase_timer_timeout"]
 [connection signal="timeout" from="UIUpdateTimer" to="." method="_on_ui_update_timer_timeout"]
+[connection signal="crashed" from="TruckScene" to="." method="_on_truck_scene_crashed"]

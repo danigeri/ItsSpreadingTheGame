@@ -25,7 +25,6 @@ var t : float = 0.0
 var distance : int = 0
 var position_px : int
 
-signal crashed_received
 
 func _ready() -> void:
 	segments = get_road_segments()
@@ -150,10 +149,6 @@ func draw_quadrangle(col, x1, y1, w1, x2, y2, w2):
 	]
 
 	draw_primitive(PackedVector2Array(point), PackedColorArray([col,col,col,col]), PackedVector2Array([]))
-
-
-func _on_truck_scene_crashed() -> void:
-	crashed_received.emit()
 
 
 func increase_road_speed() -> void:
