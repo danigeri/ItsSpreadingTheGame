@@ -80,14 +80,16 @@ shape = SubResource("SegmentShape2D_p008i")
 [node name="Jean" parent="." instance=ExtResource("4_c7k23")]
 position = Vector2(949, -61)
 
-[node name="PinJoint2D" type="PinJoint2D" parent="."]
-position = Vector2(864, 272)
-node_a = NodePath("../Jean/Leg_L")
-node_b = NodePath("../RightTruckBody")
+[node name="ConnectionsToTrucks" type="Node2D" parent="."]
 
-[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+[node name="JointToLeftTruck" type="PinJoint2D" parent="ConnectionsToTrucks"]
+position = Vector2(864, 272)
+node_a = NodePath("../../Jean/Leg_L")
+node_b = NodePath("../../RightTruckBody")
+
+[node name="JointToRightTruck" type="PinJoint2D" parent="ConnectionsToTrucks"]
 position = Vector2(1026, 273)
-node_a = NodePath("../Jean/Leg_R")
-node_b = NodePath("../LeftTruckBody")
+node_a = NodePath("../../Jean/Leg_R")
+node_b = NodePath("../../LeftTruckBody")
 
 [editable path="Jean"]

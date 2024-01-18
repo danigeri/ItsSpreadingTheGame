@@ -7,12 +7,15 @@ var frame_timer : float = 0
 var direction : int = STRAIGHT
 var active_sprite : Sprite2D
 
-var shift_speed_left = 0
-var shift_speed_right = 0
-var steering_sensitivity
+var shift_speed_left : float = 0.0
+var shift_speed_right : float = 0.0
+var steering_sensitivity : float = 0.0
+
+var horizontal_distance : float = 0.0
 
 @export var initial_steering_sensitivity = 5
 @export var animation_speed = 0.5
+@export var max_spread_length : int = 700
 
 @onready var truck_to_the_left : Sprite2D = $LeftTruckBody/TruckToTheLeft
 @onready var truck_straight : Sprite2D = $LeftTruckBody/TruckGoingStraight
@@ -23,8 +26,13 @@ var steering_sensitivity
 
 @onready var road_collider : StaticBody2D = $RoadBody
 
+@onready var connections : Node2D = $ConnectionsToTrucks
+@onready var joint_of_jean : Node2D = $Jean/Joints
+
 signal crashed
 signal off_roaded
+signal jean_fell_off
+
 
 func _ready() -> void:
 	steering_sensitivity = initial_steering_sensitivity
@@ -55,6 +63,7 @@ func _physics_process(delta: float) -> void:
 
 	collision = right_truck.move_and_collide(Vector2(shift_speed_right, 0))
 	handle_collisions(collision)
+	hande_falling_off()
 
 
 func handle_collisions(collision : KinematicCollision2D) -> void:
@@ -63,6 +72,21 @@ func handle_collisions(collision : KinematicCollision2D) -> void:
 
 		if collider != road_collider:
 			crashed.emit()
+
+
+func hande_falling_off() -> void:
+	var a = left_truck.global_position
+	var b = right_truck.global_position
+	var current_distance = a.x - b.x
+
+	if horizontal_distance != current_distance:
+		horizontal_distance = current_distance
+
+		if(horizontal_distance > max_spread_length):
+			remove_child(connections)
+			remove_child(joint_of_jean)
+
+			jean_fell_off.emit()
 
 
 func update_steering_animation() -> void:
