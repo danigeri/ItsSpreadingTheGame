@@ -11,8 +11,7 @@ script = ExtResource("1_kpjtu")
 [node name="RoadScene" parent="." instance=ExtResource("2_e7rti")]
 cam_y_position = 1200
 
-[node name="SpeedIncreaseTimer" type="Timer" parent="."]
-autostart = true
+[node name="TruckScene" parent="." instance=ExtResource("4_1go4w")]
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -52,8 +51,10 @@ text = "0 m"
 wait_time = 0.05
 autostart = true
 
-[node name="TruckScene" parent="." instance=ExtResource("4_1go4w")]
+[node name="SpeedIncreaseTimer" type="Timer" parent="."]
+autostart = true
 
-[connection signal="timeout" from="SpeedIncreaseTimer" to="." method="_on_speed_increase_timer_timeout"]
-[connection signal="timeout" from="UIUpdateTimer" to="." method="_on_ui_update_timer_timeout"]
 [connection signal="crashed" from="TruckScene" to="." method="_on_truck_scene_crashed"]
+[connection signal="jean_fell_off" from="TruckScene" to="." method="_on_truck_scene_jean_fell_off"]
+[connection signal="timeout" from="UIUpdateTimer" to="." method="_on_ui_update_timer_timeout"]
+[connection signal="timeout" from="SpeedIncreaseTimer" to="." method="_on_speed_increase_timer_timeout"]

@@ -27,7 +27,7 @@ var horizontal_distance : float = 0.0
 @onready var road_collider : StaticBody2D = $RoadBody
 
 @onready var connections : Node2D = $ConnectionsToTrucks
-@onready var joint_of_jean : Node2D = $Jean/Joints
+@onready var jean : Node2D = $Jean
 
 signal crashed
 signal off_roaded
@@ -84,9 +84,9 @@ func hande_falling_off() -> void:
 
 		if(horizontal_distance > max_spread_length):
 			remove_child(connections)
-			remove_child(joint_of_jean)
-
+			jean.dismember()
 			jean_fell_off.emit()
+#			stop_the_trucks()
 
 
 func update_steering_animation() -> void:
