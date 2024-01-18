@@ -86,7 +86,6 @@ func hande_falling_off() -> void:
 			remove_child(connections)
 			jean.dismember()
 			jean_fell_off.emit()
-#			stop_the_trucks()
 
 
 func update_steering_animation() -> void:
@@ -120,3 +119,8 @@ func increase_speed():
 	# TODO: max check
 	steering_sensitivity += 0.1
 	animation_speed += 0.01
+
+
+func stop_the_trucks():
+	steering_sensitivity = initial_steering_sensitivity
+	animation_speed = 0.5
