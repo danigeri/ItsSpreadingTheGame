@@ -16,6 +16,7 @@ func _on_speed_increase_timer_timeout() -> void:
 func _on_ui_update_timer_timeout() -> void:
 	ui.update_velocity(road_scene.get_road_speed())
 	ui.update_distance(road_scene.get_distance())
+	ui.update_scale(truck_scene.get_spread_percentage())
 
 
 func _on_truck_scene_crashed() -> void:

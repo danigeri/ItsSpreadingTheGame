@@ -137,3 +137,7 @@ func increase_speed():
 func stop_the_trucks():
 	steering_sensitivity = initial_steering_sensitivity
 	animation_speed = 0.5
+
+
+func get_spread_percentage() -> float:
+	return horizontal_distance / max_spread_length * 100

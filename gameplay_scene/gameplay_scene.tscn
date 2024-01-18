@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2wufkw7dnbfg"]
+[gd_scene load_steps=6 format=3 uid="uid://c2wufkw7dnbfg"]
 
 [ext_resource type="Script" path="res://gameplay_scene/gameplay_scene.gd" id="1_kpjtu"]
 [ext_resource type="PackedScene" uid="uid://bgrdxj4n70ckc" path="res://road_scene/road_scene.tscn" id="2_e7rti"]
 [ext_resource type="Script" path="res://gameplay_scene/UI.gd" id="3_ob5as"]
 [ext_resource type="PackedScene" uid="uid://yn6hai303u5m" path="res://truck_scene/truck_scene.tscn" id="4_1go4w"]
+[ext_resource type="PackedScene" uid="uid://c2560ig1u44xi" path="res://scale_gauge_scene/scale_gauge.tscn" id="5_diy58"]
 
 [node name="GameplayScene" type="Node2D"]
 script = ExtResource("1_kpjtu")
@@ -46,6 +47,13 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "0 m"
+
+[node name="ScaleGauge" parent="UI" instance=ExtResource("5_diy58")]
+offset_left = -981.0
+offset_top = 62.0
+offset_right = -981.0
+offset_bottom = 62.0
+scale = Vector2(2, 2)
 
 [node name="UIUpdateTimer" type="Timer" parent="."]
 wait_time = 0.05

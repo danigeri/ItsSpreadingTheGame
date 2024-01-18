@@ -20,7 +20,7 @@ const HEIGHT : int = 1080
 
 @export var max_velocity_mps : int = 60
 
-var velocity_mps : float = 0
+var velocity_mps : float = 1.0
 var segment_length_px : int = 100
 var segments : Array
 var t : float = 0.0
@@ -106,7 +106,6 @@ func _draw():
 				prev_perspective.X, prev_perspective.Y, prev_perspective.W*0.01,
 				perspective.X, perspective.Y, perspective.W*0.01)
 
-
 		prev_perspective = perspective
 
 
@@ -166,3 +165,7 @@ func get_road_speed() -> int:
 
 func get_distance() -> int:
 	return distance
+
+
+func stop_the_road():
+	velocity_mps = 0
