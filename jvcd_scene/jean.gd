@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var joints = $Joints
 
 func dismember() -> void:
-	remove_child($Joints)
+	if(joints):
+		remove_child($Joints)
