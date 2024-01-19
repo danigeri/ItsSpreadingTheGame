@@ -19,20 +19,17 @@ const HEIGHT : int = 1080
 @export var horizon_ratio : float = 3.0
 
 @export var max_velocity_mps : int = 60
+@export var road_length_px = 160000
 
-var velocity_mps : float = 1.0
+var velocity_mps : float = 51.0
 var segment_length_px : int = 100
-var segments : Array
 var t : float = 0.0
 var distance : int = 0
 var position_px : int
 
 
 func _ready() -> void:
-	segments = get_road_segments()
-
-	# The trucks start at the end of the track so the length of the track for now
-	position_px = segments.size()
+	position_px = road_length_px
 
 	set_process(true)
 
@@ -46,41 +43,14 @@ func _physics_process(delta: float) -> void:
 		t = 0
 
 
-func get_road_segments() -> Array:
-	var road_segments : Array = []
-
-	# TODO:
-	# This should'nt be created runtime
-	# This should be loaded
-
-	for i in range(160000):
-		var segment = {
-			x = 0,
-		 	y = 0,
-			z = i * segment_length_px,
-			curve = 0
-			}
-
-		road_segments.push_back(segment)
-
-	return road_segments
-
-
 func _draw():
 	position_px = get_updated_position(position_px)
 
 	var current_segment = position_px/segment_length_px
-
-	var x = 0
-	var dx = 0
-
 	var prev_perspective = {X = 0, Y = 0, W = 0}
 
 	for i in range(current_segment, current_segment+300):
-		var perspective = get_perspective(segments[i], -x, cam_y_position, position_px)
-
-		x += dx
-		dx += segments[i].curve
+		var perspective = get_perspective(i*segment_length_px, cam_y_position, position_px)
 
 		if perspective.Y < HEIGHT:
 			var colors = get_alternated_colors(i)
@@ -114,17 +84,16 @@ func get_updated_position(position : int) -> int:
 
 	# Reset track if reached the end
 	if new_position == 0:
-		new_position = segments.size()
+		new_position = road_length_px
 
 	return new_position
 
 
-func get_perspective(segment, cam_x, cam_y, cam_z) -> Dictionary:
-	var scale = 1.0/(segment.z - cam_z)
-
+func get_perspective(i, cam_y, cam_z) -> Dictionary:
+	var scale = 1.0/(i - cam_z)
 	var perspective = {
-		X = (1 + scale*(segment.x - cam_x)) * WIDTH/2,
-		Y = (1 - scale*(segment.y - cam_y)) * HEIGHT/horizon_ratio,
+		X = WIDTH/2,
+		Y = (1 + scale*(cam_y)) * HEIGHT/horizon_ratio,
 		W = scale * road_width_px * (WIDTH/2)
 	}
 
