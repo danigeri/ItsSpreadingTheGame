@@ -19,7 +19,7 @@ b = Vector2(1920, 0)
 script = ExtResource("1_7gccb")
 
 [node name="LeftTruckBody" type="StaticBody2D" parent="."]
-position = Vector2(1148, 320)
+position = Vector2(1115, 320)
 
 [node name="TruckToTheRight" type="Sprite2D" parent="LeftTruckBody"]
 scale = Vector2(0.4, 0.4)
@@ -41,7 +41,7 @@ position = Vector2(1, 1.5)
 polygon = PackedVector2Array(-114, -168.5, -104, -46.5, -124, -46.5, -124, 197.5, 122, 197.5, 117, -203.5, -119, -203.5)
 
 [node name="RightTruckBody" type="StaticBody2D" parent="."]
-position = Vector2(748, 319)
+position = Vector2(786, 319)
 
 [node name="TruckToTheRight" type="Sprite2D" parent="RightTruckBody"]
 scale = Vector2(0.4, 0.4)
@@ -78,17 +78,17 @@ shape = SubResource("SegmentShape2D_w6b0d")
 shape = SubResource("SegmentShape2D_p008i")
 
 [node name="Jean" parent="." instance=ExtResource("4_c7k23")]
-position = Vector2(949, -61)
+position = Vector2(949, 225)
 
 [node name="ConnectionsToTrucks" type="Node2D" parent="."]
 
 [node name="JointToLeftTruck" type="PinJoint2D" parent="ConnectionsToTrucks"]
-position = Vector2(864, 272)
+position = Vector2(899, 272)
 node_a = NodePath("../../Jean/Leg_L")
 node_b = NodePath("../../RightTruckBody")
 
 [node name="JointToRightTruck" type="PinJoint2D" parent="ConnectionsToTrucks"]
-position = Vector2(1026, 273)
+position = Vector2(998, 273)
 node_a = NodePath("../../Jean/Leg_R")
 node_b = NodePath("../../LeftTruckBody")
 
