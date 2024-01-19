@@ -9,12 +9,11 @@
 size = Vector2(1920, 20)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_w6b0d"]
-a = Vector2(300, 0)
-b = Vector2(300, 1080)
+b = Vector2(0, 1080)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_p008i"]
-a = Vector2(1620, 1080)
-b = Vector2(1620, 0)
+a = Vector2(1920, 1080)
+b = Vector2(1920, 0)
 
 [node name="TruckScene" type="Node2D"]
 script = ExtResource("1_7gccb")
@@ -68,27 +67,29 @@ position = Vector2(960, 540)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoadBody"]
 shape = SubResource("RectangleShape2D_wf121")
 
-[node name="RoadBorderL" type="StaticBody2D" parent="."]
+[node name="ScreenBorderL" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoadBorderL"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenBorderL"]
 shape = SubResource("SegmentShape2D_w6b0d")
 
-[node name="RoadBorderR" type="StaticBody2D" parent="."]
+[node name="ScreenBorderR" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoadBorderR"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenBorderR"]
 shape = SubResource("SegmentShape2D_p008i")
 
 [node name="Jean" parent="." instance=ExtResource("4_c7k23")]
 position = Vector2(949, -61)
 
-[node name="PinJoint2D" type="PinJoint2D" parent="."]
-position = Vector2(864, 272)
-node_a = NodePath("../Jean/Leg_L")
-node_b = NodePath("../RightTruckBody")
+[node name="ConnectionsToTrucks" type="Node2D" parent="."]
 
-[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+[node name="JointToLeftTruck" type="PinJoint2D" parent="ConnectionsToTrucks"]
+position = Vector2(864, 272)
+node_a = NodePath("../../Jean/Leg_L")
+node_b = NodePath("../../RightTruckBody")
+
+[node name="JointToRightTruck" type="PinJoint2D" parent="ConnectionsToTrucks"]
 position = Vector2(1026, 273)
-node_a = NodePath("../Jean/Leg_R")
-node_b = NodePath("../LeftTruckBody")
+node_a = NodePath("../../Jean/Leg_R")
+node_b = NodePath("../../LeftTruckBody")
 
 [editable path="Jean"]

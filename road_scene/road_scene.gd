@@ -18,14 +18,15 @@ const HEIGHT : int = 1080
 @export var road_width_px : int = 2000
 @export var horizon_ratio : float = 3.0
 
-var redraw_freq_s : float = 0.05
+@export var max_velocity_mps : int = 60
+
+var velocity_mps : float = 1.0
 var segment_length_px : int = 100
 var segments : Array
 var t : float = 0.0
 var distance : int = 0
 var position_px : int
 
-signal crashed_received
 
 func _ready() -> void:
 	segments = get_road_segments()
@@ -38,7 +39,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	t += delta
-	if t >= redraw_freq_s:
+
+	if t >= 1/velocity_mps:
 		queue_redraw()
 		distance += 1
 		t = 0
@@ -104,7 +106,6 @@ func _draw():
 				prev_perspective.X, prev_perspective.Y, prev_perspective.W*0.01,
 				perspective.X, perspective.Y, perspective.W*0.01)
 
-
 		prev_perspective = perspective
 
 
@@ -152,17 +153,19 @@ func draw_quadrangle(col, x1, y1, w1, x2, y2, w2):
 	draw_primitive(PackedVector2Array(point), PackedColorArray([col,col,col,col]), PackedVector2Array([]))
 
 
-func _on_truck_scene_crashed() -> void:
-	crashed_received.emit()
-
-
 func increase_road_speed() -> void:
-	redraw_freq_s -= 0.001
+	if(velocity_mps < max_velocity_mps):
+		velocity_mps += 1
 
 
 func get_road_speed() -> int:
-	return int(300/redraw_freq_s)
+	const MPS_TO_MPH := 2.2369
+	return int(MPS_TO_MPH*velocity_mps)
 
 
 func get_distance() -> int:
 	return distance
+
+
+func stop_the_road():
+	velocity_mps = 0

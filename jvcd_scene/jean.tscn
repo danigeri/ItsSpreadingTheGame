@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhjkv00y1bqyu"]
+[gd_scene load_steps=6 format=3 uid="uid://bhjkv00y1bqyu"]
 
+[ext_resource type="Script" path="res://jvcd_scene/jean.gd" id="1_77w5o"]
 [ext_resource type="Texture2D" uid="uid://c23nmw251gnc6" path="res://jvcd_scene/head.png" id="1_ktv7p"]
 [ext_resource type="Texture2D" uid="uid://c1soq6j1jcck7" path="res://jvcd_scene/torso.png" id="2_uig03"]
 [ext_resource type="Texture2D" uid="uid://r5vunel4h126" path="res://jvcd_scene/leg_l.png" id="3_aj6sr"]
 [ext_resource type="Texture2D" uid="uid://grh6aid4ixug" path="res://jvcd_scene/leg_r.png" id="4_wcvvn"]
 
 [node name="Jean" type="Node2D"]
+script = ExtResource("1_77w5o")
 
 [node name="Head" type="RigidBody2D" parent="."]
 lock_rotation = true

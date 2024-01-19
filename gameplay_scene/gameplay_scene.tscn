@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2wufkw7dnbfg"]
+[gd_scene load_steps=6 format=3 uid="uid://c2wufkw7dnbfg"]
 
 [ext_resource type="Script" path="res://gameplay_scene/gameplay_scene.gd" id="1_kpjtu"]
 [ext_resource type="PackedScene" uid="uid://bgrdxj4n70ckc" path="res://road_scene/road_scene.tscn" id="2_e7rti"]
 [ext_resource type="Script" path="res://gameplay_scene/UI.gd" id="3_ob5as"]
+[ext_resource type="PackedScene" uid="uid://yn6hai303u5m" path="res://truck_scene/truck_scene.tscn" id="4_1go4w"]
+[ext_resource type="PackedScene" uid="uid://c2560ig1u44xi" path="res://scale_gauge_scene/scale_gauge.tscn" id="5_diy58"]
 
 [node name="GameplayScene" type="Node2D"]
 script = ExtResource("1_kpjtu")
@@ -10,8 +12,7 @@ script = ExtResource("1_kpjtu")
 [node name="RoadScene" parent="." instance=ExtResource("2_e7rti")]
 cam_y_position = 1200
 
-[node name="SpeedIncreaseTimer" type="Timer" parent="."]
-autostart = true
+[node name="TruckScene" parent="." instance=ExtResource("4_1go4w")]
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -47,10 +48,24 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "0 m"
 
+[node name="ScaleGauge" parent="UI" instance=ExtResource("5_diy58")]
+offset_left = -981.0
+offset_top = 62.0
+offset_right = -981.0
+offset_bottom = 62.0
+scale = Vector2(2, 2)
+
 [node name="UIUpdateTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
 
-[connection signal="crashed_received" from="RoadScene" to="." method="_on_road_scene_crashed_received"]
-[connection signal="timeout" from="SpeedIncreaseTimer" to="." method="_on_speed_increase_timer_timeout"]
+[node name="SpeedIncreaseTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="GameOverTimer" type="Timer" parent="."]
+
+[connection signal="crashed" from="TruckScene" to="." method="_on_truck_scene_crashed"]
+[connection signal="jean_fell_off" from="TruckScene" to="." method="_on_truck_scene_jean_fell_off"]
 [connection signal="timeout" from="UIUpdateTimer" to="." method="_on_ui_update_timer_timeout"]
+[connection signal="timeout" from="SpeedIncreaseTimer" to="." method="_on_speed_increase_timer_timeout"]
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
