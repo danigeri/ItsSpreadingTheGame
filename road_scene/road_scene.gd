@@ -21,7 +21,7 @@ const HEIGHT : int = 270
 @export var max_velocity_mps : int = 60
 @export var road_length_px = 160000
 
-var velocity_mps : float = 51.0
+var velocity_mps : float = 10.0
 var segment_length_px : int = 100
 var t : float = 0.0
 var distance : int = 0

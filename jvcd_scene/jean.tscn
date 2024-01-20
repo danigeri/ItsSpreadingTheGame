@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhjkv00y1bqyu"]
+[gd_scene load_steps=9 format=3 uid="uid://bhjkv00y1bqyu"]
 
 [ext_resource type="Script" path="res://jvcd_scene/jean.gd" id="1_77w5o"]
 [ext_resource type="Texture2D" uid="uid://c86625spvo6ol" path="res://jvcd_scene/jcvd_jeans_head.png" id="2_oclxu"]
@@ -7,18 +7,22 @@
 [ext_resource type="Texture2D" uid="uid://c0e3qprum5d5v" path="res://jvcd_scene/jcvd_jeans_leg2.png" id="5_qa6l8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_48a7l"]
-radius = 4.69847
-height = 52.3449
+radius = 0.968384
+height = 50.9835
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hhjlp"]
-radius = 5.09864
-height = 52.1536
+radius = 0.9711
+height = 53.3613
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v675x"]
+radius = 4.0
+height = 22.0
 
 [node name="Jean" type="Node2D"]
 script = ExtResource("1_77w5o")
 
 [node name="Leg_R" type="RigidBody2D" parent="."]
-position = Vector2(27, 43)
+position = Vector2(25, 40)
 rotation = -1.22173
 gravity_scale = 0.5
 
@@ -26,12 +30,12 @@ gravity_scale = 0.5
 texture = ExtResource("5_qa6l8")
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Leg_R"]
-position = Vector2(0.342024, 0.93969)
-rotation = -0.236242
+position = Vector2(1.87939, -0.68404)
+rotation = -0.0969403
 shape = SubResource("CapsuleShape2D_48a7l")
 
 [node name="Leg_L" type="RigidBody2D" parent="."]
-position = Vector2(-27, 43)
+position = Vector2(-29, 40)
 rotation = 1.22173
 collision_layer = 2
 gravity_scale = 0.5
@@ -40,9 +44,20 @@ gravity_scale = 0.5
 texture = ExtResource("4_7vsa3")
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Leg_L"]
-position = Vector2(-1.28171, 0.597672)
-rotation = 0.270793
+position = Vector2(-0.853325, -3.50312)
+rotation = 0.108079
 shape = SubResource("CapsuleShape2D_hhjlp")
+
+[node name="Torso" type="RigidBody2D" parent="."]
+position = Vector2(0, 25)
+lock_rotation = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Torso"]
+texture = ExtResource("3_7gg4f")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="Torso"]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_v675x")
 
 [node name="Head" type="RigidBody2D" parent="."]
 lock_rotation = true
@@ -53,17 +68,6 @@ polygon = PackedVector2Array(-4, -3, -2, -4, 2, -4, 5, -1, 5, 5, 3, 8, -2, 8, -5
 [node name="Sprite2D" type="Sprite2D" parent="Head"]
 texture = ExtResource("2_oclxu")
 
-[node name="Torso" type="RigidBody2D" parent="."]
-z_index = -1
-position = Vector2(0, 25)
-lock_rotation = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Torso"]
-texture = ExtResource("3_7gg4f")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
-polygon = PackedVector2Array(-12, -4, 0, 16, 10, -5, 9, -14, -9, -14)
-
 [node name="Joints" type="Node2D" parent="."]
 
 [node name="Neck" type="PinJoint2D" parent="Joints"]
@@ -73,16 +77,16 @@ node_a = NodePath("../../Head")
 node_b = NodePath("../../Torso")
 
 [node name="Hip_L" type="PinJoint2D" parent="Joints"]
-position = Vector2(-2, 38)
-rotation = 1.04545
+position = Vector2(-1, 30)
+rotation = 0.264143
 scale = Vector2(0.1, 0.1)
 node_a = NodePath("../../Torso")
 node_b = NodePath("../../Leg_L")
 disable_collision = false
 
 [node name="Hip_R" type="PinJoint2D" parent="Joints"]
-position = Vector2(2, 38)
-rotation = 0.431096
+position = Vector2(1, 30)
+rotation = 1.34976
 scale = Vector2(0.1, 0.1)
 node_a = NodePath("../../Torso")
 node_b = NodePath("../../Leg_R")

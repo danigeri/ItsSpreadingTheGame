@@ -38,6 +38,13 @@ polygon = PackedVector2Array(241, 59, -225, 58, -225, 36, -134, 36, -134, -26, -
 [node name="Jean" parent="." instance=ExtResource("2_xgt16")]
 position = Vector2(-7, 286)
 
+[node name="CollisionPolygon2D" parent="Jean/Leg_R" index="1"]
+rotation = -0.170592
+
+[node name="CollisionPolygon2D" parent="Jean/Leg_L" index="1"]
+position = Vector2(-0.342043, 0.939682)
+rotation = 0.175304
+
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(-2.38419e-07, 721)
 scale = Vector2(10.72, 10)
@@ -48,13 +55,15 @@ shape = SubResource("SegmentShape2D_cnpxc")
 [node name="RearViewMirror_L" type="PinJoint2D" parent="."]
 position = Vector2(-56, 335)
 scale = Vector2(0.2, 0.2)
-node_a = NodePath("../Jean/Torso")
+node_a = NodePath("../Jean/Leg_L")
 node_b = NodePath("../TestPlatform_L")
+disable_collision = false
 
 [node name="RearViewMirror_R" type="PinJoint2D" parent="."]
 position = Vector2(43, 336)
 scale = Vector2(0.2, 0.2)
-node_a = NodePath("../Jean/Torso")
+node_a = NodePath("../Jean/Leg_R")
 node_b = NodePath("../TestPlatform_R")
+disable_collision = false
 
 [editable path="Jean"]
