@@ -16,11 +16,9 @@ var horizontal_distance : float = 0.0
 @export var shift_falloff = 0.5
 @export var initial_steering_sensitivity = 5
 @export var animation_speed = 0.5
-@export var max_spread_length : int = 700
+@export var max_spread_length : int = 190
 
-@onready var truck_to_the_left : Sprite2D = $LeftTruckBody/TruckToTheLeft
 @onready var truck_straight : Sprite2D = $LeftTruckBody/TruckGoingStraight
-@onready var truck_to_the_right : Sprite2D = $LeftTruckBody/TruckToTheRight
 
 @onready var left_truck : StaticBody2D = $LeftTruckBody
 @onready var right_truck : StaticBody2D = $RightTruckBody
@@ -42,8 +40,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	update_steering_animation()
-	update_idle_animation(delta)
+#	update_idle_animation(delta)
+	pass
 
 
 func _physics_process(delta: float) -> void:
@@ -99,24 +97,6 @@ func hande_falling_off() -> void:
 			remove_child(connections)
 			jean.dismember()
 			jean_fell_off.emit()
-
-
-func update_steering_animation() -> void:
-	if direction == LEFT:
-		active_sprite = truck_to_the_left
-
-		truck_straight.hide()
-		truck_to_the_right.hide()
-	elif direction == STRAIGHT:
-		active_sprite = truck_straight
-
-		truck_to_the_left.hide()
-		truck_to_the_right.hide()
-	elif direction == RIGHT:
-		active_sprite = truck_to_the_right
-
-		truck_to_the_left.hide()
-		truck_straight.hide()
 
 
 func update_idle_animation(delta: float) -> void:
