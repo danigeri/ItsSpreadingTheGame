@@ -1,8 +1,8 @@
 extends Node2D
 
 # These are viewport properties and should be read not hardcoded
-const WIDTH : int = 1920
-const HEIGHT : int = 1080
+const WIDTH : int = 480
+const HEIGHT : int = 270
 
 @export var GRASS1 := Color8(253, 166, 97)
 @export var GRASS2 := Color8(246, 129, 73)

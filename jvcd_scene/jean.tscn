@@ -28,7 +28,6 @@ texture = ExtResource("5_qa6l8")
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Leg_R"]
 position = Vector2(0.342024, 0.93969)
 rotation = -0.236242
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_48a7l")
 
 [node name="Leg_L" type="RigidBody2D" parent="."]
