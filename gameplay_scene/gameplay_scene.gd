@@ -12,7 +12,7 @@ extends Node2D
 var distance_done : float = 0
 var score : int = 0
 var is_game_over_triggered : bool = false
-var _multiplier : int = 3
+var _multiplier : int = 1
 
 
 func _on_speed_increase_timer_timeout() -> void:

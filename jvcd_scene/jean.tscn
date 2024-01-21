@@ -22,21 +22,21 @@ height = 22.0
 script = ExtResource("1_77w5o")
 
 [node name="Leg_R" type="RigidBody2D" parent="."]
-position = Vector2(25, 40)
-rotation = -1.22173
+position = Vector2(12, 55)
+rotation = -0.282743
 gravity_scale = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="Leg_R"]
 texture = ExtResource("5_qa6l8")
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Leg_R"]
-position = Vector2(1.87939, -0.68404)
-rotation = -0.0969403
+position = Vector2(1.51828, -1.6416)
+rotation = -0.212814
 shape = SubResource("CapsuleShape2D_48a7l")
 
 [node name="Leg_L" type="RigidBody2D" parent="."]
-position = Vector2(-29, 40)
-rotation = 1.22173
+position = Vector2(-15, 57)
+rotation = 0.298586
 collision_layer = 2
 gravity_scale = 0.5
 
@@ -45,7 +45,7 @@ texture = ExtResource("4_7vsa3")
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Leg_L"]
 position = Vector2(-0.853325, -3.50312)
-rotation = 0.108079
+rotation = 0.248777
 shape = SubResource("CapsuleShape2D_hhjlp")
 
 [node name="Torso" type="RigidBody2D" parent="."]
