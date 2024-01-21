@@ -5,7 +5,6 @@ extends Node2D
 @onready var road_scene = $RoadScene
 @onready var truck_scene = $TruckScene
 @onready var ui = $UI
-@onready var game_over_timer = $GameOverTimer
 @onready var ui_update_timer = $UIUpdateTimer
 
 @export var score_q : float = 0.1

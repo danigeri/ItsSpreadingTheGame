@@ -19,8 +19,6 @@ var damage_state : int = 0
 @onready var left_truck_sprite : Sprite2D = $LeftTruckBody/Sprite
 @onready var right_truck_sprite : Sprite2D = $RightTruckBody/Sprite
 
-@onready var road_collider : StaticBody2D = $RoadBody
-
 @onready var connections : Node2D = $ConnectionsToTrucks
 @onready var jean : Node2D = $Jean
 
@@ -39,11 +37,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	handle_steering(delta)
 
-	var collision : KinematicCollision2D = left_truck.move_and_collide(Vector2(shift_speed_left, 0))
-	handle_collisions(collision)
+	left_truck.move_and_collide(Vector2(shift_speed_left, 0))
+	right_truck.move_and_collide(Vector2(shift_speed_right, 0))
 
-	collision = right_truck.move_and_collide(Vector2(shift_speed_right, 0))
-	handle_collisions(collision)
 	hande_falling_off()
 
 
@@ -69,14 +65,6 @@ func handle_steering(delta : float) -> void:
 			shift_speed_right += delta * shift_falloff
 
 
-func handle_collisions(collision : KinematicCollision2D) -> void:
-	if collision != null:
-		var collider = collision.get_collider()
-
-		if collider != road_collider:
-			crashed.emit()
-
-
 func hande_falling_off() -> void:
 	var a = left_truck.global_position
 	var b = right_truck.global_position
@@ -85,7 +73,9 @@ func hande_falling_off() -> void:
 	if horizontal_distance != current_distance:
 		horizontal_distance = current_distance
 
-		if(horizontal_distance > max_spread_length) and (connections):
+		if(connections.) and (
+			(horizontal_distance > max_spread_length) or
+			(horizontal_distance < min_spread_length)):
 			fall_off()
 
 
@@ -99,6 +89,7 @@ func increase_speed():
 	# TODO: max check
 	steering_sensitivity += 0.1
 	idle_animation.speed_scale += 0.01
+
 
 func stop_the_trucks():
 	steering_sensitivity = initial_steering_sensitivity
