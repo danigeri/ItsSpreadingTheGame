@@ -1,9 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://yn6hai303u5m"]
 
 [ext_resource type="Script" path="res://truck_scene/truck_scene.gd" id="1_7gccb"]
-[ext_resource type="Texture2D" uid="uid://bbh7vyerdgk2b" path="res://truck_scene/blue_truck_1.png" id="2_jjem7"]
-[ext_resource type="Texture2D" uid="uid://sxbxh51x54cd" path="res://truck_scene/green_truck_1.png" id="3_f21yb"]
+[ext_resource type="Texture2D" uid="uid://bq5w6wseunmne" path="res://truck_scene/green_truck_sheet.png" id="3_acpdq"]
 [ext_resource type="PackedScene" uid="uid://bhjkv00y1bqyu" path="res://jvcd_scene/jean.tscn" id="4_c7k23"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3ot2h"]
+load_path = "res://.godot/imported/blue_truck_sheet.png-ed57b800d4d734b159dc12242cfb96c0.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf121"]
 size = Vector2(480, 1)
@@ -80,20 +82,22 @@ _data = {
 script = ExtResource("1_7gccb")
 
 [node name="LeftTruckBody" type="StaticBody2D" parent="."]
-position = Vector2(325, 121)
+position = Vector2(325, 107)
 
 [node name="Sprite" type="Sprite2D" parent="LeftTruckBody"]
-texture = ExtResource("2_jjem7")
+texture = SubResource("CompressedTexture2D_3ot2h")
+hframes = 7
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftTruckBody"]
-position = Vector2(1, 1.5)
+position = Vector2(1, 16)
 polygon = PackedVector2Array(-34, -66.5, -34, -25.5, -41, -25.5, -41, 44.5, 48, 44.5, 48, -67.5)
 
 [node name="RightTruckBody" type="StaticBody2D" parent="."]
 position = Vector2(148, 107)
 
 [node name="Sprite" type="Sprite2D" parent="RightTruckBody"]
-texture = ExtResource("3_f21yb")
+texture = ExtResource("3_acpdq")
+hframes = 7
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightTruckBody"]
 polygon = PackedVector2Array(33, -11, 40, -11, 39, 60, -49, 60, -49, -57, 35, -57)

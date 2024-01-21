@@ -1,12 +1,5 @@
 extends Node2D
 
-enum {LEFT, STRAIGHT, RIGHT}
-
-var sprite_frames : Array = [0,1,2,3]
-var frame_timer : float = 0
-var direction : int = STRAIGHT
-var active_sprite : Sprite2D
-
 var shift_speed_left : float = 0.0
 var shift_speed_right : float = 0.0
 var steering_sensitivity : float = 0.0
@@ -19,7 +12,6 @@ var horizontal_distance : float = 0.0
 @export var max_spread_length : int = 190
 @export var min_spread_length : int = 110
 
-@onready var truck_straight : Sprite2D = $LeftTruckBody/TruckGoingStraight
 
 @onready var left_truck : StaticBody2D = $LeftTruckBody
 @onready var right_truck : StaticBody2D = $RightTruckBody
@@ -36,13 +28,7 @@ signal jean_fell_off
 
 func _ready() -> void:
 	steering_sensitivity = initial_steering_sensitivity
-	active_sprite = truck_straight
 	set_process(true)
-
-
-func _process(delta: float) -> void:
-#	update_idle_animation(delta)
-	pass
 
 
 func _physics_process(delta: float) -> void:
@@ -100,24 +86,13 @@ func hande_falling_off() -> void:
 			jean_fell_off.emit()
 
 
-func update_idle_animation(delta: float) -> void:
-	frame_timer += delta
-	if frame_timer >= 1/animation_speed:
-		active_sprite.set_frame(sprite_frames[0])
-		sprite_frames.push_back(sprite_frames[0])
-		sprite_frames.pop_front()
-		frame_timer = 0
-
-
 func increase_speed():
 	# TODO: max check
 	steering_sensitivity += 0.1
-	animation_speed += 0.01
 
 
 func stop_the_trucks():
 	steering_sensitivity = initial_steering_sensitivity
-	animation_speed = 0.5
 
 
 func get_spread_percentage() -> float:

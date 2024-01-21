@@ -15,6 +15,7 @@ var score : int = 0
 var is_game_over_triggered : bool = false
 var _multiplier : int = 3
 
+
 func _on_speed_increase_timer_timeout() -> void:
 	road_scene.increase_road_speed()
 	truck_scene.increase_speed()
