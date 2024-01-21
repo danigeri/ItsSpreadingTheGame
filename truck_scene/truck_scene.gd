@@ -24,6 +24,8 @@ var damage_state : int = 0
 @onready var connections : Node2D = $ConnectionsToTrucks
 @onready var jean : Node2D = $Jean
 
+@onready var idle_animation = $IdleTruckAnimation
+
 signal crashed
 signal off_roaded
 signal jean_fell_off
@@ -96,7 +98,7 @@ func fall_off() -> void:
 func increase_speed():
 	# TODO: max check
 	steering_sensitivity += 0.1
-
+	idle_animation.speed_scale += 0.01
 
 func stop_the_trucks():
 	steering_sensitivity = initial_steering_sensitivity
