@@ -81,8 +81,7 @@ func _on_truck_scene_jean_fell_off() -> void:
 func trigger_game_over() -> void:
 	if(not is_game_over_triggered):
 		is_game_over_triggered = true
-		game_over_timer.start(1)
+		await get_tree().create_timer(1.0).timeout
 
+		SceneTransition.change_scene(game_over_scene.instantiate())
 
-func _on_game_over_timer_timeout() -> void:
-	SceneTransition.change_scene(game_over_scene.instantiate())
