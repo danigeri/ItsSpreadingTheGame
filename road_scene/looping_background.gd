@@ -6,46 +6,45 @@ extends Node2D
 @onready var background = $Background
 @onready var background2 = $Background2
 
-var hour : float = 12
-var debug_speedup = 20
+@onready var active_background = background
+
+@export var day_speed_multiplier : float = 1.0
 
 const HEIGHT : int = 1067
-const PIXELS_PER_H : float = HEIGHT/24
+const DAYS_IN_PIXEL : float = HEIGHT/24
 
 
 func _process(delta: float) -> void:
 
-	background.position.y -= delta * 5.5 * debug_speedup
-	background2.position.y -= delta * 5.5 * debug_speedup
+	background.position.y -= delta * 2.75 * day_speed_multiplier
+	background2.position.y -= delta * 2.75 * day_speed_multiplier
 
 
 	# loop arund
 	if background.position.y <= -HEIGHT:
 		background.position.y = background2.position.y + HEIGHT
+		active_background = background2
 
 	if background2.position.y <= -HEIGHT:
 		background2.position.y = background.position.y + HEIGHT
+		active_background = background
 
-#	hour += hour*delta*0.1
 
-#	var time_of_day = fmod(hour, 24)
-#	print(time_of_day)
-#	if time_of_day <= 2:
-#		print("Moon staying still")
-#	elif time_of_day > 2 and time_of_day <= 7:
-#		moon.position.y += delta * debug_speedup
-#		print("Moon going down")
-#	elif time_of_day > 7 and time_of_day <= 12:
-#		sun.position.y -= delta * debug_speedup
-#		print("Sun going up")
-#	elif time_of_day > 12 and time_of_day <= 14:
-#		print("Sun stays still")
-#	elif time_of_day > 14 and time_of_day <= 19:
-#		sun.position.y += delta * debug_speedup
-#		print("Sun going down")
-#	elif time_of_day > 19 and time_of_day <= 24:
-#		moon.position.y -= delta * debug_speedup
-#		print("Moon going up")
+	var hour = abs(active_background.position.y)/DAYS_IN_PIXEL
 
-#	if(sun.position.y < 100):
-#		sun.position.y += delta * debug_speedup
+	if hour <= 1: # 0-1 (12-13): nothing
+		pass
+	elif hour > 1 and hour <= 6: # 1-6 (13-18): sun goes down
+		sun.position.y += delta * day_speed_multiplier
+	elif hour > 6 and hour <= 7: # 6-7 (18-19): nothing
+		pass
+	elif hour > 7 and hour <= 12: # 7-12 (19-24): moon comes up
+		moon.position.y -= delta * day_speed_multiplier
+	elif hour > 12 and hour <= 13: # 12-13 (24-1): nothing
+		pass
+	elif hour > 13 and hour <= 18: # 13-18 (1-6): moon goes down
+		moon.position.y += delta * day_speed_multiplier
+	elif hour > 18 and hour <= 19: # 18-19 (6-7): nothing
+		pass
+	elif hour > 19 and hour <= 24: # 19-24 (7-12): sun comes up
+		sun.position.y -= delta * day_speed_multiplier

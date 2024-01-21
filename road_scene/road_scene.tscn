@@ -21,18 +21,18 @@ centered = false
 offset = Vector2(0, 70)
 
 [node name="Sun" type="Sprite2D" parent="LoopingBackground"]
-z_index = 1
+z_index = -1
 position = Vector2(287, 23)
 texture = ExtResource("5_h6xuw")
 centered = false
 
 [node name="Moon" type="Sprite2D" parent="LoopingBackground"]
-z_index = 1
+z_index = -1
 position = Vector2(100, 140)
 texture = ExtResource("7_ogkhu")
 
 [node name="CoverElementWorkaround" type="Sprite2D" parent="LoopingBackground"]
-z_index = -2
+z_index = -1
 position = Vector2(0, 115)
 texture = ExtResource("4_utbv8")
 centered = false
