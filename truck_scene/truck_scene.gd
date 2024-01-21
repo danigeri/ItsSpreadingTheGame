@@ -73,16 +73,16 @@ func hande_falling_off() -> void:
 	if horizontal_distance != current_distance:
 		horizontal_distance = current_distance
 
-		if(connections.) and (
-			(horizontal_distance > max_spread_length) or
-			(horizontal_distance < min_spread_length)):
+		if (horizontal_distance > max_spread_length) or (
+			horizontal_distance < min_spread_length):
 			fall_off()
 
 
 func fall_off() -> void:
-	remove_child(connections)
-	jean.dismember()
-	jean_fell_off.emit()
+	if(connections):
+		remove_child(connections)
+		jean.dismember()
+		jean_fell_off.emit()
 
 
 func increase_speed():
