@@ -18,13 +18,14 @@ const HEIGHT : int = 270
 @export var road_width_px : int = 2000
 @export var horizon_ratio : float = 3.0
 
-@export var max_velocity_mps : int = 60
+@export var max_speed : int = 550
+@export var speed_up_step : int = 1
 @export var road_length_px = 160000
 
-var velocity_mps : float = 10.0
-var segment_length_px : int = 100
-var t : float = 0.0
-var distance : int = 0
+# This is the atual width of a segment drawn that will
+# also be the percieved speed
+@export var speed : int = 10
+var distance : float = 0.0
 var position_px : int
 
 
@@ -35,22 +36,19 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	t += delta
-
-	if t >= 1/velocity_mps:
 		queue_redraw()
-		distance += 1
-		t = 0
+		# 0.1 is arbitrary
+		distance += (speed * delta * 0.1)
 
 
 func _draw():
 	position_px = get_updated_position(position_px)
 
-	var current_segment = position_px/segment_length_px
+	var current_segment = position_px/speed
 	var prev_perspective = {X = 0, Y = 0, W = 0}
 
-	for i in range(current_segment, current_segment+300):
-		var perspective = get_perspective(i*segment_length_px, cam_y_position, position_px)
+	for i in range(current_segment, current_segment+200):
+		var perspective = get_perspective(i*speed, cam_y_position, position_px)
 
 		if perspective.Y < HEIGHT:
 			var colors = get_alternated_colors(i)
@@ -80,7 +78,7 @@ func _draw():
 
 
 func get_updated_position(position : int) -> int:
-	var new_position = position - segment_length_px
+	var new_position = position - speed
 
 	# Reset track if reached the end
 	if new_position == 0:
@@ -123,13 +121,14 @@ func draw_quadrangle(col, x1, y1, w1, x2, y2, w2):
 
 
 func increase_road_speed() -> void:
-	if(velocity_mps < max_velocity_mps):
-		velocity_mps += 1
+	if(speed < max_speed):
+		speed += speed_up_step
 
 
 func get_road_speed() -> int:
-	const MPS_TO_MPH := 2.2369
-	return int(MPS_TO_MPH*velocity_mps)
+	const MAX_PRESENTED_SPEED = 150
+
+	return int(MAX_PRESENTED_SPEED*speed/max_speed)
 
 
 func get_distance() -> int:
@@ -137,4 +136,4 @@ func get_distance() -> int:
 
 
 func stop_the_road():
-	velocity_mps = 0
+	speed = 0
