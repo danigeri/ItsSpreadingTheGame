@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://yn6hai303u5m"]
+[gd_scene load_steps=11 format=3 uid="uid://yn6hai303u5m"]
 
 [ext_resource type="Script" path="res://truck_scene/truck_scene.gd" id="1_7gccb"]
 [ext_resource type="Texture2D" uid="uid://bbh7vyerdgk2b" path="res://truck_scene/blue_truck_1.png" id="2_jjem7"]
@@ -14,6 +14,67 @@ b = Vector2(0, 1080)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_p008i"]
 a = Vector2(1920, 1080)
 b = Vector2(1920, 0)
+
+[sub_resource type="Animation" id="Animation_efvx3"]
+resource_name = "IdleRocking"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(8, 0.170755, 0.217638, 3.24901),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2), Vector2(0, 0), Vector2(0, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RightTruckBody/Sprite:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.15, 0.4, 0.65, 0.9),
+"transitions": PackedFloat32Array(2.92817, 0.466516, 0.378929, 4.14106),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ocwg6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RightTruckBody/Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ds0yj"]
+_data = {
+"IdleRocking": SubResource("Animation_efvx3"),
+"RESET": SubResource("Animation_ocwg6")
+}
 
 [node name="TruckScene" type="Node2D"]
 script = ExtResource("1_7gccb")
@@ -69,5 +130,12 @@ position = Vector2(286, 97)
 scale = Vector2(0.3, 0.3)
 node_a = NodePath("../../Jean/Leg_R")
 node_b = NodePath("../../LeftTruckBody")
+
+[node name="IdleTruckAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../LeftTruckBody")
+autoplay = "IdleRocking"
+libraries = {
+"": SubResource("AnimationLibrary_ds0yj")
+}
 
 [editable path="Jean"]
