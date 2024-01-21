@@ -56,14 +56,14 @@ func _on_ui_update_timer_timeout() -> void:
 func get_calculated_multiplier(spread_percentage : float) -> int:
 	var multiplier : int
 
-	if spread_percentage <= 50:
+	if spread_percentage <= 45:
 		multiplier = 1
 	elif spread_percentage <= 75:
 		multiplier = 2
-	elif spread_percentage <= 95:
-		multiplier = 3
-	else:
+	elif spread_percentage <= 88:
 		multiplier = 4
+	else:
+		multiplier = 8
 
 	return multiplier
 
