@@ -6,6 +6,9 @@ extends Node2D
 @onready var truck_scene = $TruckScene
 @onready var ui = $UI
 @onready var game_over_timer = $GameOverTimer
+@onready var ui_update_timer = $UIUpdateTimer
+
+var distance_done : float = 0
 
 
 func _on_speed_increase_timer_timeout() -> void:
@@ -13,10 +16,40 @@ func _on_speed_increase_timer_timeout() -> void:
 	truck_scene.increase_speed()
 
 
+func get_calculated_speed_mph(distance : float) -> float:
+	const MPS_TO_MPH := 2.236936
+	var delta_distance = distance - distance_done
+	var actual_m_per_sec : float = delta_distance/ui_update_timer.wait_time
+
+	return actual_m_per_sec*MPS_TO_MPH
+
+
+func get_calculated_multiplier(spread_percentage : float) -> int:
+	var multiplier : int
+
+	if spread_percentage <= 50:
+		multiplier = 1
+	elif spread_percentage <= 75:
+		multiplier = 2
+	elif spread_percentage <= 95:
+		multiplier = 3
+	else:
+		multiplier = 4
+
+	return multiplier
+
+
 func _on_ui_update_timer_timeout() -> void:
-	ui.update_velocity(road_scene.get_road_speed())
-	ui.update_distance(road_scene.get_distance())
-	ui.update_scale(truck_scene.get_spread_percentage())
+	var distance : float = road_scene.get_distance()
+	var speed : float = get_calculated_speed_mph(distance)
+
+	distance_done = distance
+
+	ui.update_velocity(speed)
+	ui.update_distance(distance)
+	var spread_percentage : float = truck_scene.get_spread_percentage()
+	ui.update_multiplier(get_calculated_multiplier(spread_percentage))
+	ui.update_scale(spread_percentage)
 
 
 func _on_truck_scene_crashed() -> void:
