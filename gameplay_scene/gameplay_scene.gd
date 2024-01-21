@@ -8,7 +8,11 @@ extends Node2D
 @onready var game_over_timer = $GameOverTimer
 @onready var ui_update_timer = $UIUpdateTimer
 
+@export var score_q : float = 0.1
+
 var distance_done : float = 0
+var score : int = 0
+var is_game_over_triggered : bool = false
 
 
 func _on_speed_increase_timer_timeout() -> void:
@@ -22,6 +26,25 @@ func get_calculated_speed_mph(distance : float) -> float:
 	var actual_m_per_sec : float = delta_distance/ui_update_timer.wait_time
 
 	return actual_m_per_sec*MPS_TO_MPH
+
+
+func _on_ui_update_timer_timeout() -> void:
+	var distance : float = road_scene.get_distance()
+	var speed : float = get_calculated_speed_mph(distance)
+
+	distance_done = distance
+
+	ui.update_velocity(speed)
+	ui.update_distance(distance)
+
+	var spread_percentage : float = truck_scene.get_spread_percentage()
+	ui.update_scale(spread_percentage)
+
+	if(not is_game_over_triggered):
+		var multiplier : int = get_calculated_multiplier(spread_percentage)
+		score += distance*multiplier*score_q
+		ui.update_multiplier(multiplier)
+		ui.update_score(score)
 
 
 func get_calculated_multiplier(spread_percentage : float) -> int:
@@ -39,19 +62,6 @@ func get_calculated_multiplier(spread_percentage : float) -> int:
 	return multiplier
 
 
-func _on_ui_update_timer_timeout() -> void:
-	var distance : float = road_scene.get_distance()
-	var speed : float = get_calculated_speed_mph(distance)
-
-	distance_done = distance
-
-	ui.update_velocity(speed)
-	ui.update_distance(distance)
-	var spread_percentage : float = truck_scene.get_spread_percentage()
-	ui.update_multiplier(get_calculated_multiplier(spread_percentage))
-	ui.update_scale(spread_percentage)
-
-
 func _on_truck_scene_crashed() -> void:
 	trigger_game_over()
 
@@ -63,7 +73,8 @@ func _on_truck_scene_jean_fell_off() -> void:
 
 
 func trigger_game_over() -> void:
-	if(game_over_timer.is_stopped()):
+	if(not is_game_over_triggered):
+		is_game_over_triggered = true
 		game_over_timer.start(1)
 
 

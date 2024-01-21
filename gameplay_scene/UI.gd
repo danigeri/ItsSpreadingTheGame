@@ -4,7 +4,7 @@ extends Control
 @onready var distance_display = $DistancePanel/DistanceLabel
 @onready var scale_gaude = $ScaleGauge
 @onready var multiplier_display = $Multiplier/MultiplierLabel
-
+@onready var score_display = $Score/ScoreLabel
 
 func update_velocity(velocity : int):
 	velocity_display.text = "%d mph" % velocity
@@ -20,6 +20,10 @@ func update_scale(percentage : float):
 
 func update_multiplier(multiplier : int):
 	multiplier_display.text = "%dx" % multiplier
+
+
+func update_score(score : int):
+	score_display.text = str(score)
 
 
 func update_debug(a : float):
