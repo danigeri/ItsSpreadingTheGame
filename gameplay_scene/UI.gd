@@ -33,5 +33,5 @@ func update_debug(a : float):
 
 func blink_jean_portrait() -> void:
 	jean_portrait.visible = true
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.5).timeout
 	jean_portrait.visible = false
