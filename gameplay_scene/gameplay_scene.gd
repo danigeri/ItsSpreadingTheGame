@@ -49,6 +49,11 @@ func _on_ui_update_timer_timeout() -> void:
 
 			_multiplier = multiplier
 
+			if multiplier >= 4:
+				ui.show_epic_spread_label()
+			else:
+				ui.hide_epic_spread_label()
+
 		score += distance*multiplier*score_q
 		ui.update_score(score)
 
