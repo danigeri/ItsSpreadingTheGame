@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbh7vyerdgk2b"
-path="res://.godot/imported/blue_truck_1.png-d8397bf3d3096da61cbf01543b1c527d.ctex"
+uid="uid://bq5w6wseunmne"
+path="res://.godot/imported/green_truck_sheet.png-59756dbcdbcb7bc01f3f19e9689e6b40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://truck_scene/blue_truck_1.png"
-dest_files=["res://.godot/imported/blue_truck_1.png-d8397bf3d3096da61cbf01543b1c527d.ctex"]
+source_file="res://truck_scene/green_truck_sheet.png"
+dest_files=["res://.godot/imported/green_truck_sheet.png-59756dbcdbcb7bc01f3f19e9689e6b40.ctex"]
 
 [params]
 

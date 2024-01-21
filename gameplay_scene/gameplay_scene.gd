@@ -5,7 +5,6 @@ extends Node2D
 @onready var road_scene = $RoadScene
 @onready var truck_scene = $TruckScene
 @onready var ui = $UI
-@onready var game_over_timer = $GameOverTimer
 @onready var ui_update_timer = $UIUpdateTimer
 
 @export var score_q : float = 0.1
@@ -13,7 +12,8 @@ extends Node2D
 var distance_done : float = 0
 var score : int = 0
 var is_game_over_triggered : bool = false
-var _multiplier : int = 3
+var _multiplier : int = 1
+
 
 func _on_speed_increase_timer_timeout() -> void:
 	road_scene.increase_road_speed()
@@ -56,14 +56,14 @@ func _on_ui_update_timer_timeout() -> void:
 func get_calculated_multiplier(spread_percentage : float) -> int:
 	var multiplier : int
 
-	if spread_percentage <= 50:
+	if spread_percentage <= 45:
 		multiplier = 1
 	elif spread_percentage <= 75:
 		multiplier = 2
-	elif spread_percentage <= 95:
-		multiplier = 3
-	else:
+	elif spread_percentage <= 88:
 		multiplier = 4
+	else:
+		multiplier = 8
 
 	return multiplier
 
@@ -81,8 +81,11 @@ func _on_truck_scene_jean_fell_off() -> void:
 func trigger_game_over() -> void:
 	if(not is_game_over_triggered):
 		is_game_over_triggered = true
-		game_over_timer.start(1)
+		await get_tree().create_timer(1.0).timeout
+
+		SceneTransition.change_scene(game_over_scene.instantiate())
 
 
-func _on_game_over_timer_timeout() -> void:
-	SceneTransition.change_scene(game_over_scene.instantiate())
+func _on_damage_pressed() -> void:
+	truck_scene.inflict_damage()
+
