@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyus0bkw8lc26"]
+
+[ext_resource type="Texture2D" uid="uid://chnh1mt3pgkyg" path="res://epic_spread_label/epic_spread_sheet.png" id="1_mw11w"]
+
+[sub_resource type="Animation" id="Animation_b1dy2"]
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EpicSpreadSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.001, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 46]
+}
+
+[sub_resource type="Animation" id="Animation_o3c0h"]
+resource_name = "epic_flaming"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EpicSpreadSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 47]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ybr1"]
+_data = {
+"RESET": SubResource("Animation_b1dy2"),
+"epic_flaming": SubResource("Animation_o3c0h")
+}
+
+[node name="EpicSpreadLabel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EpicSpreadSheet" type="Sprite2D" parent="."]
+texture = ExtResource("1_mw11w")
+hframes = 47
+frame = 17
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
+libraries = {
+"": SubResource("AnimationLibrary_0ybr1")
+}

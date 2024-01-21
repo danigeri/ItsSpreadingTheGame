@@ -6,6 +6,7 @@ extends Control
 @onready var multiplier_display = $Multiplier/MultiplierLabel
 @onready var score_display = $Score/ScoreLabel
 @onready var jean_portrait = $JCVDPortrait
+@onready var epic_spread_label = $EpicSpreadLabel
 
 func update_velocity(velocity : int):
 	velocity_display.text = "%d mph" % velocity
@@ -35,3 +36,11 @@ func blink_jean_portrait() -> void:
 	jean_portrait.visible = true
 	await get_tree().create_timer(1.5).timeout
 	jean_portrait.visible = false
+
+
+func show_epic_spread_label() -> void:
+	epic_spread_label.visible = true
+
+
+func hide_epic_spread_label() -> void:
+	epic_spread_label.visible = false

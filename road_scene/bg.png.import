@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hummj4k52syd"
-path="res://.godot/imported/RoadBackGround.jpg-8e725094f614e663f0969d8b7112ca85.ctex"
+uid="uid://d1w7slxq13gig"
+path="res://.godot/imported/bg.png-00e921c9671f27587e73f35b2892a6e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RoadBackGround.jpg"
-dest_files=["res://.godot/imported/RoadBackGround.jpg-8e725094f614e663f0969d8b7112ca85.ctex"]
+source_file="res://road_scene/bg.png"
+dest_files=["res://.godot/imported/bg.png-00e921c9671f27587e73f35b2892a6e4.ctex"]
 
 [params]
 
