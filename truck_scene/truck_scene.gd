@@ -8,7 +8,9 @@ var horizontal_distance : float = 0.0
 var damage_state : int = 0
 
 @export var shift_falloff = 0.5
-@export var initial_steering_sensitivity = 5
+@export var initial_steering_sensitivity = 2
+@export var max_steering_sensitivity = 10
+@export var steering_sensitivity_step := 0.05
 @export var animation_speed = 0.5
 @export var max_spread_length : int = 190
 @export var min_spread_length : int = 110
@@ -86,9 +88,9 @@ func fall_off() -> void:
 
 
 func increase_speed():
-	# TODO: max check
-	steering_sensitivity += 0.1
-	idle_animation.speed_scale += 0.01
+	if steering_sensitivity < max_steering_sensitivity:
+		steering_sensitivity += steering_sensitivity_step
+		idle_animation.speed_scale += 0.01
 
 
 func stop_the_trucks():
