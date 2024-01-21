@@ -13,7 +13,7 @@ extends Node2D
 var distance_done : float = 0
 var score : int = 0
 var is_game_over_triggered : bool = false
-
+var _multiplier : int = 3
 
 func _on_speed_increase_timer_timeout() -> void:
 	road_scene.increase_road_speed()
@@ -42,8 +42,14 @@ func _on_ui_update_timer_timeout() -> void:
 
 	if(not is_game_over_triggered):
 		var multiplier : int = get_calculated_multiplier(spread_percentage)
+
+		if(multiplier != _multiplier):
+			ui.update_multiplier(multiplier)
+			ui.blink_jean_portrait()
+
+			_multiplier = multiplier
+
 		score += distance*multiplier*score_q
-		ui.update_multiplier(multiplier)
 		ui.update_score(score)
 
 

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://btnq5226lpow7"]
+
+[ext_resource type="Texture2D" uid="uid://n1rrw0gpi4mx" path="res://jean_portrait/JCVD_portrait.png" id="1_rybd8"]
+
+[node name="JCVDPortrait" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JcvdPortrait" type="Sprite2D" parent="."]
+texture = ExtResource("1_rybd8")
