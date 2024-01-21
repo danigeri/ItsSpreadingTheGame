@@ -5,6 +5,7 @@ var shift_speed_right : float = 0.0
 var steering_sensitivity : float = 0.0
 
 var horizontal_distance : float = 0.0
+var damage_state : int = 0
 
 @export var shift_falloff = 0.5
 @export var initial_steering_sensitivity = 5
@@ -15,6 +16,8 @@ var horizontal_distance : float = 0.0
 
 @onready var left_truck : StaticBody2D = $LeftTruckBody
 @onready var right_truck : StaticBody2D = $RightTruckBody
+@onready var left_truck_sprite : Sprite2D = $LeftTruckBody/Sprite
+@onready var right_truck_sprite : Sprite2D = $RightTruckBody/Sprite
 
 @onready var road_collider : StaticBody2D = $RoadBody
 
@@ -81,9 +84,13 @@ func hande_falling_off() -> void:
 		horizontal_distance = current_distance
 
 		if(horizontal_distance > max_spread_length) and (connections):
-			remove_child(connections)
-			jean.dismember()
-			jean_fell_off.emit()
+			fall_off()
+
+
+func fall_off() -> void:
+	remove_child(connections)
+	jean.dismember()
+	jean_fell_off.emit()
 
 
 func increase_speed():
@@ -97,3 +104,13 @@ func stop_the_trucks():
 
 func get_spread_percentage() -> float:
 	return (horizontal_distance - min_spread_length)/(max_spread_length-min_spread_length)*100
+
+
+func inflict_damage():
+	if(damage_state >= 6):
+		crashed.emit()
+		fall_off()
+	else:
+		damage_state += 1
+		left_truck_sprite.set_frame(damage_state)
+		right_truck_sprite.set_frame(damage_state)

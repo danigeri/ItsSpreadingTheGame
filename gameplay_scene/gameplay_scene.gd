@@ -86,3 +86,7 @@ func trigger_game_over() -> void:
 
 		SceneTransition.change_scene(game_over_scene.instantiate())
 
+
+func _on_damage_pressed() -> void:
+	truck_scene.inflict_damage()
+
