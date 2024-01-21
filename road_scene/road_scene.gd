@@ -136,4 +136,4 @@ func get_distance() -> int:
 
 
 func stop_the_road():
-	speed = 0
+	speed = 10
