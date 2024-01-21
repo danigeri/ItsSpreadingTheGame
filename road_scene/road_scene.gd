@@ -18,13 +18,13 @@ const HEIGHT : int = 270
 @export var road_width_px : int = 2000
 @export var horizon_ratio : float = 3.0
 
-@export var max_speed : int = 550
-@export var speed_up_step : int = 1
+@export var max_speed : float = 550.0
+@export var speed_up_step : float = 0.16
 @export var road_length_px = 160000
 
 # This is the atual width of a segment drawn that will
 # also be the percieved speed
-@export var speed : int = 10
+@export var speed := 10.0
 var distance : float = 0.0
 var position_px : int
 
@@ -100,9 +100,9 @@ func get_perspective(i, cam_y, cam_z) -> Dictionary:
 
 func get_alternated_colors(segment_number : int) -> Dictionary:
 	var Colors = {
-		border = BORDER1 if (segment_number/3)%2 else BORDER2,
-		road = ROAD1 if (segment_number/3)%2 else ROAD2,
-		divider = DIVIDER1 if (segment_number/9)%2 else DIVIDER2,
+		border = BORDER1 if (segment_number/5)%2 else BORDER2,
+		road = ROAD1 if (segment_number/9)%2 else ROAD2,
+		divider = DIVIDER1 if (segment_number/15)%2 else DIVIDER2,
 		grass = GRASS1 if (segment_number/9)%2 else GRASS2
 	}
 
