@@ -131,7 +131,7 @@ func get_road_speed() -> int:
 	return int(MAX_PRESENTED_SPEED*speed/max_speed)
 
 
-func get_distance() -> int:
+func get_distance() -> float:
 	return distance
 
 
