@@ -17,6 +17,7 @@ var horizontal_distance : float = 0.0
 @export var initial_steering_sensitivity = 5
 @export var animation_speed = 0.5
 @export var max_spread_length : int = 190
+@export var min_spread_length : int = 110
 
 @onready var truck_straight : Sprite2D = $LeftTruckBody/TruckGoingStraight
 
@@ -93,7 +94,7 @@ func hande_falling_off() -> void:
 	if horizontal_distance != current_distance:
 		horizontal_distance = current_distance
 
-		if(horizontal_distance > max_spread_length):
+		if(horizontal_distance > max_spread_length) and (connections):
 			remove_child(connections)
 			jean.dismember()
 			jean_fell_off.emit()
@@ -120,4 +121,4 @@ func stop_the_trucks():
 
 
 func get_spread_percentage() -> float:
-	return horizontal_distance / max_spread_length * 100
+	return (horizontal_distance - min_spread_length)/(max_spread_length-min_spread_length)*100
