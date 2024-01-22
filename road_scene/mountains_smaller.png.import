@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctyd7r0es2k71"
-path="res://.godot/imported/mountains.png-d7f2948d3f2efec95c5b72acf83ccc47.ctex"
+uid="uid://cnjtb0f6gj4m7"
+path="res://.godot/imported/mountains_smaller.png-b88076c06ea58d230aefa652248c515a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://road_scene/mountains.png"
-dest_files=["res://.godot/imported/mountains.png-d7f2948d3f2efec95c5b72acf83ccc47.ctex"]
+source_file="res://road_scene/mountains_smaller.png"
+dest_files=["res://.godot/imported/mountains_smaller.png-b88076c06ea58d230aefa652248c515a.ctex"]
 
 [params]
 
