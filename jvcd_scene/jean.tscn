@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhjkv00y1bqyu"]
+[gd_scene load_steps=10 format=3 uid="uid://bhjkv00y1bqyu"]
 
 [ext_resource type="Script" path="res://jvcd_scene/jean.gd" id="1_77w5o"]
 [ext_resource type="Texture2D" uid="uid://c86625spvo6ol" path="res://jvcd_scene/jcvd_jeans_head.png" id="2_oclxu"]
 [ext_resource type="Texture2D" uid="uid://bw5qynupq0ki2" path="res://jvcd_scene/jcvd_jeans_torso.png" id="3_7gg4f"]
+[ext_resource type="PackedScene" uid="uid://cva1hgm8amaj8" path="res://fire_scene/fire_scene.tscn" id="4_5fl50"]
 [ext_resource type="Texture2D" uid="uid://b2a0vxwpfgr4r" path="res://jvcd_scene/jcvd_jeans_leg1.png" id="4_7vsa3"]
 [ext_resource type="Texture2D" uid="uid://c0e3qprum5d5v" path="res://jvcd_scene/jcvd_jeans_leg2.png" id="5_qa6l8"]
 
@@ -34,6 +35,11 @@ position = Vector2(1.51828, -1.6416)
 rotation = -0.212814
 shape = SubResource("CapsuleShape2D_48a7l")
 
+[node name="FireScene" parent="Leg_R" instance=ExtResource("4_5fl50")]
+visible = false
+position = Vector2(9.38257, 21.4702)
+rotation = 1.0472
+
 [node name="Leg_L" type="RigidBody2D" parent="."]
 position = Vector2(-15, 57)
 rotation = 0.298586
@@ -47,6 +53,11 @@ texture = ExtResource("4_7vsa3")
 position = Vector2(-0.853325, -3.50312)
 rotation = 0.248777
 shape = SubResource("CapsuleShape2D_hhjlp")
+
+[node name="FireScene" parent="Leg_L" instance=ExtResource("4_5fl50")]
+visible = false
+position = Vector2(-9.6296, 19.7046)
+rotation = -1.0472
 
 [node name="Torso" type="RigidBody2D" parent="."]
 position = Vector2(0, 25)

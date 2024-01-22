@@ -51,8 +51,11 @@ func _on_ui_update_timer_timeout() -> void:
 
 			if multiplier >= 4:
 				ui.show_epic_spread_label()
+				truck_scene.set_heelfire_visibility(true)
 			else:
 				ui.hide_epic_spread_label()
+				truck_scene.set_heelfire_visibility(false)
+
 
 		score += distance*multiplier*score_q
 		ui.update_score(score)
