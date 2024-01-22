@@ -25,7 +25,7 @@ func trigger_reaction(reaction_number : int) -> void:
 
 	reaction.visible = true
 	animation_player.play(reaction_name)
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(5.4).timeout
 	reaction.visible = false
 
 

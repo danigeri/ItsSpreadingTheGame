@@ -46,7 +46,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_sikiq"]
 resource_name = "Reaction1"
-length = 1.5
+length = 5.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -55,7 +55,7 @@ tracks/0/path = NodePath("Reaction1:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 5.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 35]
@@ -63,7 +63,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5dhk4"]
 resource_name = "Reaction2"
-length = 1.5
+length = 5.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -72,7 +72,7 @@ tracks/0/path = NodePath("Reaction2:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 5.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 35]
@@ -80,7 +80,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_patv5"]
 resource_name = "Reaction3"
-length = 1.5
+length = 5.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -89,7 +89,7 @@ tracks/0/path = NodePath("Reaction3:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 5.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 35]
