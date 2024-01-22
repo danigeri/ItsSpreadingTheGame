@@ -30,3 +30,9 @@ func _physics_process(delta: float) -> void:
 	# Remove the obstacle if it reaches the horizon
 	if position.y <= horizon_y:
 		queue_free()
+
+
+func _on_area_2d_body_entered(body):
+	print("Obstacle hit something!")
+	queue_free()  # Remove the obstacle
+	pass # Replace with function body.
