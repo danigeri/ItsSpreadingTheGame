@@ -86,7 +86,8 @@ func _process(delta):
 		if timer.time_left <= 0:
 			# Remove the exclamation mark when the timer runs out
 			upcoming_object["exclamation_mark"].queue_free()
-			upcoming_object["obstacle"].started = true
+			if upcoming_object["obstacle"] != null:
+				upcoming_object["obstacle"].started = true
 			upcoming_object["exclamation_mark_timer"].queue_free()
 			upcoming_objects.erase(upcoming_object)
 			
