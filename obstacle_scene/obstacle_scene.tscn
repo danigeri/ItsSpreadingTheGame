@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1iimxsn60hb1"]
+
+[ext_resource type="Script" path="res://obstacle_scene/obstacle_scene.gd" id="1_x2ptn"]
+[ext_resource type="Texture2D" uid="uid://dpy66i07lk124" path="res://obstacle_scene/banana.png" id="2_ycmw1"]
+
+[node name="ObstacleScene" type="Node2D"]
+script = ExtResource("1_x2ptn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(4, -26, 5, -20, -3, -2, -26, 4, -29, 15, 0, 16, 16, -4, 13, -24)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ycmw1")

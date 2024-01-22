@@ -27,12 +27,30 @@ var t : float = 0.0
 var distance : int = 0
 var position_px : int
 
+var obstacle_scene = preload("res://obstacle_scene/obstacle_scene.tscn")
+var obstacle_timer = Timer.new()
+
+func get_horizon_y_position() -> float:
+	# Assuming a very large `i` so that it represents the horizon
+	return get_perspective(road_length_px, cam_y_position, position_px).Y
 
 func _ready() -> void:
 	position_px = road_length_px
-
+	add_child(obstacle_timer)
+	obstacle_timer.wait_time = 5.0
+	obstacle_timer.connect("timeout", self._on_obstacle_timer_timeout)
+	obstacle_timer.start()
 	set_process(true)
 
+func _on_obstacle_timer_timeout() -> void:
+	spawn_obstacle()
+	
+func spawn_obstacle() -> void:
+	var obstacle = obstacle_scene.instantiate()
+	var spawn_x_position = randi_range(0, WIDTH) # Start just off-screen
+	var spawn_y_position = HEIGHT
+	obstacle.position = Vector2(spawn_x_position, spawn_y_position)
+	add_child(obstacle)
 
 func _physics_process(delta: float) -> void:
 	t += delta
