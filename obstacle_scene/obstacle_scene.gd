@@ -1,8 +1,6 @@
 extends Node2D
 
 var velocity_mps: float = -100.0
-var start_scale: Vector2 = Vector2(1, 1)
-var horizon_scale: Vector2 = Vector2(0, 0)
 
 var min_scale: float = 0.1
 var max_scale: float = 1.0
