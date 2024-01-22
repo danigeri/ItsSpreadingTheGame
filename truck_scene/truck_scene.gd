@@ -110,5 +110,10 @@ func inflict_damage():
 		left_truck_sprite.set_frame(damage_state)
 		right_truck_sprite.set_frame(damage_state)
 
+
 func set_heelfire_visibility(is_visible : bool) -> void:
 	jean.set_heelfire_visibility(is_visible)
+
+
+func apply_skin(skin_number : int) -> void:
+	jean.apply_skin(skin_number)

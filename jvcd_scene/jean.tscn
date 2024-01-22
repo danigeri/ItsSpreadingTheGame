@@ -28,7 +28,7 @@ rotation = -0.282743
 gravity_scale = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="Leg_R"]
-position = Vector2(3.84118, 1.11596)
+position = Vector2(3.84117, 1.11596)
 texture = ExtResource("2_oaoxu")
 hframes = 9
 
@@ -63,7 +63,7 @@ position = Vector2(-9.6296, 19.7046)
 rotation = -1.0472
 
 [node name="Torso" type="RigidBody2D" parent="."]
-position = Vector2(0, 25)
+position = Vector2(0, 24)
 lock_rotation = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Torso"]
@@ -75,6 +75,7 @@ position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_v675x")
 
 [node name="Head" type="RigidBody2D" parent="."]
+position = Vector2(0, -1)
 lock_rotation = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Head"]

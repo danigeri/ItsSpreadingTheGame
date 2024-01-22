@@ -15,6 +15,10 @@ var is_game_over_triggered : bool = false
 var _multiplier : int = 1
 
 
+func _on_ready() -> void:
+	randomize()
+
+
 func _on_speed_increase_timer_timeout() -> void:
 	road_scene.increase_road_speed()
 	truck_scene.increase_speed()
@@ -107,3 +111,6 @@ func trigger_game_over() -> void:
 func _on_damage_pressed() -> void:
 	truck_scene.inflict_damage()
 
+
+func _on_skin_change_pressed() -> void:
+	truck_scene.apply_skin(randi() % 9)
