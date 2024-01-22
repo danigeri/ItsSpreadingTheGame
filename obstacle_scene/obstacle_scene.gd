@@ -7,10 +7,15 @@ var max_scale: float = 1.0
 
 var initial_x_position: float # Store the initial X position of the obstacle
 
+var started: bool = false
+
 func _ready() -> void:
 	initial_x_position = position.x # Set the initial X position
 
 func _physics_process(delta: float) -> void:
+	if not started:
+		return
+	
 	position.y += velocity_mps * delta
 
 	var road_scene = get_parent()

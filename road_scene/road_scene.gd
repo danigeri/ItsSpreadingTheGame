@@ -28,7 +28,12 @@ var distance : int = 0
 var position_px : int
 
 var obstacle_scene = preload("res://obstacle_scene/obstacle_scene.tscn")
-var obstacle_timer = Timer.new()
+var obstacle_timer = Timer.new() # the interval between a new object is generated
+
+var exclamation_mark_scene = preload("res://exclamation_mark_scene/exclamation_mark_scene.tscn")
+var upcoming_objects = []
+
+var exclamation_mark_time = 1 # the time how long exclamation mark is shown up
 
 func get_horizon_y_position() -> float:
 	# Assuming a very large `i` so that it represents the horizon
@@ -44,13 +49,47 @@ func _ready() -> void:
 
 func _on_obstacle_timer_timeout() -> void:
 	spawn_obstacle()
+	obstacle_timer.wait_time = randi_range(2,10)
 	
 func spawn_obstacle() -> void:
 	var obstacle = obstacle_scene.instantiate()
-	var spawn_x_position = randi_range(0, WIDTH) # Start just off-screen
-	var spawn_y_position = HEIGHT
+	var spawn_x_position = randi_range(0, WIDTH)
+	var spawn_y_position = HEIGHT * 1.5
 	obstacle.position = Vector2(spawn_x_position, spawn_y_position)
 	add_child(obstacle)
+	
+	# Spawn the exclamation mark
+	var exclamation_mark = exclamation_mark_scene.instantiate()
+	exclamation_mark.position = Vector2(spawn_x_position, HEIGHT - 30) # Adjust Y position as needed
+	exclamation_mark.scale = Vector2(0,0)
+	add_child(exclamation_mark)
+	
+	var exclamation_mark_timer = Timer.new()
+	add_child(exclamation_mark_timer)
+	exclamation_mark_timer.wait_time = exclamation_mark_time
+	exclamation_mark_timer.one_shot = true
+	exclamation_mark_timer.start()
+	
+	upcoming_objects.append({
+		"obstacle": obstacle,
+		"exclamation_mark": exclamation_mark,
+		"exclamation_mark_timer": exclamation_mark_timer
+	})
+	
+	
+func _process(delta):
+	for upcoming_object in upcoming_objects:
+		var timer = upcoming_object["exclamation_mark_timer"]
+		var scale_factor = 1 - timer.time_left
+		#print(upcoming_object["exclamation_mark_timer"].time_left)
+		upcoming_object.exclamation_mark.scale = Vector2(scale_factor, scale_factor) 
+		if timer.time_left <= 0:
+			# Remove the exclamation mark when the timer runs out
+			upcoming_object["exclamation_mark"].queue_free()
+			upcoming_object["obstacle"].started = true
+			upcoming_object["exclamation_mark_timer"].queue_free()
+			upcoming_objects.erase(upcoming_object)
+			
 
 func _physics_process(delta: float) -> void:
 	t += delta
