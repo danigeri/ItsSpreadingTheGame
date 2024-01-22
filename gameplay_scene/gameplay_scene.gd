@@ -45,7 +45,13 @@ func _on_ui_update_timer_timeout() -> void:
 
 		if(multiplier != _multiplier):
 			ui.update_multiplier(multiplier)
-			ui.blink_jean_portrait()
+
+			if _multiplier == 1 and multiplier == 2:
+				ui.blink_jean_portrait(1)
+			elif _multiplier == 2 and multiplier == 4:
+				ui.blink_jean_portrait(2)
+			elif _multiplier == 4 and multiplier == 8:
+				ui.blink_jean_portrait(3)
 
 			_multiplier = multiplier
 

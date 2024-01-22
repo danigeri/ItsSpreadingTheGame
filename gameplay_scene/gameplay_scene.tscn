@@ -99,7 +99,6 @@ offset_right = 190.0
 offset_bottom = 4.0
 
 [node name="JCVDPortrait" parent="UI" instance=ExtResource("6_ydqvh")]
-visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

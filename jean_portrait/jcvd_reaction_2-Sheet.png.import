@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvoqko4eoy4dp"
-path="res://.godot/imported/jcvd_meditation-Sheet.png-bac7cacb233533d9c54bb2a924d0b636.ctex"
+uid="uid://bgassvxvxqkr5"
+path="res://.godot/imported/jcvd_reaction_2-Sheet.png-94d7b0e037173878bef979daf9fbd625.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://jean_portrait/jcvd_meditation-Sheet.png"
-dest_files=["res://.godot/imported/jcvd_meditation-Sheet.png-bac7cacb233533d9c54bb2a924d0b636.ctex"]
+source_file="res://jean_portrait/jcvd_reaction_2-Sheet.png"
+dest_files=["res://.godot/imported/jcvd_reaction_2-Sheet.png-94d7b0e037173878bef979daf9fbd625.ctex"]
 
 [params]
 

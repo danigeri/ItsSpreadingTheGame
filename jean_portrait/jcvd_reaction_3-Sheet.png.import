@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n1rrw0gpi4mx"
-path="res://.godot/imported/JCVD_portrait.png-d37e5a7639bc57b0dea859b89a0a6d33.ctex"
+uid="uid://bm4b8elwuvwh0"
+path="res://.godot/imported/jcvd_reaction_3-Sheet.png-fdc941dfeac73a14a2ca3813e8842ce5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://jean_portrait/JCVD_portrait.png"
-dest_files=["res://.godot/imported/JCVD_portrait.png-d37e5a7639bc57b0dea859b89a0a6d33.ctex"]
+source_file="res://jean_portrait/jcvd_reaction_3-Sheet.png"
+dest_files=["res://.godot/imported/jcvd_reaction_3-Sheet.png-fdc941dfeac73a14a2ca3813e8842ce5.ctex"]
 
 [params]
 
