@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0e3qprum5d5v"
-path="res://.godot/imported/jcvd_jeans_leg2.png-8ee8b410609999a38f74d01d7e8f7a14.ctex"
+uid="uid://ccecbdkrkdbnb"
+path="res://.godot/imported/jcvd_heads.png-7c8de70cbb3c11423b4d3c7a37b9aa66.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://jvcd_scene/jcvd_jeans_leg2.png"
-dest_files=["res://.godot/imported/jcvd_jeans_leg2.png-8ee8b410609999a38f74d01d7e8f7a14.ctex"]
+source_file="res://jvcd_scene/jcvd_heads.png"
+dest_files=["res://.godot/imported/jcvd_heads.png-7c8de70cbb3c11423b4d3c7a37b9aa66.ctex"]
 
 [params]
 
