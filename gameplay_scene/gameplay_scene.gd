@@ -89,6 +89,10 @@ func _on_truck_scene_jean_fell_off() -> void:
 func trigger_game_over() -> void:
 	if(not is_game_over_triggered):
 		is_game_over_triggered = true
+
+		ui.hide_epic_spread_label()
+		truck_scene.set_heelfire_visibility(false)
+
 		await get_tree().create_timer(1.0).timeout
 
 		SceneTransition.change_scene(game_over_scene.instantiate())
