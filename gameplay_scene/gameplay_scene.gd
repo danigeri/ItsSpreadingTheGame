@@ -6,6 +6,7 @@ extends Node2D
 @onready var truck_scene = $TruckScene
 @onready var ui = $UI
 @onready var ui_update_timer = $UIUpdateTimer
+@onready var skin_shoutout =  $UI/SkinShoutout
 
 @export var score_q : float = 0.1
 
@@ -113,4 +114,6 @@ func _on_damage_pressed() -> void:
 
 
 func _on_skin_change_pressed() -> void:
-	truck_scene.apply_skin(randi() % 9)
+	var random_skin_number = randi() % 9
+	skin_shoutout.shoutout(random_skin_number)
+	truck_scene.apply_skin(random_skin_number)
