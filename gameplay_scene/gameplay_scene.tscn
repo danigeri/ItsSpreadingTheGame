@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2wufkw7dnbfg"]
+[gd_scene load_steps=10 format=3 uid="uid://c2wufkw7dnbfg"]
 
 [ext_resource type="Script" path="res://gameplay_scene/gameplay_scene.gd" id="1_kpjtu"]
 [ext_resource type="PackedScene" uid="uid://bgrdxj4n70ckc" path="res://road_scene/road_scene.tscn" id="2_e7rti"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://btnq5226lpow7" path="res://jean_portrait/jcvd_portrait.tscn" id="6_ydqvh"]
 [ext_resource type="PackedScene" uid="uid://dyus0bkw8lc26" path="res://epic_spread_label/epic_spread_label.tscn" id="7_0x8v5"]
 [ext_resource type="PackedScene" uid="uid://laba3xnjcjob" path="res://skin_shoutout_scene/skin_shoutout_scene.tscn" id="8_idhit"]
+[ext_resource type="PackedScene" uid="uid://delha6fc0fos8" path="res://buttons_tutorial_scene/buttons_tutorial_scene.tscn" id="9_j33ti"]
 
 [node name="GameplayScene" type="Node2D"]
 script = ExtResource("1_kpjtu")
@@ -133,6 +134,9 @@ offset_left = 237.0
 offset_top = 108.0
 offset_right = 237.0
 offset_bottom = 108.0
+
+[node name="ButtonsTutorial" parent="UI" instance=ExtResource("9_j33ti")]
+layout_mode = 1
 
 [node name="UIUpdateTimer" type="Timer" parent="."]
 wait_time = 0.05
