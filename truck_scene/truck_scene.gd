@@ -7,13 +7,15 @@ var steering_sensitivity : float = 0.0
 var horizontal_distance : float = 0.0
 var damage_state : int = 0
 
+var collision_handled : bool = false
+
 @export var shift_falloff = 0.5
 @export var initial_steering_sensitivity = 2
 @export var max_steering_sensitivity = 10
 @export var steering_sensitivity_step := 0.05
 @export var animation_speed = 0.5
 @export var max_spread_length : int = 190
-@export var min_spread_length : int = 110
+@export var min_spread_length : int = 90
 
 
 @onready var left_truck : StaticBody2D = $LeftTruckBody
@@ -25,6 +27,7 @@ var damage_state : int = 0
 @onready var jean : Node2D = $Jean
 
 @onready var idle_animation = $IdleTruckAnimation
+@onready var road_collider : StaticBody2D = $RoadBody
 
 signal crashed
 signal off_roaded
@@ -40,9 +43,24 @@ func _physics_process(delta: float) -> void:
 	handle_steering(delta)
 
 	left_truck.move_and_collide(Vector2(shift_speed_left, 0))
-	right_truck.move_and_collide(Vector2(shift_speed_right, 0))
+	var right_collision = right_truck.move_and_collide(Vector2(shift_speed_right, 0))
+	var left_collision = left_truck.move_and_collide(Vector2(shift_speed_left, 0))
 
 	hande_falling_off()
+	handle_collisions(right_collision, left_collision)
+
+
+func handle_collisions(right_collision : KinematicCollision2D,
+					   left_collision : KinematicCollision2D) -> void:
+	if right_collision != null and right_collision.get_collider() != road_collider:
+			inflict_damage()
+			shift_speed_left = .5
+			shift_speed_right = -.5
+
+	elif left_collision != null and left_collision.get_collider() != road_collider:
+			inflict_damage()
+			shift_speed_left = 	.5
+			shift_speed_right = -0.5
 
 
 func handle_steering(delta : float) -> void:

@@ -86,7 +86,7 @@ hframes = 7
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftTruckBody"]
 position = Vector2(1, 16)
-polygon = PackedVector2Array(-34, -66.5, -34, -25.5, -41, -25.5, -41, 44.5, 48, 44.5, 48, -67.5)
+polygon = PackedVector2Array(-34, -66.5, -34, -25.5, -52, -25.5, -52, 44.5, 48, 44.5, 48, -67.5)
 
 [node name="RightTruckBody" type="StaticBody2D" parent="."]
 position = Vector2(169, 107)
@@ -96,7 +96,7 @@ texture = ExtResource("3_acpdq")
 hframes = 7
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightTruckBody"]
-polygon = PackedVector2Array(33, -11, 40, -11, 39, 60, -49, 60, -49, -57, 35, -57)
+polygon = PackedVector2Array(33, -11, 52, -11, 52, 60, -49, 60, -49, -57, 35, -57)
 
 [node name="RoadBody" type="StaticBody2D" parent="."]
 position = Vector2(240, 170)
