@@ -14,10 +14,7 @@ var distance_done : float = 0
 var score : int = 0
 var is_game_over_triggered : bool = false
 var _multiplier : int = 1
-
-
-func _on_ready() -> void:
-	randomize()
+var active_skin_number : int = 0
 
 
 func _on_speed_increase_timer_timeout() -> void:
@@ -114,6 +111,6 @@ func _on_damage_pressed() -> void:
 
 
 func _on_skin_change_pressed() -> void:
-	var random_skin_number = randi() % 9
-	skin_shoutout.shoutout(random_skin_number)
-	truck_scene.apply_skin(random_skin_number)
+	active_skin_number += 1
+	skin_shoutout.shoutout(active_skin_number%9)
+	truck_scene.apply_skin(active_skin_number%9)
