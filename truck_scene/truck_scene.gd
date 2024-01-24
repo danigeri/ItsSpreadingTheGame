@@ -16,15 +16,15 @@ var collision_handled : bool = false
 @export var animation_speed = 0.5
 @export var max_spread_length : int = 190
 @export var min_spread_length : int = 90
+@export var truck_bounce : float = 0.2
 
-
-@onready var left_truck : StaticBody2D = $LeftTruckBody
 @onready var right_truck : StaticBody2D = $RightTruckBody
+@onready var left_truck : StaticBody2D = $LeftTruckBody
 @onready var right_border : StaticBody2D = $ScreenBorderR
 @onready var left_border : StaticBody2D = $ScreenBorderL
 
-@onready var left_truck_sprite : Sprite2D = $LeftTruckBody/Sprite
 @onready var right_truck_sprite : Sprite2D = $RightTruckBody/Sprite
+@onready var left_truck_sprite : Sprite2D = $LeftTruckBody/Sprite
 
 @onready var connections : Node2D = $ConnectionsToTrucks
 @onready var jean : Node2D = $Jean
@@ -45,9 +45,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	handle_steering(delta)
 
-	left_truck.move_and_collide(Vector2(shift_speed_left, 0))
+	var left_collision  = left_truck.move_and_collide(Vector2(shift_speed_left, 0))
 	var right_collision = right_truck.move_and_collide(Vector2(shift_speed_right, 0))
-	var left_collision = left_truck.move_and_collide(Vector2(shift_speed_left, 0))
 
 	hande_falling_off()
 	handle_collisions(right_collision, left_collision)
@@ -55,39 +54,29 @@ func _physics_process(delta: float) -> void:
 
 func handle_collisions(right_collision : KinematicCollision2D,
 					   left_collision : KinematicCollision2D) -> void:
-	# truck to truck collisions
+	# left_truck to left_truck collisions
 	if right_collision and right_collision.get_collider() == left_truck:
 		inflict_damage()
-		shift_speed_left = 0.2
-		shift_speed_right = -0.2
+		shift_speed_left = -truck_bounce
+		shift_speed_right = truck_bounce
 
 	elif left_collision and left_collision.get_collider() == right_truck:
 		inflict_damage()
-		shift_speed_left = 	0.2
-		shift_speed_right = -0.2
+		shift_speed_left = -truck_bounce
+		shift_speed_right = truck_bounce
 
-	# truck to screen border collisions
-	elif left_collision and left_collision.get_collider() == right_border:
-		shift_speed_left = -0.2
+	# left_truck to screen border collisions
+	elif left_collision and left_collision.get_collider() == left_border:
+		shift_speed_left = truck_bounce
 		inflict_damage()
-	elif right_collision and right_collision.get_collider() == left_border:
-		shift_speed_right = 0.2
+	elif right_collision and right_collision.get_collider() == right_border:
+		shift_speed_right = -truck_bounce
 		inflict_damage()
 
 func handle_steering(delta : float) -> void:
 	if Input.is_action_pressed("ui_right"):
-		shift_speed_left += delta * steering_sensitivity
-	elif Input.is_action_pressed("ui_left"):
-		shift_speed_left -= delta * steering_sensitivity
-	else:
-		if shift_speed_left > 0:
-			shift_speed_left -= delta * shift_falloff
-		elif shift_speed_left < 0:
-			shift_speed_left += delta * shift_falloff
-
-	if Input.is_action_pressed("LeftTruckToTheRight"):
 		shift_speed_right += delta * steering_sensitivity
-	elif Input.is_action_pressed("LeftTruckToTheLeft"):
+	elif Input.is_action_pressed("ui_left"):
 		shift_speed_right -= delta * steering_sensitivity
 	else:
 		if shift_speed_right > 0:
@@ -95,10 +84,20 @@ func handle_steering(delta : float) -> void:
 		elif shift_speed_right < 0:
 			shift_speed_right += delta * shift_falloff
 
+	if Input.is_action_pressed("LeftTruckToTheRight"):
+		shift_speed_left += delta * steering_sensitivity
+	elif Input.is_action_pressed("LeftTruckToTheLeft"):
+		shift_speed_left -= delta * steering_sensitivity
+	else:
+		if shift_speed_left > 0:
+			shift_speed_left -= delta * shift_falloff
+		elif shift_speed_left < 0:
+			shift_speed_left += delta * shift_falloff
+
 
 func hande_falling_off() -> void:
-	var a = left_truck.global_position
-	var b = right_truck.global_position
+	var a = right_truck.global_position
+	var b = left_truck.global_position
 	var current_distance = a.x - b.x
 
 	if horizontal_distance != current_distance:
@@ -136,8 +135,8 @@ func inflict_damage():
 		fall_off()
 	else:
 		damage_state += 1
-		left_truck_sprite.set_frame(damage_state)
 		right_truck_sprite.set_frame(damage_state)
+		left_truck_sprite.set_frame(damage_state)
 
 
 func set_heelfire_visibility(is_visible : bool) -> void:
