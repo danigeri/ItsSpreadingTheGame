@@ -29,7 +29,7 @@ var collision_handled : bool = false
 @onready var connections : Node2D = $ConnectionsToTrucks
 @onready var jean : Node2D = $Jean
 
-@onready var idle_animation = $IdleTruckAnimation
+@onready var animations = $TruckAnimation
 @onready var road_collider : StaticBody2D = $RoadBody
 
 signal crashed
@@ -118,7 +118,7 @@ func fall_off() -> void:
 func increase_speed():
 	if steering_sensitivity < max_steering_sensitivity:
 		steering_sensitivity += steering_sensitivity_step
-		idle_animation.speed_scale += 0.01
+		animations.speed_scale += 0.01
 
 
 func stop_the_trucks():
@@ -137,6 +137,7 @@ func inflict_damage():
 		damage_state += 1
 		right_truck_sprite.set_frame(damage_state)
 		left_truck_sprite.set_frame(damage_state)
+		animations.play("TakingDamage")
 
 
 func set_heelfire_visibility(is_visible : bool) -> void:
