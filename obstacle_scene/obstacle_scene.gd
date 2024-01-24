@@ -1,5 +1,7 @@
 extends Node2D
 
+signal obstacle_hit()
+
 var velocity_mps: float = -100.0
 
 var min_scale: float = 0.1
@@ -40,4 +42,5 @@ func _physics_process(delta: float) -> void:
 func _on_area_2d_body_entered(body):
 	print("Obstacle hit something!")
 	queue_free()  # Remove the obstacle
+	obstacle_hit.emit()
 	pass # Replace with function body.
