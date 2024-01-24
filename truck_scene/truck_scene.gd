@@ -139,6 +139,9 @@ func inflict_damage():
 		left_truck_sprite.set_frame(damage_state)
 		animations.play("TakingDamage")
 
+		if damage_state == 6:
+			animations.play("SeriouslyHurt")
+
 
 func set_heelfire_visibility(is_visible : bool) -> void:
 	jean.set_heelfire_visibility(is_visible)

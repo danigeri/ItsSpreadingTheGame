@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://yn6hai303u5m"]
+[gd_scene load_steps=12 format=3 uid="uid://yn6hai303u5m"]
 
 [ext_resource type="Script" path="res://truck_scene/truck_scene.gd" id="1_7gccb"]
 [ext_resource type="Texture2D" uid="uid://bq5w6wseunmne" path="res://truck_scene/green_truck_sheet.png" id="3_acpdq"]
@@ -120,10 +120,39 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_je8uj"]
+resource_name = "SeriouslyHurt"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 0.580392), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../LeftTruckBody/Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 0.643137), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ds0yj"]
 _data = {
 "IdleRocking": SubResource("Animation_efvx3"),
 "RESET": SubResource("Animation_ocwg6"),
+"SeriouslyHurt": SubResource("Animation_je8uj"),
 "TakingDamage": SubResource("Animation_ow27e")
 }
 
@@ -150,6 +179,7 @@ texture = ExtResource("3_acpdq")
 hframes = 7
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftTruckBody"]
+visible = false
 polygon = PackedVector2Array(33, -11, 52, -11, 52, 60, -49, 60, -49, -57, 35, -57)
 
 [node name="RoadBody" type="StaticBody2D" parent="."]
