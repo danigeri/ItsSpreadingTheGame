@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://yn6hai303u5m"]
+[gd_scene load_steps=10 format=3 uid="uid://yn6hai303u5m"]
 
 [ext_resource type="Script" path="res://truck_scene/truck_scene.gd" id="1_7gccb"]
 [ext_resource type="Texture2D" uid="uid://bq5w6wseunmne" path="res://truck_scene/green_truck_sheet.png" id="3_acpdq"]
@@ -12,10 +12,6 @@ size = Vector2(480, 1)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_w6b0d"]
 b = Vector2(0, 1080)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_p008i"]
-a = Vector2(1920, 1080)
-b = Vector2(1920, 0)
 
 [sub_resource type="Animation" id="Animation_efvx3"]
 resource_name = "IdleRocking"
@@ -114,9 +110,10 @@ shape = SubResource("RectangleShape2D_wf121")
 shape = SubResource("SegmentShape2D_w6b0d")
 
 [node name="ScreenBorderR" type="StaticBody2D" parent="."]
+position = Vector2(480, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenBorderR"]
-shape = SubResource("SegmentShape2D_p008i")
+shape = SubResource("SegmentShape2D_w6b0d")
 
 [node name="Jean" parent="." instance=ExtResource("4_c7k23")]
 position = Vector2(238, 19)
