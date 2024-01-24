@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clop8vln7sw7y"
-path="res://.godot/imported/left_truck_spritesheet_2500.png-d65f45e4de6ee8e78e6514e62698aaa7.ctex"
+uid="uid://bq5w6wseunmne"
+path="res://.godot/imported/green_truck_sheet.png-59756dbcdbcb7bc01f3f19e9689e6b40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://truck_scene/left_truck_spritesheet_2500.png"
-dest_files=["res://.godot/imported/left_truck_spritesheet_2500.png-d65f45e4de6ee8e78e6514e62698aaa7.ctex"]
+source_file="res://truck_scene/green_truck_sheet.png"
+dest_files=["res://.godot/imported/green_truck_sheet.png-59756dbcdbcb7bc01f3f19e9689e6b40.ctex"]
 
 [params]
 

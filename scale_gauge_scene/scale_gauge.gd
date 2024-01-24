@@ -6,5 +6,5 @@ extends Control
 
 
 func set_marker(percentage : float) -> void:
-	marker.position.x = min(percentage, 100)
+	marker.position.x = min(max(percentage, 0), 100)
 

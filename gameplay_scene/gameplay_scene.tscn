@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2wufkw7dnbfg"]
+[gd_scene load_steps=8 format=3 uid="uid://c2wufkw7dnbfg"]
 
 [ext_resource type="Script" path="res://gameplay_scene/gameplay_scene.gd" id="1_kpjtu"]
 [ext_resource type="PackedScene" uid="uid://bgrdxj4n70ckc" path="res://road_scene/road_scene.tscn" id="2_e7rti"]
 [ext_resource type="Script" path="res://gameplay_scene/UI.gd" id="3_ob5as"]
 [ext_resource type="PackedScene" uid="uid://yn6hai303u5m" path="res://truck_scene/truck_scene.tscn" id="4_1go4w"]
 [ext_resource type="PackedScene" uid="uid://c2560ig1u44xi" path="res://scale_gauge_scene/scale_gauge.tscn" id="5_diy58"]
+[ext_resource type="PackedScene" uid="uid://btnq5226lpow7" path="res://jean_portrait/jcvd_portrait.tscn" id="6_ydqvh"]
+[ext_resource type="PackedScene" uid="uid://dyus0bkw8lc26" path="res://epic_spread_label/epic_spread_label.tscn" id="7_0x8v5"]
 
 [node name="GameplayScene" type="Node2D"]
 script = ExtResource("1_kpjtu")
@@ -39,9 +41,9 @@ text = "0 mph"
 [node name="DistancePanel" type="PanelContainer" parent="UI"]
 layout_mode = 0
 offset_left = 380.0
-offset_top = 28.0
+offset_top = 27.0
 offset_right = 480.0
-offset_bottom = 54.0
+offset_bottom = 53.0
 
 [node name="DistanceLabel" type="Label" parent="UI/DistancePanel"]
 custom_minimum_size = Vector2(100, 0)
@@ -49,22 +51,85 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "0 m"
 
+[node name="Score" type="PanelContainer" parent="UI"]
+layout_mode = 1
+offset_right = 100.0
+offset_bottom = 26.0
+
+[node name="ScoreLabel" type="Label" parent="UI/Score"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0
+"
+
+[node name="Multiplier" type="PanelContainer" parent="UI"]
+layout_mode = 0
+offset_top = 27.0
+offset_right = 100.0
+offset_bottom = 53.0
+
+[node name="MultiplierLabel" type="Label" parent="UI/Multiplier"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "1x"
+
+[node name="Debug" type="PanelContainer" parent="UI"]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 54.0
+offset_right = 480.0
+offset_bottom = 80.0
+
+[node name="DebugLabel" type="Label" parent="UI/Debug"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Damage" type="Button" parent="UI/Debug"]
+layout_mode = 2
+text = "HIT"
+
 [node name="ScaleGauge" parent="UI" instance=ExtResource("5_diy58")]
 layout_mode = 0
 offset_left = 190.0
+offset_top = 4.0
 offset_right = 190.0
+offset_bottom = 4.0
+
+[node name="JCVDPortrait" parent="UI" instance=ExtResource("6_ydqvh")]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_top = -42.0
+offset_bottom = -42.0
+grow_vertical = 0
+
+[node name="EpicSpreadLabel" parent="UI" instance=ExtResource("7_0x8v5")]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_top = 23.0
+offset_bottom = 23.0
+grow_vertical = 1
 
 [node name="UIUpdateTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
 
 [node name="SpeedIncreaseTimer" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
-
-[node name="GameOverTimer" type="Timer" parent="."]
 
 [connection signal="crashed" from="TruckScene" to="." method="_on_truck_scene_crashed"]
 [connection signal="jean_fell_off" from="TruckScene" to="." method="_on_truck_scene_jean_fell_off"]
+[connection signal="pressed" from="UI/Debug/Damage" to="." method="_on_damage_pressed"]
 [connection signal="timeout" from="UIUpdateTimer" to="." method="_on_ui_update_timer_timeout"]
 [connection signal="timeout" from="SpeedIncreaseTimer" to="." method="_on_speed_increase_timer_timeout"]
-[connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]

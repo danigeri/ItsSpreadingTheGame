@@ -7,7 +7,7 @@ extends Node2D
 
 func dismember() -> void:
 	if(joints):
-		remove_child($Joints)
+		remove_child(joints)
 
 		torso.lock_rotation = false
 		head.lock_rotation = false

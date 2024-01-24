@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbh7vyerdgk2b"
-path="res://.godot/imported/blue_truck_1.png-d8397bf3d3096da61cbf01543b1c527d.ctex"
+uid="uid://f55ta4fauw0e"
+path="res://.godot/imported/moon.png-8a6690a72929ad8e6e48616e4a29933d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://truck_scene/blue_truck_1.png"
-dest_files=["res://.godot/imported/blue_truck_1.png-d8397bf3d3096da61cbf01543b1c527d.ctex"]
+source_file="res://road_scene/moon.png"
+dest_files=["res://.godot/imported/moon.png-8a6690a72929ad8e6e48616e4a29933d.ctex"]
 
 [params]
 
