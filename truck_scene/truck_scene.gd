@@ -20,6 +20,9 @@ var collision_handled : bool = false
 
 @onready var left_truck : StaticBody2D = $LeftTruckBody
 @onready var right_truck : StaticBody2D = $RightTruckBody
+@onready var right_border : StaticBody2D = $ScreenBorderR
+@onready var left_border : StaticBody2D = $ScreenBorderL
+
 @onready var left_truck_sprite : Sprite2D = $LeftTruckBody/Sprite
 @onready var right_truck_sprite : Sprite2D = $RightTruckBody/Sprite
 
@@ -52,16 +55,24 @@ func _physics_process(delta: float) -> void:
 
 func handle_collisions(right_collision : KinematicCollision2D,
 					   left_collision : KinematicCollision2D) -> void:
-	if right_collision != null and right_collision.get_collider() != road_collider:
-			inflict_damage()
-			shift_speed_left = .5
-			shift_speed_right = -.5
+	# truck to truck collisions
+	if right_collision and right_collision.get_collider() == left_truck:
+		inflict_damage()
+		shift_speed_left = 0.2
+		shift_speed_right = -0.2
 
-	elif left_collision != null and left_collision.get_collider() != road_collider:
-			inflict_damage()
-			shift_speed_left = 	.5
-			shift_speed_right = -0.5
+	elif left_collision and left_collision.get_collider() == right_truck:
+		inflict_damage()
+		shift_speed_left = 	0.2
+		shift_speed_right = -0.2
 
+	# truck to screen border collisions
+	elif left_collision and left_collision.get_collider() == right_border:
+		shift_speed_left = -0.2
+		inflict_damage()
+	elif right_collision and right_collision.get_collider() == left_border:
+		shift_speed_right = 0.2
+		inflict_damage()
 
 func handle_steering(delta : float) -> void:
 	if Input.is_action_pressed("ui_right"):
