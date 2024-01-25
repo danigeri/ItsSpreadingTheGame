@@ -121,6 +121,7 @@ grow_vertical = 0
 
 [node name="EpicSpreadLabel" parent="UI" instance=ExtResource("7_0x8v5")]
 visible = false
+z_index = -1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
