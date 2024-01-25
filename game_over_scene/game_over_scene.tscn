@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4lr117hipltv"]
+[gd_scene load_steps=3 format=3 uid="uid://b4lr117hipltv"]
+
+[ext_resource type="Texture2D" uid="uid://jis7ekbfbtpf" path="res://game_over_scene/game_over.png" id="1_bwd5i"]
 
 [sub_resource type="GDScript" id="GDScript_6oq7a"]
 script/source = "extends Control
@@ -18,20 +20,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_6oq7a")
 
-[node name="DummyLabel" type="Label" parent="."]
-layout_mode = 0
-offset_right = 138.0
-offset_bottom = 26.0
-text = "GAME OVER
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
 
+[node name="RetryButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 199.0
+offset_top = 129.0
+offset_right = 279.0
+offset_bottom = 160.0
+text = "
 "
+flat = true
 
-[node name="BackToMainMenuButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 25.0
-offset_right = 146.0
-offset_bottom = 56.0
-text = "BackToMainMenu"
+[node name="GameOver" type="Sprite2D" parent="."]
+texture = ExtResource("1_bwd5i")
+centered = false
 
-[connection signal="pressed" from="BackToMainMenuButton" to="." method="_on_back_to_main_menu_button_pressed"]
+[connection signal="pressed" from="RetryButton" to="." method="_on_back_to_main_menu_button_pressed"]
