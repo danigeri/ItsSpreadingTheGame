@@ -5,8 +5,10 @@ extends Node2D
 @onready var road_scene = $RoadScene
 @onready var truck_scene = $TruckScene
 @onready var ui = $UI
-@onready var ui_update_timer = $UIUpdateTimer
 @onready var skin_shoutout =  $UI/SkinShoutout
+
+@onready var ui_update_timer = $UIUpdateTimer
+@onready var speed_increase_timer = $SpeedIncreaseTimer
 
 @export var score_q : float = 0.1
 
@@ -102,8 +104,10 @@ func trigger_game_over() -> void:
 		truck_scene.set_heelfire_visibility(false)
 
 		await get_tree().create_timer(1.0).timeout
+		get_tree().root.add_child(game_over_scene.instantiate())
 
-		SceneTransition.change_scene(game_over_scene.instantiate())
+		ui_update_timer.stop()
+		speed_increase_timer.stop()
 
 
 func _on_damage_pressed() -> void:
