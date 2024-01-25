@@ -22,13 +22,4 @@ offset_right = 118.0
 offset_bottom = 41.0
 text = "Start Game"
 
-[node name="HowToPlayButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 44.0
-offset_right = 123.0
-offset_bottom = 75.0
-text = "How To Play"
-
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
