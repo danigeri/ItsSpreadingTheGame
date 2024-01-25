@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhjkv00y1bqyu"]
+[gd_scene load_steps=10 format=3 uid="uid://bhjkv00y1bqyu"]
 
 [ext_resource type="Script" path="res://jvcd_scene/jean.gd" id="1_77w5o"]
-[ext_resource type="Texture2D" uid="uid://c86625spvo6ol" path="res://jvcd_scene/jcvd_jeans_head.png" id="2_oclxu"]
-[ext_resource type="Texture2D" uid="uid://bw5qynupq0ki2" path="res://jvcd_scene/jcvd_jeans_torso.png" id="3_7gg4f"]
-[ext_resource type="Texture2D" uid="uid://b2a0vxwpfgr4r" path="res://jvcd_scene/jcvd_jeans_leg1.png" id="4_7vsa3"]
-[ext_resource type="Texture2D" uid="uid://c0e3qprum5d5v" path="res://jvcd_scene/jcvd_jeans_leg2.png" id="5_qa6l8"]
+[ext_resource type="Texture2D" uid="uid://dwd2mt0lq5a1c" path="res://jvcd_scene/jcvd_leg2.png" id="2_oaoxu"]
+[ext_resource type="Texture2D" uid="uid://b6ws3qpowlu02" path="res://jvcd_scene/jcvd_leg1.png" id="4_5fha3"]
+[ext_resource type="PackedScene" uid="uid://cva1hgm8amaj8" path="res://fire_scene/fire_scene.tscn" id="4_5fl50"]
+[ext_resource type="Texture2D" uid="uid://ddbfjqoone01b" path="res://jvcd_scene/jcvd_torso.png" id="5_6mt3a"]
+[ext_resource type="Texture2D" uid="uid://ccecbdkrkdbnb" path="res://jvcd_scene/jcvd_heads.png" id="6_acyi0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_48a7l"]
 radius = 0.968384
@@ -27,12 +28,19 @@ rotation = -0.282743
 gravity_scale = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="Leg_R"]
-texture = ExtResource("5_qa6l8")
+position = Vector2(3.84117, 1.11596)
+texture = ExtResource("2_oaoxu")
+hframes = 9
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Leg_R"]
 position = Vector2(1.51828, -1.6416)
 rotation = -0.212814
 shape = SubResource("CapsuleShape2D_48a7l")
+
+[node name="FireScene" parent="Leg_R" instance=ExtResource("4_5fl50")]
+visible = false
+position = Vector2(9.38257, 21.4702)
+rotation = 1.0472
 
 [node name="Leg_L" type="RigidBody2D" parent="."]
 position = Vector2(-15, 57)
@@ -41,32 +49,42 @@ collision_layer = 2
 gravity_scale = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="Leg_L"]
-texture = ExtResource("4_7vsa3")
+texture = ExtResource("4_5fha3")
+hframes = 9
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Leg_L"]
 position = Vector2(-0.853325, -3.50312)
 rotation = 0.248777
 shape = SubResource("CapsuleShape2D_hhjlp")
 
+[node name="FireScene" parent="Leg_L" instance=ExtResource("4_5fl50")]
+visible = false
+position = Vector2(-9.6296, 19.7046)
+rotation = -1.0472
+
 [node name="Torso" type="RigidBody2D" parent="."]
-position = Vector2(0, 25)
+position = Vector2(0, 24)
 lock_rotation = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Torso"]
-texture = ExtResource("3_7gg4f")
+texture = ExtResource("5_6mt3a")
+hframes = 9
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Torso"]
 position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_v675x")
 
 [node name="Head" type="RigidBody2D" parent="."]
+position = Vector2(0, -1)
 lock_rotation = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Head"]
 polygon = PackedVector2Array(-4, -3, -2, -4, 2, -4, 5, -1, 5, 5, 3, 8, -2, 8, -5, 6, -5, -1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Head"]
-texture = ExtResource("2_oclxu")
+position = Vector2(1, -4)
+texture = ExtResource("6_acyi0")
+hframes = 9
 
 [node name="Joints" type="Node2D" parent="."]
 
