@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://btnq5226lpow7"]
 
 [ext_resource type="Script" path="res://jean_portrait/jcvd_portrait.gd" id="1_8je57"]
-[ext_resource type="Texture2D" uid="uid://chwto5lbuiasd" path="res://jean_portrait/jcvd_reaction_1-Sheet.png" id="2_ua1ia"]
-[ext_resource type="Texture2D" uid="uid://bgassvxvxqkr5" path="res://jean_portrait/jcvd_reaction_2-Sheet.png" id="3_g6psn"]
-[ext_resource type="Texture2D" uid="uid://bm4b8elwuvwh0" path="res://jean_portrait/jcvd_reaction_3-Sheet.png" id="4_nm20i"]
+[ext_resource type="Texture2D" uid="uid://cdo4b0wbg4qwy" path="res://jean_portrait/jcvd_reaction_1-Sheet_70x70.png" id="2_yt6r4"]
+[ext_resource type="Texture2D" uid="uid://bpd1yusq5dn1r" path="res://jean_portrait/jcvd_reaction_2-Sheet_70x70.png" id="3_4nq83"]
+[ext_resource type="Texture2D" uid="uid://sysvpxywoeoo" path="res://jean_portrait/jcvd_reaction_3-Sheet_70x70.png" id="4_xvk1l"]
 
 [sub_resource type="Animation" id="Animation_pgmna"]
 length = 0.001
@@ -114,17 +114,17 @@ script = ExtResource("1_8je57")
 
 [node name="Reaction1" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("2_ua1ia")
+texture = ExtResource("2_yt6r4")
 hframes = 36
 
 [node name="Reaction2" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("3_g6psn")
+texture = ExtResource("3_4nq83")
 hframes = 36
 
 [node name="Reaction3" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("4_nm20i")
+texture = ExtResource("4_xvk1l")
 hframes = 36
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
