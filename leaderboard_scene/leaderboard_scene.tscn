@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwojv5nxvrmcc"]
+
+[ext_resource type="Script" path="res://leaderboard_scene/leaderboard_scene.gd" id="1_85r5e"]
+
+[node name="leaderboard_scene" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_85r5e")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 7.0
+offset_right = 258.0
+offset_bottom = 38.0
+placeholder_text = "enter your name"
+
+[node name="SaveButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 265.0
+offset_top = 7.0
+offset_right = 356.0
+offset_bottom = 38.0
+text = "send"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 49.0
+offset_right = 453.0
+offset_bottom = 263.0
+columns = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 8.0
+offset_right = 473.0
+offset_bottom = 39.0
+text = "refresh"
+
+[connection signal="pressed" from="SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
