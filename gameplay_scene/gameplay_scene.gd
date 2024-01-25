@@ -118,3 +118,7 @@ func _on_skin_change_pressed() -> void:
 	active_skin_number += 1
 	skin_shoutout.shoutout(active_skin_number%9)
 	truck_scene.apply_skin(active_skin_number%9)
+
+
+func _on_restore_pressed() -> void:
+	truck_scene.restore()
