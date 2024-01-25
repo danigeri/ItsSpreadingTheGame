@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://yn6hai303u5m"]
+[gd_scene load_steps=13 format=3 uid="uid://yn6hai303u5m"]
 
 [ext_resource type="Script" path="res://truck_scene/truck_scene.gd" id="1_7gccb"]
 [ext_resource type="Texture2D" uid="uid://bq5w6wseunmne" path="res://truck_scene/green_truck_sheet.png" id="3_acpdq"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3ot2h"]
 load_path = "res://.godot/imported/blue_truck_sheet.png-ed57b800d4d734b159dc12242cfb96c0.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mvnn"]
+size = Vector2(102, 24.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf121"]
 size = Vector2(480, 1)
@@ -167,9 +170,17 @@ texture = SubResource("CompressedTexture2D_3ot2h")
 hframes = 7
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightTruckBody"]
-visible = false
 position = Vector2(1, 16)
 polygon = PackedVector2Array(-34, -66.5, -34, -25.5, -52, -25.5, -52, 44.5, 48, 44.5, 48, -67.5)
+
+[node name="ObstacleHitbox" type="StaticBody2D" parent="RightTruckBody"]
+position = Vector2(0, -6)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightTruckBody/ObstacleHitbox"]
+position = Vector2(-2, 54.25)
+shape = SubResource("RectangleShape2D_5mvnn")
 
 [node name="LeftTruckBody" type="StaticBody2D" parent="."]
 position = Vector2(169, 107)
@@ -179,8 +190,16 @@ texture = ExtResource("3_acpdq")
 hframes = 7
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftTruckBody"]
-visible = false
 polygon = PackedVector2Array(33, -11, 52, -11, 52, 60, -49, 60, -49, -57, 35, -57)
+
+[node name="ObstacleHitbox2" type="StaticBody2D" parent="LeftTruckBody"]
+position = Vector2(-4, -7)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftTruckBody/ObstacleHitbox2"]
+position = Vector2(4, 56)
+shape = SubResource("RectangleShape2D_5mvnn")
 
 [node name="RoadBody" type="StaticBody2D" parent="."]
 position = Vector2(240, 170)
