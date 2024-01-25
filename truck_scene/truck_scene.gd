@@ -23,6 +23,8 @@ var collision_handled : bool = false
 @onready var right_border : StaticBody2D = $ScreenBorderR
 @onready var left_border : StaticBody2D = $ScreenBorderL
 
+@onready var area_2d = $Area2D
+
 @onready var right_truck_sprite : Sprite2D = $RightTruckBody/Sprite
 @onready var left_truck_sprite : Sprite2D = $LeftTruckBody/Sprite
 
@@ -40,7 +42,6 @@ signal jean_fell_off
 func _ready() -> void:
 	steering_sensitivity = initial_steering_sensitivity
 	set_process(true)
-
 
 func _physics_process(delta: float) -> void:
 	handle_steering(delta)
