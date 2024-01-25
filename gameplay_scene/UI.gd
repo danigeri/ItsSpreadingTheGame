@@ -32,10 +32,8 @@ func update_debug(a : float):
 	$Debug/DebugLabel.text = "%.2f m/s" % a
 
 
-func blink_jean_portrait() -> void:
-	jean_portrait.visible = true
-	await get_tree().create_timer(1.5).timeout
-	jean_portrait.visible = false
+func blink_jean_portrait(multiplier_level : int) -> void:
+	jean_portrait.trigger_reaction(multiplier_level)
 
 
 func show_epic_spread_label() -> void:

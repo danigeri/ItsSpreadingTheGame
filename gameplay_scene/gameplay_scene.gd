@@ -6,6 +6,7 @@ extends Node2D
 @onready var truck_scene = $TruckScene
 @onready var ui = $UI
 @onready var ui_update_timer = $UIUpdateTimer
+@onready var skin_shoutout =  $UI/SkinShoutout
 
 @export var score_q : float = 0.1
 
@@ -13,6 +14,7 @@ var distance_done : float = 0
 var score : int = 0
 var is_game_over_triggered : bool = false
 var _multiplier : int = 1
+var active_skin_number : int = 0
 
 
 func _on_speed_increase_timer_timeout() -> void:
@@ -45,14 +47,23 @@ func _on_ui_update_timer_timeout() -> void:
 
 		if(multiplier != _multiplier):
 			ui.update_multiplier(multiplier)
-			ui.blink_jean_portrait()
+
+			if _multiplier == 1 and multiplier == 2:
+				ui.blink_jean_portrait(1)
+			elif _multiplier == 2 and multiplier == 4:
+				ui.blink_jean_portrait(2)
+			elif _multiplier == 4 and multiplier == 8:
+				ui.blink_jean_portrait(3)
 
 			_multiplier = multiplier
 
 			if multiplier >= 4:
 				ui.show_epic_spread_label()
+				truck_scene.set_heelfire_visibility(true)
 			else:
 				ui.hide_epic_spread_label()
+				truck_scene.set_heelfire_visibility(false)
+
 
 		score += distance*multiplier*score_q
 		ui.update_score(score)
@@ -86,6 +97,10 @@ func _on_truck_scene_jean_fell_off() -> void:
 func trigger_game_over() -> void:
 	if(not is_game_over_triggered):
 		is_game_over_triggered = true
+
+		ui.hide_epic_spread_label()
+		truck_scene.set_heelfire_visibility(false)
+
 		await get_tree().create_timer(1.0).timeout
 
 		SceneTransition.change_scene(game_over_scene.instantiate())
@@ -94,3 +109,8 @@ func trigger_game_over() -> void:
 func _on_damage_pressed() -> void:
 	truck_scene.inflict_damage()
 
+
+func _on_skin_change_pressed() -> void:
+	active_skin_number += 1
+	skin_shoutout.shoutout(active_skin_number%9)
+	truck_scene.apply_skin(active_skin_number%9)

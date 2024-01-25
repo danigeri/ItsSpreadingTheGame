@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://road_scene/road_scene.gd" id="1_gcsdn"]
 [ext_resource type="Texture2D" uid="uid://d1w7slxq13gig" path="res://road_scene/bg.png" id="2_ntxlc"]
 [ext_resource type="Script" path="res://road_scene/looping_background.gd" id="2_yteeq"]
-[ext_resource type="Texture2D" uid="uid://ctyd7r0es2k71" path="res://road_scene/mountains.png" id="3_n4dsx"]
+[ext_resource type="Texture2D" uid="uid://cnjtb0f6gj4m7" path="res://road_scene/mountains_smaller.png" id="3_pxal4"]
 [ext_resource type="Texture2D" uid="uid://lw3mxxuem4p3" path="res://road_scene/cover_element_workaround.png" id="4_utbv8"]
 [ext_resource type="Texture2D" uid="uid://cdmtv4gtu6nrs" path="res://road_scene/sun.png" id="5_h6xuw"]
 [ext_resource type="Texture2D" uid="uid://f55ta4fauw0e" path="res://road_scene/moon.png" id="7_ogkhu"]
@@ -15,8 +15,14 @@ script = ExtResource("1_gcsdn")
 script = ExtResource("2_yteeq")
 
 [node name="Mountains" type="Sprite2D" parent="LoopingBackground"]
-position = Vector2(0, -16)
-texture = ExtResource("3_n4dsx")
+position = Vector2(240, -28)
+texture = ExtResource("3_pxal4")
+centered = false
+offset = Vector2(0, 70)
+
+[node name="Mountains2" type="Sprite2D" parent="LoopingBackground"]
+position = Vector2(0, -28)
+texture = ExtResource("3_pxal4")
 centered = false
 offset = Vector2(0, 70)
 
@@ -33,7 +39,7 @@ texture = ExtResource("7_ogkhu")
 
 [node name="CoverElementWorkaround" type="Sprite2D" parent="LoopingBackground"]
 z_index = -1
-position = Vector2(0, 115)
+position = Vector2(0, 96)
 texture = ExtResource("4_utbv8")
 centered = false
 
