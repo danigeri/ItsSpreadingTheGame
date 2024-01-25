@@ -26,17 +26,17 @@ func map_value(value, start_1, end_1, start_2, end_2):
 
 func _ready() -> void:
 	initial_x_position = position.x # Set the initial X position
-	
+
 	var road_scene = get_parent()
 	self.velocity_mps = - map_value(road_scene.speed, 10, road_scene.max_speed, 100, 400)
-	
+
 	if type == ObstacleType.OBSTACLE:
 		sprite_2d.texture = obstacle_texture
 	elif type == ObstacleType.REPAIR:
 		sprite_2d.texture = repair_texture
 	elif type == ObstacleType.SKIN:
 		sprite_2d.texture = skin_texture
-		
+
 func set_to_obstacle() -> void:
 	self.type = ObstacleType.OBSTACLE
 	if self.sprite_2d == null:
@@ -59,7 +59,7 @@ func set_to_skin() -> void:
 func _physics_process(delta: float) -> void:
 	if not started:
 		return
-	
+
 	position.y += velocity_mps * delta
 
 	var road_scene = get_parent()
@@ -83,14 +83,14 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body):
 	# print("Obstacle hit something!" + ObstacleType.keys()[type])
-	
+
 	if type == ObstacleType.OBSTACLE:
 		obstacle_hit.emit()
 	elif type == ObstacleType.REPAIR:
 		repair_hit.emit()
 	elif type == ObstacleType.SKIN:
 		skin_hit.emit()
-	
+
 	#visible = false
 	queue_free()  # Remove the obstacle
 	pass # Replace with function body.
