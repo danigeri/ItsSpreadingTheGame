@@ -52,23 +52,18 @@ func _on_obstacle_timer_timeout() -> void:
 	spawn_obstacle()
 	obstacle_timer.wait_time = randi_range(2,10)
 	
-func _on_obstacle_hit() -> void:
-	print("handling of obstacle hit in road scene")
-	pass
-	
-func _on_skin_hit() -> void:
-	print("handling of skin hit in road scene")
-	pass
-	
 func _on_repair_hit() -> void:
 	print("handling of repair hit in road scene")
 	pass
 	
 func spawn_obstacle() -> void:
 	var obstacle = obstacle_scene.instantiate()
-	obstacle.connect("obstacle_hit", self._on_obstacle_hit)
-	obstacle.connect("repair_hit", self._on_repair_hit)
-	obstacle.connect("skin_hit", self._on_skin_hit)
+	
+	var gameplay_scene = get_parent()
+	
+	obstacle.connect("obstacle_hit", gameplay_scene._on_damage_pressed)
+	obstacle.connect("repair_hit", self._on_repair_hit) # todo replace with healing
+	obstacle.connect("skin_hit", gameplay_scene._on_skin_change_pressed)
 	
 	# Random obstacle()
 	var random_value = randi() % 3  
