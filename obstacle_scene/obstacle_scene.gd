@@ -21,8 +21,14 @@ var skin_texture = preload("res://obstacle_scene/skin_texture.png")
 enum ObstacleType { OBSTACLE, REPAIR, SKIN }
 var type: ObstacleType = ObstacleType.OBSTACLE
 
+func map_value(value, start_1, end_1, start_2, end_2):
+	return lerp(start_2, end_2, (value - start_1) / (end_1 - start_1))
+
 func _ready() -> void:
 	initial_x_position = position.x # Set the initial X position
+	
+	var road_scene = get_parent()
+	self.velocity_mps = - map_value(road_scene.speed, 10, road_scene.max_speed, 100, 400)
 	
 	if type == ObstacleType.OBSTACLE:
 		sprite_2d.texture = obstacle_texture
