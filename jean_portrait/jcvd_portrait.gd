@@ -3,6 +3,7 @@ extends Control
 @onready var reaction1 = $Reaction1
 @onready var reaction2 = $Reaction2
 @onready var reaction3 = $Reaction3
+@onready var reaction4 = $Reaction4
 
 @onready var animation_player = $AnimationPlayer
 
@@ -29,5 +30,14 @@ func trigger_reaction(reaction_number : int) -> void:
 	reaction.visible = false
 
 
+func death():
+	animation_player.stop()
+	reaction1.visible = false
+	reaction2.visible = false
+	reaction3.visible = false
+
+	reaction4.visible = true
+
+	animation_player.play("death")
 
 

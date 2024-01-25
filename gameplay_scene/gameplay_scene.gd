@@ -101,6 +101,8 @@ func trigger_game_over() -> void:
 		is_game_over_triggered = true
 
 		ui.hide_epic_spread_label()
+		ui.blink_gameover_portrait()
+
 		truck_scene.set_heelfire_visibility(false)
 
 		await get_tree().create_timer(1.0).timeout

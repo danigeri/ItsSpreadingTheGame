@@ -80,17 +80,13 @@ text = "1x"
 
 [node name="Debug" type="PanelContainer" parent="UI"]
 layout_mode = 0
-offset_left = 380.0
+offset_left = 430.0
 offset_top = 54.0
-offset_right = 480.0
-offset_bottom = 80.0
+offset_right = 530.0
+offset_bottom = 155.0
+scale = Vector2(0.5, 0.5)
 
-[node name="DebugLabel" type="Label" parent="UI/Debug"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Debug"]
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/Debug"]
 layout_mode = 2
 
 [node name="Damage" type="Button" parent="UI/Debug/HBoxContainer"]
@@ -100,6 +96,11 @@ text = "HIT"
 [node name="SkinChange" type="Button" parent="UI/Debug/HBoxContainer"]
 layout_mode = 2
 text = "Skin"
+
+[node name="Restore" type="Button" parent="UI/Debug/HBoxContainer"]
+layout_mode = 2
+text = "Restore
+"
 
 [node name="ScaleGauge" parent="UI" instance=ExtResource("5_diy58")]
 layout_mode = 0
@@ -155,5 +156,6 @@ autostart = true
 [connection signal="jean_fell_off" from="TruckScene" to="." method="_on_truck_scene_jean_fell_off"]
 [connection signal="pressed" from="UI/Debug/HBoxContainer/Damage" to="." method="_on_damage_pressed"]
 [connection signal="pressed" from="UI/Debug/HBoxContainer/SkinChange" to="." method="_on_skin_change_pressed"]
+[connection signal="pressed" from="UI/Debug/HBoxContainer/Restore" to="." method="_on_restore_pressed"]
 [connection signal="timeout" from="UIUpdateTimer" to="." method="_on_ui_update_timer_timeout"]
 [connection signal="timeout" from="SpeedIncreaseTimer" to="." method="_on_speed_increase_timer_timeout"]

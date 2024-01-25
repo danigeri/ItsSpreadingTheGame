@@ -43,3 +43,7 @@ func show_epic_spread_label() -> void:
 
 func hide_epic_spread_label() -> void:
 	epic_spread_label.visible = false
+
+
+func blink_gameover_portrait() -> void:
+	jean_portrait.death()
