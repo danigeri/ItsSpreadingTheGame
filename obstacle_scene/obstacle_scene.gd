@@ -82,7 +82,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body):
-	print("Obstacle hit something!" + ObstacleType.keys()[type])
+	# print("Obstacle hit something!" + ObstacleType.keys()[type])
 	
 	if type == ObstacleType.OBSTACLE:
 		obstacle_hit.emit()
