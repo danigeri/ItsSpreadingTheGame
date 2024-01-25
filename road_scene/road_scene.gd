@@ -52,8 +52,33 @@ func _on_obstacle_timer_timeout() -> void:
 	spawn_obstacle()
 	obstacle_timer.wait_time = randi_range(2,10)
 	
+func _on_obstacle_hit() -> void:
+	print("handling of obstacle hit in road scene")
+	pass
+	
+func _on_skin_hit() -> void:
+	print("handling of skin hit in road scene")
+	pass
+	
+func _on_repair_hit() -> void:
+	print("handling of repair hit in road scene")
+	pass
+	
 func spawn_obstacle() -> void:
 	var obstacle = obstacle_scene.instantiate()
+	obstacle.connect("obstacle_hit", self._on_obstacle_hit)
+	obstacle.connect("repair_hit", self._on_repair_hit)
+	obstacle.connect("skin_hit", self._on_skin_hit)
+	
+	# Random obstacle()
+	var random_value = randi() % 3  
+	if random_value == 0:
+		obstacle.set_to_obstacle()
+	elif random_value == 1:
+		obstacle.set_to_repair()
+	else:
+		obstacle.set_to_skin()
+	
 	var spawn_x_position = randi_range(0, WIDTH)
 	var spawn_y_position = HEIGHT * 1.5
 	obstacle.position = Vector2(spawn_x_position, spawn_y_position)

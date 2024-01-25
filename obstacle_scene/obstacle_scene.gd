@@ -1,6 +1,8 @@
 extends Node2D
 
 signal obstacle_hit()
+signal repair_hit()
+signal skin_hit()
 
 var velocity_mps: float = -100.0
 
@@ -11,8 +13,42 @@ var initial_x_position: float # Store the initial X position of the obstacle
 
 var started: bool = false
 
+var obstacle_texture = preload("res://obstacle_scene/obstacle_texture.png")
+var repair_texture = preload("res://obstacle_scene/repair_texture.png")
+var skin_texture = preload("res://obstacle_scene/skin_texture.png")
+@onready var sprite_2d = $Sprite2D
+
+enum ObstacleType { OBSTACLE, REPAIR, SKIN }
+var type: ObstacleType = ObstacleType.OBSTACLE
+
 func _ready() -> void:
 	initial_x_position = position.x # Set the initial X position
+	
+	if type == ObstacleType.OBSTACLE:
+		sprite_2d.texture = obstacle_texture
+	elif type == ObstacleType.REPAIR:
+		sprite_2d.texture = repair_texture
+	elif type == ObstacleType.SKIN:
+		sprite_2d.texture = skin_texture
+		
+func set_to_obstacle() -> void:
+	self.type = ObstacleType.OBSTACLE
+	if self.sprite_2d == null:
+		return
+	self.sprite_2d.texture = self.obstacle_texture
+
+func set_to_repair() -> void:
+	self.type = ObstacleType.REPAIR
+	if self.sprite_2d == null:
+		return
+	self.sprite_2d.texture = self.repair_texture
+
+func set_to_skin() -> void:
+	self.type = ObstacleType.SKIN
+	if self.sprite_2d == null:
+		return
+	self.sprite_2d.texture = self.skin_texture
+
 
 func _physics_process(delta: float) -> void:
 	if not started:
@@ -40,7 +76,15 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body):
-	print("Obstacle hit something!")
+	print("Obstacle hit something!" + ObstacleType.keys()[type])
+	
+	if type == ObstacleType.OBSTACLE:
+		obstacle_hit.emit()
+	elif type == ObstacleType.REPAIR:
+		repair_hit.emit()
+	elif type == ObstacleType.SKIN:
+		skin_hit.emit()
+	
+	#visible = false
 	queue_free()  # Remove the obstacle
-	obstacle_hit.emit()
 	pass # Replace with function body.

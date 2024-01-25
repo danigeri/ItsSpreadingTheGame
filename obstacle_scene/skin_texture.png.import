@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpy66i07lk124"
-path="res://.godot/imported/banana.png-9541b65cba1047adc305efa7f013b94f.ctex"
+uid="uid://djyiab1yo0p7b"
+path="res://.godot/imported/skin_texture.png-438df70390bf530921148971950c817a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://obstacle_scene/banana.png"
-dest_files=["res://.godot/imported/banana.png-9541b65cba1047adc305efa7f013b94f.ctex"]
+source_file="res://obstacle_scene/skin_texture.png"
+dest_files=["res://.godot/imported/skin_texture.png-438df70390bf530921148971950c817a.ctex"]
 
 [params]
 
