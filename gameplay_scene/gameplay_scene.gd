@@ -18,6 +18,9 @@ var is_game_over_triggered : bool = false
 var _multiplier : int = 1
 var active_skin_number : int = 0
 
+func _ready() -> void:
+	randomize()
+
 
 func _on_speed_increase_timer_timeout() -> void:
 	road_scene.increase_road_speed()
@@ -117,9 +120,16 @@ func _on_damage_pressed() -> void:
 
 
 func _on_skin_change_pressed() -> void:
-	active_skin_number += 1
-	skin_shoutout.shoutout(active_skin_number%9)
-	truck_scene.apply_skin(active_skin_number%9)
+	var next_skin : int = randi_range(0,8)
+
+	if(next_skin != active_skin_number):
+		skin_shoutout.shoutout(next_skin%9)
+		truck_scene.apply_skin(next_skin%9)
+		active_skin_number = next_skin
+	else:
+		skin_shoutout.shoutout((next_skin+1)%9)
+		truck_scene.apply_skin((next_skin+1)%9)
+		active_skin_number = next_skin+1
 
 
 func _on_restore_pressed() -> void:
