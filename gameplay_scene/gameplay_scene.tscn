@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c2wufkw7dnbfg"]
+[gd_scene load_steps=12 format=3 uid="uid://c2wufkw7dnbfg"]
 
 [ext_resource type="Script" path="res://gameplay_scene/gameplay_scene.gd" id="1_kpjtu"]
 [ext_resource type="PackedScene" uid="uid://bgrdxj4n70ckc" path="res://road_scene/road_scene.tscn" id="2_e7rti"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://laba3xnjcjob" path="res://skin_shoutout_scene/skin_shoutout_scene.tscn" id="8_idhit"]
 [ext_resource type="PackedScene" uid="uid://delha6fc0fos8" path="res://buttons_tutorial_scene/buttons_tutorial_scene.tscn" id="9_j33ti"]
 [ext_resource type="PackedScene" uid="uid://b584fsahcxvpv" path="res://pause_menu_scene/pause_menu_scene.tscn" id="10_u1bow"]
+[ext_resource type="PackedScene" uid="uid://bcx2svdlx8hpa" path="res://jvcd_intro_scene/jvcd_intro.tscn" id="11_pkara"]
 
 [node name="GameplayScene" type="Node2D"]
 script = ExtResource("1_kpjtu")
@@ -144,6 +145,8 @@ layout_mode = 1
 [node name="PauseMenuScene" parent="UI" instance=ExtResource("10_u1bow")]
 visible = false
 layout_mode = 1
+
+[node name="JVCDIntro" parent="UI" instance=ExtResource("11_pkara")]
 
 [node name="UIUpdateTimer" type="Timer" parent="."]
 wait_time = 0.05
