@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4886wn5ss8d5"]
+
+[ext_resource type="AudioStream" uid="uid://b4das02lf5317" path="res://background_music_scene/005_theme_extended.mp3" id="1_vf16k"]
+
+[node name="background_music_player" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_vf16k")
+volume_db = -15.66
