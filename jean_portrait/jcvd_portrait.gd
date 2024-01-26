@@ -9,7 +9,6 @@ extends Control
 
 
 func trigger_reaction(reaction_number : int) -> void:
-
 	var reaction : Sprite2D
 	var reaction_name := ""
 
