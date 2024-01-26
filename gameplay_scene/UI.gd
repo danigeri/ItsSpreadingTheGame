@@ -10,11 +10,11 @@ extends Control
 
 
 func update_velocity(velocity : int):
-	velocity_display.text = "%d mph" % velocity
+	velocity_display.text = "%d" % velocity
 
 
 func update_distance(distance : int):
-	distance_display.text = "%d m" % distance
+	distance_display.text = "%d" % distance
 
 
 func update_scale(percentage : float):
@@ -22,7 +22,19 @@ func update_scale(percentage : float):
 
 
 func update_multiplier(multiplier : int):
-	multiplier_display.text = "%dx" % multiplier
+	var color
+	
+	if multiplier == 1:
+		color = Color8(41, 156, 70)
+	elif multiplier == 2:
+		color = Color8(250, 227, 71)
+	elif multiplier == 4:
+		color = Color8(248, 129, 73)
+	elif multiplier == 8:
+		color = Color8(203, 15, 30)
+	
+	multiplier_display.set("theme_override_colors/font_color", color)
+	multiplier_display.text = "x%d" % multiplier
 
 
 func update_score(score : int):
