@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4lr117hipltv"]
+[gd_scene load_steps=4 format=3 uid="uid://b4lr117hipltv"]
 
-[ext_resource type="Texture2D" uid="uid://jis7ekbfbtpf" path="res://game_over_scene/game_over.png" id="1_bwd5i"]
+[ext_resource type="Texture2D" uid="uid://bunawoscoclqm" path="res://game_over_scene/retry.png" id="1_y5pkk"]
+[ext_resource type="Texture2D" uid="uid://f3xnat33h7y3" path="res://game_over_scene/game_over_standalone.png" id="2_dogfd"]
 
 [sub_resource type="GDScript" id="GDScript_6oq7a"]
 script/source = "extends Control
@@ -36,15 +37,16 @@ color = Color(0, 0, 0, 0.501961)
 [node name="RetryButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 199.0
-offset_top = 129.0
-offset_right = 279.0
-offset_bottom = 160.0
+offset_top = 239.0
+offset_right = 287.0
+offset_bottom = 270.0
 text = "
 "
+icon = ExtResource("1_y5pkk")
 flat = true
 
 [node name="GameOver" type="Sprite2D" parent="."]
-texture = ExtResource("1_bwd5i")
+texture = ExtResource("2_dogfd")
 centered = false
 
 [connection signal="pressed" from="RetryButton" to="." method="_on_back_to_main_menu_button_pressed"]
