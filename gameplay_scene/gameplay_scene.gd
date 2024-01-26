@@ -36,7 +36,7 @@ func _on_speed_increase_timer_timeout() -> void:
 
 
 func get_calculated_speed_mph(distance : float) -> int:
-	return min(180,int(distance))
+	return min(180,int(distance/2))
 
 
 func _on_ui_update_timer_timeout() -> void:
