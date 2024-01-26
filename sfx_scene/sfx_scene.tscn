@@ -12,3 +12,5 @@ script = ExtResource("1_amcpp")
 
 [node name="TruckSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_jl3l3")
+
+[node name="ObstacleSoundPlayer" type="AudioStreamPlayer2D" parent="."]

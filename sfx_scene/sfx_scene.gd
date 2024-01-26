@@ -3,6 +3,7 @@ extends Node2D
 @onready var skin_sound_player = $SkinSoundPlayer
 @onready var intro_sound_player = $IntroSoundPlayer
 @onready var truck_sound_player = $TruckSoundPlayer
+@onready var obstacle_sound_player = $ObstacleSoundPlayer
 
 # skins
 var adam_skin_sound = preload("res://sfx_scene/skin_sounds/adam_s.mp3")
@@ -41,7 +42,7 @@ func play_skin_sound(skin_id):
 var jcvd_intro_sound = preload("res://sfx_scene/jcvd_intro.mp3")
 
 func play_jcvd_intro_sound():
-	jcvd_intro_sound.stream = jcvd_intro_sound
+	intro_sound_player.stream = jcvd_intro_sound
 	intro_sound_player.play()
 
 var truck_sound = preload("res://sfx_scene/truck.mp3")
@@ -50,3 +51,14 @@ func play_truck_sound():
 	truck_sound_player.stream = truck_sound
 	truck_sound_player.play()
 
+var obstacle_sound = preload("res://sfx_scene/hit_obstacle.mp3")
+
+func play_obstacle_sound():
+	obstacle_sound_player.stream = obstacle_sound
+	obstacle_sound_player.play()
+	
+var repair_sound = preload("res://sfx_scene/repair_metal.mp3")
+
+func play_repair_sound():
+	obstacle_sound_player.stream = repair_sound
+	obstacle_sound_player.play()
