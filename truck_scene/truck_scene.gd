@@ -9,7 +9,7 @@ var damage_state : int = 0
 
 var collision_handled : bool = false
 
-@export var shift_falloff = 0.5
+@export var shift_falloff = 0.3
 @export var initial_steering_sensitivity = 2
 @export var max_steering_sensitivity = 10
 @export var steering_sensitivity_step := 0.02

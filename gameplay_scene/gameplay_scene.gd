@@ -10,6 +10,9 @@ extends Node2D
 @onready var ui_update_timer = $UIUpdateTimer
 @onready var speed_increase_timer = $SpeedIncreaseTimer
 
+@onready var jvcd_intro = $UI/JVCDIntro
+@onready var jvcd_intro_anim = $UI/JVCDIntro/AnimationPlayer
+
 # points per
 @export var score_q : float = 1
 
@@ -21,6 +24,10 @@ var active_skin_number : int = 0
 
 func _ready() -> void:
 	randomize()
+	await get_tree().create_timer(6.0).timeout
+	jvcd_intro_anim.play("fade_out")
+	await get_tree().create_timer(0.3).timeout
+	jvcd_intro.visible = false
 	SoundManager.play_truck_sound()
 
 
@@ -30,7 +37,7 @@ func _on_speed_increase_timer_timeout() -> void:
 
 
 func get_calculated_speed_mph(distance : float) -> int:
-	return max(180,int(distance))
+	return min(180,int(distance/2))
 
 
 func _on_ui_update_timer_timeout() -> void:
