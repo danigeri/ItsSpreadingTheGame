@@ -150,6 +150,7 @@ func set_heelfire_visibility(is_visible : bool) -> void:
 
 
 func apply_skin(skin_number : int) -> void:
+	SoundManager.play_skin_sound(skin_number)
 	jean.apply_skin(skin_number)
 
 
