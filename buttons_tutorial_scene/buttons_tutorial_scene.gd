@@ -7,7 +7,7 @@ extends Control
 
 func _ready() -> void:
 	if autofade_enabled:
-		await get_tree().create_timer(4.0).timeout
+		await get_tree().create_timer(11.0).timeout
 		animation.play("FadeOut")
 
 		await animation.animation_finished

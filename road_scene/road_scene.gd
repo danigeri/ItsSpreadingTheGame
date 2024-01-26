@@ -47,7 +47,7 @@ func _ready() -> void:
 	randomize()
 	position_px = road_length_px
 	add_child(obstacle_timer)
-	obstacle_timer.wait_time = 5.0
+	obstacle_timer.wait_time = 12.0
 	obstacle_timer.connect("timeout", self._on_obstacle_timer_timeout)
 	obstacle_timer.start()
 	set_process(true)
