@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3epefb3mbtuy"
-path="res://.godot/imported/arrows_Sheet.png-667e40fd57715819f88bb3f70ae59c9e.ctex"
+uid="uid://bpd1yusq5dn1r"
+path="res://.godot/imported/jcvd_reaction_2-Sheet_70x70.png-c8dd9966f77902fd07e507210d17a659.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://buttons_tutorial_scene/arrows_Sheet.png"
-dest_files=["res://.godot/imported/arrows_Sheet.png-667e40fd57715819f88bb3f70ae59c9e.ctex"]
+source_file="res://jean_portrait/jcvd_reaction_2-Sheet_70x70.png"
+dest_files=["res://.godot/imported/jcvd_reaction_2-Sheet_70x70.png-c8dd9966f77902fd07e507210d17a659.ctex"]
 
 [params]
 

@@ -5,8 +5,10 @@ extends Node2D
 @onready var road_scene = $RoadScene
 @onready var truck_scene = $TruckScene
 @onready var ui = $UI
-@onready var ui_update_timer = $UIUpdateTimer
 @onready var skin_shoutout =  $UI/SkinShoutout
+
+@onready var ui_update_timer = $UIUpdateTimer
+@onready var speed_increase_timer = $SpeedIncreaseTimer
 
 @export var score_q : float = 0.1
 
@@ -15,6 +17,9 @@ var score : int = 0
 var is_game_over_triggered : bool = false
 var _multiplier : int = 1
 var active_skin_number : int = 0
+
+func _ready() -> void:
+	randomize()
 
 
 func _on_speed_increase_timer_timeout() -> void:
@@ -99,11 +104,15 @@ func trigger_game_over() -> void:
 		is_game_over_triggered = true
 
 		ui.hide_epic_spread_label()
+		ui.blink_gameover_portrait()
+
 		truck_scene.set_heelfire_visibility(false)
 
 		await get_tree().create_timer(1.0).timeout
+		get_tree().root.add_child(game_over_scene.instantiate())
 
-		SceneTransition.change_scene(game_over_scene.instantiate())
+		ui_update_timer.stop()
+		speed_increase_timer.stop()
 
 
 func _on_damage_pressed() -> void:
@@ -111,6 +120,17 @@ func _on_damage_pressed() -> void:
 
 
 func _on_skin_change_pressed() -> void:
-	active_skin_number += 1
-	skin_shoutout.shoutout(active_skin_number%9)
-	truck_scene.apply_skin(active_skin_number%9)
+	var next_skin : int = randi_range(0,8)
+
+	if(next_skin != active_skin_number):
+		skin_shoutout.shoutout(next_skin%9)
+		truck_scene.apply_skin(next_skin%9)
+		active_skin_number = next_skin
+	else:
+		skin_shoutout.shoutout((next_skin+1)%9)
+		truck_scene.apply_skin((next_skin+1)%9)
+		active_skin_number = next_skin+1
+
+
+func _on_restore_pressed() -> void:
+	truck_scene.restore()

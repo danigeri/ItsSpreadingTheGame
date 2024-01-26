@@ -150,3 +150,10 @@ func set_heelfire_visibility(is_visible : bool) -> void:
 
 func apply_skin(skin_number : int) -> void:
 	jean.apply_skin(skin_number)
+
+
+func restore() -> void:
+	damage_state = 0
+	right_truck_sprite.set_frame(damage_state)
+	left_truck_sprite.set_frame(damage_state)
+	animations.stop()

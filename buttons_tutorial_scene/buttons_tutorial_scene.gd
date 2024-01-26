@@ -1,5 +1,14 @@
 extends Control
 
+@export var autofade_enabled = true
+
+@onready var animation = $AnimationPlayer
+
+
 func _ready() -> void:
-	await get_tree().create_timer(4.0).timeout
-	$AnimationPlayer.play("FadeOut")
+	if autofade_enabled:
+		await get_tree().create_timer(4.0).timeout
+		animation.play("FadeOut")
+
+		await animation.animation_finished
+		visible = false

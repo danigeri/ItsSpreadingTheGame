@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ww204gpn517y"
-path="res://.godot/imported/esc_button-Sheet.png-52373cade435c92b7576484e905aae87.ctex"
+uid="uid://doufkqrnb5k5l"
+path="res://.godot/imported/jcvd_reaction_gameover-Sheet_70x70.png-7d5e63fcbcd9a3f864b06719bf0123f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://buttons_tutorial_scene/esc_button-Sheet.png"
-dest_files=["res://.godot/imported/esc_button-Sheet.png-52373cade435c92b7576484e905aae87.ctex"]
+source_file="res://jean_portrait/jcvd_reaction_gameover-Sheet_70x70.png"
+dest_files=["res://.godot/imported/jcvd_reaction_gameover-Sheet_70x70.png-7d5e63fcbcd9a3f864b06719bf0123f1.ctex"]
 
 [params]
 
