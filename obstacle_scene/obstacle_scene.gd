@@ -31,26 +31,39 @@ func _ready() -> void:
 	var road_scene = get_parent()
 	self.velocity_mps = - map_value(road_scene.speed, 10, road_scene.max_speed, 100, 400)
 
+	set_to_type(type)
+
+
+func set_to_type(type : ObstacleType):
+	obstacle.visible = false
+	repair.visible = false
+	skin.visible = false
+
+	match type:
+		ObstacleType.OBSTACLE:
+			obstacle.visible = true
+		ObstacleType.REPAIR:
+			repair.visible = true
+		ObstacleType.SKIN:
+			skin.visible = true
+
 
 func set_to_obstacle() -> void:
 	self.type = ObstacleType.OBSTACLE
-	obstacle.visible = true
-	repair.visible = false
-	skin.visible = false
+	if obstacle :
+		set_to_type(ObstacleType.OBSTACLE)
 
 
 func set_to_repair() -> void:
 	self.type = ObstacleType.REPAIR
-	obstacle.visible = false
-	repair.visible = true
-	skin.visible = false
+	if obstacle :
+		set_to_type(ObstacleType.REPAIR)
 
 
 func set_to_skin() -> void:
 	self.type = ObstacleType.SKIN
-	obstacle.visible = false
-	repair.visible = false
-	skin.visible = true
+	if obstacle :
+		set_to_type(ObstacleType.SKIN)
 
 
 func _physics_process(delta: float) -> void:
