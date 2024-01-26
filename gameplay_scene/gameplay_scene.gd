@@ -10,7 +10,8 @@ extends Node2D
 @onready var ui_update_timer = $UIUpdateTimer
 @onready var speed_increase_timer = $SpeedIncreaseTimer
 
-@export var score_q : float = 0.1
+# points per
+@export var score_q : float = 5
 
 var distance_done : float = 0
 var score : int = 0
@@ -70,7 +71,7 @@ func _on_ui_update_timer_timeout() -> void:
 				truck_scene.set_heelfire_visibility(false)
 
 
-		score += distance*multiplier*score_q
+		score += multiplier*score_q
 		ui.update_score(score)
 
 
