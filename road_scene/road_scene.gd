@@ -71,12 +71,16 @@ func spawn_obstacle() -> void:
 
 	# Random obstacle()
 	var random_value = randi_range(0, 100)
+	var obstacle_type
 	if random_value <= p_ranges[0]:
 		obstacle.set_to_obstacle()
+		obstacle_type = 1
 	elif random_value <= p_ranges[0] + p_ranges[1]:
 		obstacle.set_to_repair()
+		obstacle_type = 2
 	else:
 		obstacle.set_to_skin()
+		obstacle_type = 3
 
 	var spawn_x_position = randi_range(0, WIDTH)
 	var spawn_y_position = HEIGHT * 1.5
@@ -87,6 +91,7 @@ func spawn_obstacle() -> void:
 	var exclamation_mark = exclamation_mark_scene.instantiate()
 	exclamation_mark.position = Vector2(spawn_x_position, HEIGHT - 30) # Adjust Y position as needed
 	exclamation_mark.scale = Vector2(0,0)
+	exclamation_mark.activate_type(obstacle_type)
 	add_child(exclamation_mark)
 
 	var exclamation_mark_timer = Timer.new()
