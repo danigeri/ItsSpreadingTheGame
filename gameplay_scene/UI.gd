@@ -50,6 +50,7 @@ func blink_jean_portrait(multiplier_level : int) -> void:
 
 
 func show_epic_spread_label() -> void:
+	SoundManager.play_epic_spread_sound()
 	epic_spread_label.visible = true
 
 

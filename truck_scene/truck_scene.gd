@@ -132,6 +132,7 @@ func get_spread_percentage() -> float:
 
 
 func inflict_damage():
+	SoundManager.play_obstacle_sound()
 	if(damage_state >= 6):
 		crashed.emit()
 		fall_off()
@@ -150,10 +151,12 @@ func set_heelfire_visibility(is_visible : bool) -> void:
 
 
 func apply_skin(skin_number : int) -> void:
+	SoundManager.play_skin_sound(skin_number)
 	jean.apply_skin(skin_number)
 
 
 func restore() -> void:
+	SoundManager.play_repair_sound()
 	damage_state = 0
 	right_truck_sprite.set_frame(damage_state)
 	left_truck_sprite.set_frame(damage_state)
