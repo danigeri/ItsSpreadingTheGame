@@ -62,3 +62,9 @@ var repair_sound = preload("res://sfx_scene/repair_metal.mp3")
 func play_repair_sound():
 	obstacle_sound_player.stream = repair_sound
 	obstacle_sound_player.play()
+
+@onready var epic_spread_sound_player = $EpicSpreadSoundPlayer
+
+func play_epic_spread_sound():
+	epic_spread_sound_player.play()
+	
