@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djyiab1yo0p7b"
-path="res://.godot/imported/skin_texture.png-438df70390bf530921148971950c817a.ctex"
+uid="uid://t04b10ou6ekm"
+path="res://.godot/imported/exlmark_repair_40x40.png-549c8939b4abe2dbfa790025e9319718.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://obstacle_scene/skin_texture.png"
-dest_files=["res://.godot/imported/skin_texture.png-438df70390bf530921148971950c817a.ctex"]
+source_file="res://exclamation_mark_scene/exlmark_repair_40x40.png"
+dest_files=["res://.godot/imported/exlmark_repair_40x40.png-549c8939b4abe2dbfa790025e9319718.ctex"]
 
 [params]
 

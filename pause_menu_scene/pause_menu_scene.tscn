@@ -29,8 +29,6 @@ centered = false
 
 [node name="ButtonsTutorial" parent="." instance=ExtResource("2_5wp75")]
 layout_mode = 1
-offset_left = 6.0
-offset_top = -69.0
-offset_right = 6.0
-offset_bottom = -69.0
+offset_right = -480.0
+offset_bottom = -270.0
 autofade_enabled = false

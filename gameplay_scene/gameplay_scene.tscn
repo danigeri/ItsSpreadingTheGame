@@ -157,6 +157,6 @@ autostart = true
 [connection signal="jean_fell_off" from="TruckScene" to="." method="_on_truck_scene_jean_fell_off"]
 [connection signal="pressed" from="UI/Debug/HBoxContainer/Damage" to="." method="_on_damage_pressed"]
 [connection signal="pressed" from="UI/Debug/HBoxContainer/SkinChange" to="." method="_on_skin_change_pressed"]
-[connection signal="pressed" from="UI/Debug/HBoxContainer/Restore" to="." method="_on_restore_pressed"]
+[connection signal="pressed" from="UI/Debug/HBoxContainer/Restore" to="." method="_on_restore_hit"]
 [connection signal="timeout" from="UIUpdateTimer" to="." method="_on_ui_update_timer_timeout"]
 [connection signal="timeout" from="SpeedIncreaseTimer" to="." method="_on_speed_increase_timer_timeout"]

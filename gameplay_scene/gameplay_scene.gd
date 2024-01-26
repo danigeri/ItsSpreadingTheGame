@@ -10,7 +10,8 @@ extends Node2D
 @onready var ui_update_timer = $UIUpdateTimer
 @onready var speed_increase_timer = $SpeedIncreaseTimer
 
-@export var score_q : float = 0.1
+# points per
+@export var score_q : float = 1
 
 var distance_done : float = 0
 var score : int = 0
@@ -27,12 +28,8 @@ func _on_speed_increase_timer_timeout() -> void:
 	truck_scene.increase_speed()
 
 
-func get_calculated_speed_mph(distance : float) -> float:
-	const MPS_TO_MPH := 2.236936
-	var delta_distance = distance - distance_done
-	var actual_m_per_sec : float = delta_distance/ui_update_timer.wait_time
-
-	return actual_m_per_sec*MPS_TO_MPH
+func get_calculated_speed_mph(distance : float) -> int:
+	return max(180,int(distance))
 
 
 func _on_ui_update_timer_timeout() -> void:
@@ -42,7 +39,7 @@ func _on_ui_update_timer_timeout() -> void:
 	distance_done = distance
 
 	ui.update_velocity(speed)
-	ui.update_distance(distance)
+	ui.update_distance(distance*5)
 
 	var spread_percentage : float = truck_scene.get_spread_percentage()
 	ui.update_scale(spread_percentage)
@@ -70,7 +67,7 @@ func _on_ui_update_timer_timeout() -> void:
 				truck_scene.set_heelfire_visibility(false)
 
 
-		score += distance*multiplier*score_q
+		score += multiplier*score_q
 		ui.update_score(score)
 
 
@@ -132,5 +129,5 @@ func _on_skin_change_pressed() -> void:
 		active_skin_number = next_skin+1
 
 
-func _on_restore_pressed() -> void:
+func _on_restore_hit() -> void:
 	truck_scene.restore()

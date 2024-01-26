@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://yn6hai303u5m"]
+[gd_scene load_steps=15 format=3 uid="uid://yn6hai303u5m"]
 
 [ext_resource type="Script" path="res://truck_scene/truck_scene.gd" id="1_7gccb"]
 [ext_resource type="Texture2D" uid="uid://bq5w6wseunmne" path="res://truck_scene/green_truck_sheet.png" id="3_acpdq"]
@@ -16,32 +16,32 @@ size = Vector2(480, 1)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_w6b0d"]
 b = Vector2(0, 1080)
 
-[sub_resource type="Animation" id="Animation_efvx3"]
-resource_name = "IdleRocking"
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_xudwg"]
+resource_name = "HealthRestored"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 2
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(8, 0.170755, 0.217638, 3.24901),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 2), Vector2(0, 0), Vector2(0, -1)]
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../LeftTruckBody/Sprite:position")
-tracks/1/interp = 2
+tracks/1/path = NodePath("../LeftTruckBody/Sprite:self_modulate")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.15, 0.4, 0.65, 0.9),
-"transitions": PackedFloat32Array(2.92817, 0.466516, 0.378929, 4.14106),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 2), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ocwg6"]
@@ -153,10 +153,43 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ds0yj"]
 _data = {
-"IdleRocking": SubResource("Animation_efvx3"),
+"HealthRestored": SubResource("Animation_xudwg"),
 "RESET": SubResource("Animation_ocwg6"),
 "SeriouslyHurt": SubResource("Animation_je8uj"),
 "TakingDamage": SubResource("Animation_ow27e")
+}
+
+[sub_resource type="Animation" id="Animation_4ucjt"]
+resource_name = "IdleRocking"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightTruckBody/Sprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(8, 0.170755, 0.217638, 3.24901),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2), Vector2(0, 0), Vector2(0, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftTruckBody/Sprite:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.15, 0.4, 0.65, 0.9),
+"transitions": PackedFloat32Array(2.92817, 0.466516, 0.378929, 4.14106),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cq3mi"]
+_data = {
+"IdleRocking": SubResource("Animation_4ucjt")
 }
 
 [node name="TruckScene" type="Node2D"]
@@ -235,11 +268,16 @@ scale = Vector2(0.3, 0.3)
 node_a = NodePath("../../Jean/Leg_R")
 node_b = NodePath("../../RightTruckBody")
 
-[node name="TruckAnimation" type="AnimationPlayer" parent="."]
+[node name="HealthAndDamage" type="AnimationPlayer" parent="."]
 root_node = NodePath("../RightTruckBody")
-autoplay = "IdleRocking"
 libraries = {
 "": SubResource("AnimationLibrary_ds0yj")
+}
+
+[node name="IdleRocking" type="AnimationPlayer" parent="."]
+autoplay = "IdleRocking"
+libraries = {
+"": SubResource("AnimationLibrary_cq3mi")
 }
 
 [editable path="Jean"]

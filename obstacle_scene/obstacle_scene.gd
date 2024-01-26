@@ -13,16 +13,17 @@ var initial_x_position: float # Store the initial X position of the obstacle
 
 var started: bool = false
 
-var obstacle_texture = preload("res://obstacle_scene/obstacle_texture.png")
-var repair_texture = preload("res://obstacle_scene/repair_texture.png")
-var skin_texture = preload("res://obstacle_scene/skin_texture.png")
-@onready var sprite_2d = $Sprite2D
+@onready var obstacle = $ObstacleSprite
+@onready var repair = $RepairSprite
+@onready var skin = $SkinSprite
 
 enum ObstacleType { OBSTACLE, REPAIR, SKIN }
 var type: ObstacleType = ObstacleType.OBSTACLE
 
+
 func map_value(value, start_1, end_1, start_2, end_2):
 	return lerp(start_2, end_2, (value - start_1) / (end_1 - start_1))
+
 
 func _ready() -> void:
 	initial_x_position = position.x # Set the initial X position
@@ -30,30 +31,40 @@ func _ready() -> void:
 	var road_scene = get_parent()
 	self.velocity_mps = - map_value(road_scene.speed, 10, road_scene.max_speed, 100, 400)
 
-	if type == ObstacleType.OBSTACLE:
-		sprite_2d.texture = obstacle_texture
-	elif type == ObstacleType.REPAIR:
-		sprite_2d.texture = repair_texture
-	elif type == ObstacleType.SKIN:
-		sprite_2d.texture = skin_texture
+	set_to_type(type)
+
+
+func set_to_type(type : ObstacleType):
+	obstacle.visible = false
+	repair.visible = false
+	skin.visible = false
+
+	match type:
+		ObstacleType.OBSTACLE:
+			obstacle.visible = true
+			obstacle.frame = randi_range(0, 3)
+		ObstacleType.REPAIR:
+			repair.visible = true
+		ObstacleType.SKIN:
+			skin.visible = true
+
 
 func set_to_obstacle() -> void:
 	self.type = ObstacleType.OBSTACLE
-	if self.sprite_2d == null:
-		return
-	self.sprite_2d.texture = self.obstacle_texture
+	if obstacle :
+		set_to_type(ObstacleType.OBSTACLE)
+
 
 func set_to_repair() -> void:
 	self.type = ObstacleType.REPAIR
-	if self.sprite_2d == null:
-		return
-	self.sprite_2d.texture = self.repair_texture
+	if obstacle :
+		set_to_type(ObstacleType.REPAIR)
+
 
 func set_to_skin() -> void:
 	self.type = ObstacleType.SKIN
-	if self.sprite_2d == null:
-		return
-	self.sprite_2d.texture = self.skin_texture
+	if obstacle :
+		set_to_type(ObstacleType.SKIN)
 
 
 func _physics_process(delta: float) -> void:
@@ -82,8 +93,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body):
-	# print("Obstacle hit something!" + ObstacleType.keys()[type])
-
 	if type == ObstacleType.OBSTACLE:
 		obstacle_hit.emit()
 	elif type == ObstacleType.REPAIR:
@@ -91,6 +100,4 @@ func _on_area_2d_body_entered(body):
 	elif type == ObstacleType.SKIN:
 		skin_hit.emit()
 
-	#visible = false
 	queue_free()  # Remove the obstacle
-	pass # Replace with function body.
