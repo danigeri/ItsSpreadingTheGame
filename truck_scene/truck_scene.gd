@@ -14,7 +14,7 @@ var collision_handled : bool = false
 @export var max_steering_sensitivity = 10
 @export var steering_sensitivity_step := 0.03
 @export var animation_speed = 0.5
-@export var max_spread_length : int = 190
+@export var max_spread_length : int = 196
 @export var min_spread_length : int = 90
 @export var truck_bounce : float = 0.2
 
@@ -157,3 +157,4 @@ func restore() -> void:
 	right_truck_sprite.set_frame(damage_state)
 	left_truck_sprite.set_frame(damage_state)
 	animations.stop()
+	animations.play("HealthRestored")
