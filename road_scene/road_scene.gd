@@ -34,13 +34,17 @@ var obstacle_timer = Timer.new() # the interval between a new object is generate
 var exclamation_mark_scene = preload("res://exclamation_mark_scene/exclamation_mark_scene.tscn")
 var upcoming_objects = []
 
-var exclamation_mark_time = 1 # the time how long exclamation mark is shown up
+# the time how long exclamation mark is shown up
+@export var exclamation_mark_time = 1
+# propability of spawning [obstacle, repair, skin in %]
+@export var p_ranges = [70, 10, 20]
 
 func get_horizon_y_position() -> float:
 	# Assuming a very large `i` so that it represents the horizon
 	return get_perspective(road_length_px, cam_y_position, position_px).Y
 
 func _ready() -> void:
+	randomize()
 	position_px = road_length_px
 	add_child(obstacle_timer)
 	obstacle_timer.wait_time = 5.0
@@ -66,10 +70,10 @@ func spawn_obstacle() -> void:
 	obstacle.connect("skin_hit", gameplay_scene._on_skin_change_pressed)
 
 	# Random obstacle()
-	var random_value = randi() % 3
-	if random_value == 0:
+	var random_value = randi_range(0, 100)
+	if random_value <= p_ranges[0]:
 		obstacle.set_to_obstacle()
-	elif random_value == 1:
+	elif random_value <= p_ranges[0] + p_ranges[1]:
 		obstacle.set_to_repair()
 	else:
 		obstacle.set_to_skin()
