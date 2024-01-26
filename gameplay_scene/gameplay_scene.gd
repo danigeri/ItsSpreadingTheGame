@@ -16,6 +16,8 @@ var is_game_over_triggered : bool = false
 var _multiplier : int = 1
 var active_skin_number : int = 0
 
+func _ready():
+	SoundManager.play_truck_sound()
 
 func _on_speed_increase_timer_timeout() -> void:
 	road_scene.increase_road_speed()
@@ -114,3 +116,4 @@ func _on_skin_change_pressed() -> void:
 	active_skin_number += 1
 	skin_shoutout.shoutout(active_skin_number%9)
 	truck_scene.apply_skin(active_skin_number%9)
+	SoundManager.play_skin_sound(active_skin_number%9)

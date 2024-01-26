@@ -4,3 +4,4 @@
 
 [node name="background_music_player" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_vf16k")
+volume_db = -5.621
