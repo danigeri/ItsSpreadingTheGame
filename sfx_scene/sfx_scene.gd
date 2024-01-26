@@ -17,7 +17,7 @@ var kingpgin_skin_sound = preload("res://sfx_scene/skin_sounds/kingpin.mp3")
 var volvo_skin_sound = preload("res://sfx_scene/skin_sounds/volvo.mp3")
 
 func play_skin_sound(skin_id):
-	
+
 	if skin_id == 0:
 		skin_sound_player.stream = jeans_skin_sound
 	elif skin_id == 1:
@@ -36,9 +36,9 @@ func play_skin_sound(skin_id):
 		skin_sound_player.stream = anoobis_skin_sound
 	elif skin_id == 8:
 		skin_sound_player.stream = chonny_jage_skin_sound
-	
+
 	skin_sound_player.play()
-	
+
 var jcvd_intro_sound = preload("res://sfx_scene/jcvd_intro.mp3")
 
 func play_jcvd_intro_sound():
@@ -51,12 +51,17 @@ func play_truck_sound():
 	truck_sound_player.stream = truck_sound
 	truck_sound_player.play()
 
+
+func stop_truck_sound():
+	truck_sound_player.stop()
+
+
 var obstacle_sound = preload("res://sfx_scene/hit_obstacle.mp3")
 
 func play_obstacle_sound():
 	obstacle_sound_player.stream = obstacle_sound
 	obstacle_sound_player.play()
-	
+
 var repair_sound = preload("res://sfx_scene/repair_metal.mp3")
 
 func play_repair_sound():
@@ -67,4 +72,4 @@ func play_repair_sound():
 
 func play_epic_spread_sound():
 	epic_spread_sound_player.play()
-	
+
