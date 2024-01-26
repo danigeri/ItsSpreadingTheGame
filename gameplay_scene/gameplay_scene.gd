@@ -28,6 +28,7 @@ func _ready() -> void:
 	jvcd_intro_anim.play("fade_out")
 	await get_tree().create_timer(0.3).timeout
 	jvcd_intro.visible = false
+	road_scene.start_spawning_obstacles()
 
 
 func _on_speed_increase_timer_timeout() -> void:
