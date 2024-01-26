@@ -41,7 +41,6 @@ rotation = 1.0472
 [node name="Leg_L" type="RigidBody2D" parent="."]
 position = Vector2(-15, 57)
 rotation = 0.298586
-collision_layer = 2
 gravity_scale = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="Leg_L"]

@@ -62,7 +62,7 @@ func spawn_obstacle() -> void:
 	var gameplay_scene = get_parent()
 
 	obstacle.connect("obstacle_hit", gameplay_scene._on_damage_pressed)
-	obstacle.connect("repair_hit", self._on_repair_hit) # todo replace with healing
+	obstacle.connect("repair_hit", gameplay_scene._on_restore_hit)
 	obstacle.connect("skin_hit", gameplay_scene._on_skin_change_pressed)
 
 	# Random obstacle()

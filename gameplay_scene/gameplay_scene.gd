@@ -134,5 +134,5 @@ func _on_skin_change_pressed() -> void:
 		active_skin_number = next_skin+1
 
 
-func _on_restore_pressed() -> void:
+func _on_restore_hit() -> void:
 	truck_scene.restore()
