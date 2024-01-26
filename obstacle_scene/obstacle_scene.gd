@@ -42,6 +42,7 @@ func set_to_type(type : ObstacleType):
 	match type:
 		ObstacleType.OBSTACLE:
 			obstacle.visible = true
+			obstacle.frame = randi_range(0, 3)
 		ObstacleType.REPAIR:
 			repair.visible = true
 		ObstacleType.SKIN:
