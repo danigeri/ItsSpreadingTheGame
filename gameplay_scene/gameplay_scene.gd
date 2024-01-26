@@ -29,12 +29,7 @@ func _on_speed_increase_timer_timeout() -> void:
 
 
 func get_calculated_speed_mph(distance : float) -> int:
-#	const MPS_TO_MPH := 2.236936
-	const MPS_TO_MPH := 5
-	var delta_distance = distance - distance_done
-	var actual_m_per_sec : float = delta_distance/ui_update_timer.wait_time
-
-	return round(actual_m_per_sec*MPS_TO_MPH)
+	return max(180,int(distance))
 
 
 func _on_ui_update_timer_timeout() -> void:

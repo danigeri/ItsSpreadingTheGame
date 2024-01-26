@@ -134,7 +134,7 @@ func _draw():
 	var current_segment = position_px/speed
 	var prev_perspective = {X = 0, Y = 0, W = 0}
 
-	for i in range(current_segment, current_segment+250):
+	for i in range(current_segment, current_segment+200):
 		var perspective = get_perspective(i*speed, cam_y_position, position_px)
 
 		if perspective.Y < HEIGHT:
