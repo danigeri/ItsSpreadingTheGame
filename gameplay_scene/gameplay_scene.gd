@@ -11,7 +11,7 @@ extends Node2D
 @onready var speed_increase_timer = $SpeedIncreaseTimer
 
 # points per
-@export var score_q : float = 5
+@export var score_q : float = 1
 
 var distance_done : float = 0
 var score : int = 0
@@ -28,12 +28,13 @@ func _on_speed_increase_timer_timeout() -> void:
 	truck_scene.increase_speed()
 
 
-func get_calculated_speed_mph(distance : float) -> float:
-	const MPS_TO_MPH := 2.236936
+func get_calculated_speed_mph(distance : float) -> int:
+#	const MPS_TO_MPH := 2.236936
+	const MPS_TO_MPH := 5
 	var delta_distance = distance - distance_done
 	var actual_m_per_sec : float = delta_distance/ui_update_timer.wait_time
 
-	return actual_m_per_sec*MPS_TO_MPH
+	return round(actual_m_per_sec*MPS_TO_MPH)
 
 
 func _on_ui_update_timer_timeout() -> void:
@@ -43,7 +44,7 @@ func _on_ui_update_timer_timeout() -> void:
 	distance_done = distance
 
 	ui.update_velocity(speed)
-	ui.update_distance(distance)
+	ui.update_distance(distance*5)
 
 	var spread_percentage : float = truck_scene.get_spread_percentage()
 	ui.update_scale(spread_percentage)
