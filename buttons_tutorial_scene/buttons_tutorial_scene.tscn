@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://delha6fc0fos8"]
 
 [ext_resource type="Script" path="res://buttons_tutorial_scene/buttons_tutorial_scene.gd" id="1_4jgk0"]
-[ext_resource type="Texture2D" uid="uid://kjs6n6w013gg" path="res://buttons_tutorial_scene/esc_button-Sheet_fixed.png" id="2_en15e"]
-[ext_resource type="Texture2D" uid="uid://dcn3gdcompr0i" path="res://buttons_tutorial_scene/arrows_2-Sheet_fixed.png" id="3_5unjq"]
-[ext_resource type="Texture2D" uid="uid://ky33mpd5fgfk" path="res://buttons_tutorial_scene/WASD_2-Sheet_fixed.png" id="4_mp475"]
+[ext_resource type="Texture2D" uid="uid://cdie784t3n7u1" path="res://buttons_tutorial_scene/esc_button-Sheet_40x40.png" id="2_kogol"]
+[ext_resource type="Texture2D" uid="uid://qmyqqsyrcnve" path="res://buttons_tutorial_scene/arrows_2-Sheet_60x60.png" id="3_1syd8"]
+[ext_resource type="Texture2D" uid="uid://3hppjnm7qavf" path="res://buttons_tutorial_scene/WASD_2-Sheet_60x60.png" id="4_lkbia"]
 
 [sub_resource type="Animation" id="Animation_j2dpi"]
 resource_name = "ButtonsBeingPushed"
@@ -178,17 +178,17 @@ script = ExtResource("1_4jgk0")
 
 [node name="EscButton-sheet" type="Sprite2D" parent="."]
 position = Vector2(380, 210)
-texture = ExtResource("2_en15e")
+texture = ExtResource("2_kogol")
 hframes = 8
 
 [node name="ArrowsSheet" type="Sprite2D" parent="."]
 position = Vector2(295, 210)
-texture = ExtResource("3_5unjq")
+texture = ExtResource("3_1syd8")
 hframes = 10
 
 [node name="WasdSheet" type="Sprite2D" parent="."]
 position = Vector2(180, 210)
-texture = ExtResource("4_mp475")
+texture = ExtResource("4_lkbia")
 hframes = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
