@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2wufkw7dnbfg"]
+[gd_scene load_steps=11 format=3 uid="uid://c2wufkw7dnbfg"]
 
 [ext_resource type="Script" path="res://gameplay_scene/gameplay_scene.gd" id="1_kpjtu"]
 [ext_resource type="PackedScene" uid="uid://bgrdxj4n70ckc" path="res://road_scene/road_scene.tscn" id="2_e7rti"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dyus0bkw8lc26" path="res://epic_spread_label/epic_spread_label.tscn" id="7_0x8v5"]
 [ext_resource type="PackedScene" uid="uid://laba3xnjcjob" path="res://skin_shoutout_scene/skin_shoutout_scene.tscn" id="8_idhit"]
 [ext_resource type="PackedScene" uid="uid://delha6fc0fos8" path="res://buttons_tutorial_scene/buttons_tutorial_scene.tscn" id="9_j33ti"]
+[ext_resource type="PackedScene" uid="uid://b584fsahcxvpv" path="res://pause_menu_scene/pause_menu_scene.tscn" id="10_u1bow"]
 
 [node name="GameplayScene" type="Node2D"]
 script = ExtResource("1_kpjtu")
@@ -79,17 +80,13 @@ text = "1x"
 
 [node name="Debug" type="PanelContainer" parent="UI"]
 layout_mode = 0
-offset_left = 380.0
+offset_left = 430.0
 offset_top = 54.0
-offset_right = 480.0
-offset_bottom = 80.0
+offset_right = 530.0
+offset_bottom = 155.0
+scale = Vector2(0.5, 0.5)
 
-[node name="DebugLabel" type="Label" parent="UI/Debug"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Debug"]
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/Debug"]
 layout_mode = 2
 
 [node name="Damage" type="Button" parent="UI/Debug/HBoxContainer"]
@@ -99,6 +96,11 @@ text = "HIT"
 [node name="SkinChange" type="Button" parent="UI/Debug/HBoxContainer"]
 layout_mode = 2
 text = "Skin"
+
+[node name="Restore" type="Button" parent="UI/Debug/HBoxContainer"]
+layout_mode = 2
+text = "Restore
+"
 
 [node name="ScaleGauge" parent="UI" instance=ExtResource("5_diy58")]
 layout_mode = 0
@@ -119,6 +121,7 @@ grow_vertical = 0
 
 [node name="EpicSpreadLabel" parent="UI" instance=ExtResource("7_0x8v5")]
 visible = false
+z_index = -1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -138,6 +141,10 @@ offset_bottom = 108.0
 [node name="ButtonsTutorial" parent="UI" instance=ExtResource("9_j33ti")]
 layout_mode = 1
 
+[node name="PauseMenuScene" parent="UI" instance=ExtResource("10_u1bow")]
+visible = false
+layout_mode = 1
+
 [node name="UIUpdateTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
@@ -150,5 +157,6 @@ autostart = true
 [connection signal="jean_fell_off" from="TruckScene" to="." method="_on_truck_scene_jean_fell_off"]
 [connection signal="pressed" from="UI/Debug/HBoxContainer/Damage" to="." method="_on_damage_pressed"]
 [connection signal="pressed" from="UI/Debug/HBoxContainer/SkinChange" to="." method="_on_skin_change_pressed"]
+[connection signal="pressed" from="UI/Debug/HBoxContainer/Restore" to="." method="_on_restore_hit"]
 [connection signal="timeout" from="UIUpdateTimer" to="." method="_on_ui_update_timer_timeout"]
 [connection signal="timeout" from="SpeedIncreaseTimer" to="." method="_on_speed_increase_timer_timeout"]

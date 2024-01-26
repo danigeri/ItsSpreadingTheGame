@@ -34,13 +34,17 @@ var obstacle_timer = Timer.new() # the interval between a new object is generate
 var exclamation_mark_scene = preload("res://exclamation_mark_scene/exclamation_mark_scene.tscn")
 var upcoming_objects = []
 
-var exclamation_mark_time = 1 # the time how long exclamation mark is shown up
+# the time how long exclamation mark is shown up
+@export var exclamation_mark_time = 1
+# propability of spawning [obstacle, repair, skin in %]
+@export var p_ranges = [70, 10, 20]
 
 func get_horizon_y_position() -> float:
 	# Assuming a very large `i` so that it represents the horizon
 	return get_perspective(road_length_px, cam_y_position, position_px).Y
 
 func _ready() -> void:
+	randomize()
 	position_px = road_length_px
 	add_child(obstacle_timer)
 	obstacle_timer.wait_time = 5.0
@@ -51,59 +55,64 @@ func _ready() -> void:
 func _on_obstacle_timer_timeout() -> void:
 	spawn_obstacle()
 	obstacle_timer.wait_time = randi_range(2,10)
-	
+
 func _on_repair_hit() -> void:
 	print("handling of repair hit in road scene")
 	pass
-	
+
 func spawn_obstacle() -> void:
 	var obstacle = obstacle_scene.instantiate()
-	
+
 	var gameplay_scene = get_parent()
-	
+
 	obstacle.connect("obstacle_hit", gameplay_scene._on_damage_pressed)
-	obstacle.connect("repair_hit", self._on_repair_hit) # todo replace with healing
+	obstacle.connect("repair_hit", gameplay_scene._on_restore_hit)
 	obstacle.connect("skin_hit", gameplay_scene._on_skin_change_pressed)
-	
+
 	# Random obstacle()
-	var random_value = randi() % 3  
-	if random_value == 0:
+	var random_value = randi_range(0, 100)
+	var obstacle_type
+	if random_value <= p_ranges[0]:
 		obstacle.set_to_obstacle()
-	elif random_value == 1:
+		obstacle_type = 1
+	elif random_value <= p_ranges[0] + p_ranges[1]:
 		obstacle.set_to_repair()
+		obstacle_type = 2
 	else:
 		obstacle.set_to_skin()
-	
+		obstacle_type = 3
+
 	var spawn_x_position = randi_range(0, WIDTH)
 	var spawn_y_position = HEIGHT * 1.5
 	obstacle.position = Vector2(spawn_x_position, spawn_y_position)
 	add_child(obstacle)
-	
+
 	# Spawn the exclamation mark
 	var exclamation_mark = exclamation_mark_scene.instantiate()
 	exclamation_mark.position = Vector2(spawn_x_position, HEIGHT - 30) # Adjust Y position as needed
 	exclamation_mark.scale = Vector2(0,0)
+	exclamation_mark.activate_type(obstacle_type)
 	add_child(exclamation_mark)
-	
+
 	var exclamation_mark_timer = Timer.new()
 	add_child(exclamation_mark_timer)
 	exclamation_mark_timer.wait_time = exclamation_mark_time
 	exclamation_mark_timer.one_shot = true
 	exclamation_mark_timer.start()
-	
+
 	upcoming_objects.append({
 		"obstacle": obstacle,
 		"exclamation_mark": exclamation_mark,
 		"exclamation_mark_timer": exclamation_mark_timer
 	})
-	
-	
+
+
 func _process(delta):
 	for upcoming_object in upcoming_objects:
 		var timer = upcoming_object["exclamation_mark_timer"]
 		var scale_factor = 1 - timer.time_left
 		#print(upcoming_object["exclamation_mark_timer"].time_left)
-		upcoming_object.exclamation_mark.scale = Vector2(scale_factor, scale_factor) 
+		upcoming_object.exclamation_mark.scale = Vector2(scale_factor, scale_factor)
 		if timer.time_left <= 0:
 			# Remove the exclamation mark when the timer runs out
 			upcoming_object["exclamation_mark"].queue_free()
@@ -111,7 +120,7 @@ func _process(delta):
 				upcoming_object["obstacle"].started = true
 			upcoming_object["exclamation_mark_timer"].queue_free()
 			upcoming_objects.erase(upcoming_object)
-			
+
 
 func _physics_process(delta: float) -> void:
 		queue_redraw()

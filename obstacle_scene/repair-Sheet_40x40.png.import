@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xljv1325yssn"
-path="res://.godot/imported/repair_texture.png-06b1b3b7f6d7f53047d61b63e2a188a0.ctex"
+uid="uid://c6xwbxkcfsmu1"
+path="res://.godot/imported/repair-Sheet_40x40.png-6480c548979cf627aaae1f72bdf34ad8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://obstacle_scene/repair_texture.png"
-dest_files=["res://.godot/imported/repair_texture.png-06b1b3b7f6d7f53047d61b63e2a188a0.ctex"]
+source_file="res://obstacle_scene/repair-Sheet_40x40.png"
+dest_files=["res://.godot/imported/repair-Sheet_40x40.png-6480c548979cf627aaae1f72bdf34ad8.ctex"]
 
 [params]
 

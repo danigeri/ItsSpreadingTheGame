@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpy66i07lk124"
-path="res://.godot/imported/obstacle_texture.png-8e39c239c28591fa96144b5801d83bc3.ctex"
+uid="uid://bpd1yusq5dn1r"
+path="res://.godot/imported/jcvd_reaction_2-Sheet_70x70.png-c8dd9966f77902fd07e507210d17a659.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://obstacle_scene/obstacle_texture.png"
-dest_files=["res://.godot/imported/obstacle_texture.png-8e39c239c28591fa96144b5801d83bc3.ctex"]
+source_file="res://jean_portrait/jcvd_reaction_2-Sheet_70x70.png"
+dest_files=["res://.godot/imported/jcvd_reaction_2-Sheet_70x70.png-c8dd9966f77902fd07e507210d17a659.ctex"]
 
 [params]
 

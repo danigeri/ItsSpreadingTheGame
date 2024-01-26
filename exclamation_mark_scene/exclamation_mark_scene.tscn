@@ -1,8 +1,160 @@
-[gd_scene load_steps=2 format=3 uid="uid://dgrufi2gvr15"]
+[gd_scene load_steps=14 format=3 uid="uid://dgrufi2gvr15"]
 
-[ext_resource type="Texture2D" uid="uid://8q1wuft3x7fo" path="res://exclamation_mark_scene/exclamation_mark.png" id="1_rsakl"]
+[ext_resource type="Texture2D" uid="uid://t04b10ou6ekm" path="res://exclamation_mark_scene/exlmark_repair_40x40.png" id="1_3kfft"]
+[ext_resource type="Script" path="res://exclamation_mark_scene/exclamation_mark_scene.gd" id="1_733jk"]
+[ext_resource type="Texture2D" uid="uid://dsrhra200bu3q" path="res://exclamation_mark_scene/exlmark_skin_40x40.png" id="2_i3m1o"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7fn3t"]
+load_path = "res://.godot/imported/exlmark_red_40x40.png-e19b09c7a255c659c108ec3b19e4b062.ctex"
+
+[sub_resource type="Animation" id="Animation_k0qxr"]
+resource_name = "Pulsing"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Red:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 7]
+}
+
+[sub_resource type="Animation" id="Animation_f6vby"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Red:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ih2rk"]
+_data = {
+"Pulsing": SubResource("Animation_k0qxr"),
+"RESET": SubResource("Animation_f6vby")
+}
+
+[sub_resource type="Animation" id="Animation_ufbbc"]
+resource_name = "flashing"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 7]
+}
+
+[sub_resource type="Animation" id="Animation_cq513"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1gupj"]
+_data = {
+"RESET": SubResource("Animation_cq513"),
+"flashing": SubResource("Animation_ufbbc")
+}
+
+[sub_resource type="Animation" id="Animation_jmbqx"]
+resource_name = "flashing"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 7]
+}
+
+[sub_resource type="Animation" id="Animation_mw740"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7tmeh"]
+_data = {
+"RESET": SubResource("Animation_mw740"),
+"flashing": SubResource("Animation_jmbqx")
+}
 
 [node name="ExclamationMarkScene" type="Node2D"]
+script = ExtResource("1_733jk")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_rsakl")
+[node name="Red" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("CompressedTexture2D_7fn3t")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Red"]
+root_node = NodePath("../..")
+autoplay = "Pulsing"
+libraries = {
+"": SubResource("AnimationLibrary_ih2rk")
+}
+
+[node name="Blue" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, -1)
+texture = ExtResource("1_3kfft")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Blue"]
+autoplay = "flashing"
+libraries = {
+"": SubResource("AnimationLibrary_1gupj")
+}
+
+[node name="Green" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_i3m1o")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Green"]
+autoplay = "flashing"
+libraries = {
+"": SubResource("AnimationLibrary_7tmeh")
+}

@@ -8,6 +8,7 @@ extends Control
 @onready var jean_portrait = $JCVDPortrait
 @onready var epic_spread_label = $EpicSpreadLabel
 
+
 func update_velocity(velocity : int):
 	velocity_display.text = "%d mph" % velocity
 
@@ -42,3 +43,7 @@ func show_epic_spread_label() -> void:
 
 func hide_epic_spread_label() -> void:
 	epic_spread_label.visible = false
+
+
+func blink_gameover_portrait() -> void:
+	jean_portrait.death()

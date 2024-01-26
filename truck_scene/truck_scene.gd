@@ -12,9 +12,9 @@ var collision_handled : bool = false
 @export var shift_falloff = 0.5
 @export var initial_steering_sensitivity = 2
 @export var max_steering_sensitivity = 10
-@export var steering_sensitivity_step := 0.03
+@export var steering_sensitivity_step := 0.02
 @export var animation_speed = 0.5
-@export var max_spread_length : int = 190
+@export var max_spread_length : int = 196
 @export var min_spread_length : int = 90
 @export var truck_bounce : float = 0.2
 
@@ -31,7 +31,8 @@ var collision_handled : bool = false
 @onready var connections : Node2D = $ConnectionsToTrucks
 @onready var jean : Node2D = $Jean
 
-@onready var animations = $TruckAnimation
+@onready var health_and_damage_anim = $HealthAndDamage
+@onready var idle_rocking_anim = $IdleRocking
 @onready var road_collider : StaticBody2D = $RoadBody
 
 signal crashed
@@ -119,7 +120,7 @@ func fall_off() -> void:
 func increase_speed():
 	if steering_sensitivity < max_steering_sensitivity:
 		steering_sensitivity += steering_sensitivity_step
-		animations.speed_scale += 0.01
+		idle_rocking_anim.speed_scale += 0.01
 
 
 func stop_the_trucks():
@@ -138,10 +139,10 @@ func inflict_damage():
 		damage_state += 1
 		right_truck_sprite.set_frame(damage_state)
 		left_truck_sprite.set_frame(damage_state)
-		animations.play("TakingDamage")
+		health_and_damage_anim.play("TakingDamage")
 
 		if damage_state == 6:
-			animations.play("SeriouslyHurt")
+			health_and_damage_anim.play("SeriouslyHurt")
 
 
 func set_heelfire_visibility(is_visible : bool) -> void:
@@ -150,3 +151,11 @@ func set_heelfire_visibility(is_visible : bool) -> void:
 
 func apply_skin(skin_number : int) -> void:
 	jean.apply_skin(skin_number)
+
+
+func restore() -> void:
+	damage_state = 0
+	right_truck_sprite.set_frame(damage_state)
+	left_truck_sprite.set_frame(damage_state)
+	health_and_damage_anim.stop()
+	health_and_damage_anim.play("HealthRestored")

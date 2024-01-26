@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3epefb3mbtuy"
-path="res://.godot/imported/arrows_Sheet.png-667e40fd57715819f88bb3f70ae59c9e.ctex"
+uid="uid://d0fe86m7m3u4x"
+path="res://.godot/imported/obstacles_sheet_4.png-187e317039e1a8812bf0045f20dcfcb2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://buttons_tutorial_scene/arrows_Sheet.png"
-dest_files=["res://.godot/imported/arrows_Sheet.png-667e40fd57715819f88bb3f70ae59c9e.ctex"]
+source_file="res://obstacle_scene/obstacles_sheet_4.png"
+dest_files=["res://.godot/imported/obstacles_sheet_4.png-187e317039e1a8812bf0045f20dcfcb2.ctex"]
 
 [params]
 

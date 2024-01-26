@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0fkbapfiwaro"
-path="res://.godot/imported/WASD_Sheet.png-0d9411c92ec1de232c5b3d4db377eceb.ctex"
+uid="uid://cpfg32qdvxsmm"
+path="res://.godot/imported/PAUSE_MENU.png-3f83143671d4da165d75a4a4c427f2a1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://buttons_tutorial_scene/WASD_Sheet.png"
-dest_files=["res://.godot/imported/WASD_Sheet.png-0d9411c92ec1de232c5b3d4db377eceb.ctex"]
+source_file="res://pause_menu_scene/PAUSE_MENU.png"
+dest_files=["res://.godot/imported/PAUSE_MENU.png-3f83143671d4da165d75a4a4c427f2a1.ctex"]
 
 [params]
 
