@@ -20,7 +20,7 @@ func _ready():
 func _on_back_to_main_menu_button_pressed() -> void:
 	var menu_scene = preload(\"res://menu_scene/menu_scene.tscn\").instantiate()
 
-	get_tree().root.get_child(4).queue_free()
+	get_tree().root.get_child(5).queue_free()
 	get_tree().root.add_child(menu_scene)
 
 	BackgroundMusicPlayer.stop()
