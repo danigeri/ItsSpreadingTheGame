@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpypoq6q4whvs"]
+
+[ext_resource type="FontFile" uid="uid://chet2us7fxnuc" path="res://gui_styles/fonts/Tektur-SemiBold.ttf" id="1_0kd83"]
+[ext_resource type="Script" path="res://enter_username_scene/enter_username_scene.gd" id="1_0oyuw"]
+[ext_resource type="StyleBox" uid="uid://bsp1tv8rkjsnb" path="res://gui_styles/empty.tres" id="2_2ulsa"]
+[ext_resource type="StyleBox" uid="uid://dv5ra86ur4gc0" path="res://gui_styles/hover.tres" id="3_pybbg"]
+[ext_resource type="Texture2D" uid="uid://uny72trkmr4" path="res://enter_username_scene/start.png" id="4_x6cfi"]
+
+[node name="enter_username_scene" type="Node2D"]
+script = ExtResource("1_0oyuw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 480.0
+offset_bottom = 271.0
+color = Color(0, 0, 0, 1)
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 131.0
+offset_top = 102.0
+offset_right = 348.0
+offset_bottom = 136.0
+theme_override_fonts/font = ExtResource("1_0kd83")
+theme_override_font_sizes/font_size = 20
+placeholder_text = "enter your name"
+alignment = 1
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 198.0
+offset_top = 147.0
+offset_right = 277.0
+offset_bottom = 170.0
+theme_override_styles/normal = ExtResource("2_2ulsa")
+theme_override_styles/hover = ExtResource("3_pybbg")
+theme_override_styles/pressed = ExtResource("2_2ulsa")
+theme_override_styles/focus = ExtResource("2_2ulsa")
+
+[node name="Start" type="Sprite2D" parent="."]
+position = Vector2(238, 158)
+texture = ExtResource("4_x6cfi")
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

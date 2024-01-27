@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwojv5nxvrmcc"]
+
+[ext_resource type="Script" path="res://leaderboard_scene/leaderboard_scene.gd" id="1_85r5e"]
+[ext_resource type="StyleBox" uid="uid://bsp1tv8rkjsnb" path="res://gui_styles/empty.tres" id="2_gyoww"]
+[ext_resource type="StyleBox" uid="uid://dv5ra86ur4gc0" path="res://gui_styles/hover.tres" id="3_l7x5o"]
+[ext_resource type="FontFile" uid="uid://chet2us7fxnuc" path="res://gui_styles/fonts/Tektur-SemiBold.ttf" id="4_qkx5o"]
+[ext_resource type="Texture2D" uid="uid://b1tog4bin0ntk" path="res://leaderboard_scene/nyil.png" id="5_4stm7"]
+[ext_resource type="Texture2D" uid="uid://5pmerw06frnw" path="res://leaderboard_scene/refresh.png" id="6_6dluv"]
+
+[node name="leaderboard_scene" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_85r5e")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 482.0
+offset_bottom = 271.0
+color = Color(0, 0, 0, 1)
+
+[node name="Board" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 15.0
+offset_right = 481.0
+offset_bottom = 286.0
+
+[node name="Name" type="VBoxContainer" parent="Board"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 45.0
+offset_right = 205.0
+offset_bottom = 260.0
+
+[node name="Title" type="Label" parent="Board/Name"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("4_qkx5o")
+text = "Name"
+
+[node name="Score" type="VBoxContainer" parent="Board"]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 45.0
+offset_right = 460.0
+offset_bottom = 260.0
+
+[node name="Title" type="Label" parent="Board/Score"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.333333, 0.133333, 0.815686, 1)
+theme_override_fonts/font = ExtResource("4_qkx5o")
+text = "Score"
+horizontal_alignment = 2
+
+[node name="No" type="VBoxContainer" parent="Board"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 45.0
+offset_right = 65.0
+offset_bottom = 260.0
+
+[node name="Title" type="Label" parent="Board/No"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.870588, 0.341176, 0, 1)
+theme_override_fonts/font = ExtResource("4_qkx5o")
+text = "No."
+
+[node name="Nyil" type="Sprite2D" parent="."]
+position = Vector2(29, 19)
+scale = Vector2(0.884468, 0.884468)
+texture = ExtResource("5_4stm7")
+
+[node name="Refresh" type="Sprite2D" parent="."]
+position = Vector2(461, 18)
+scale = Vector2(0.597439, 0.597439)
+texture = ExtResource("6_6dluv")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 34.0
+theme_override_styles/normal = ExtResource("2_gyoww")
+theme_override_styles/hover = ExtResource("3_l7x5o")
+theme_override_styles/pressed = ExtResource("2_gyoww")
+theme_override_styles/disabled = ExtResource("2_gyoww")
+theme_override_styles/focus = ExtResource("2_gyoww")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 444.0
+offset_top = 4.0
+offset_right = 479.0
+offset_bottom = 34.0
+theme_override_styles/normal = ExtResource("2_gyoww")
+theme_override_styles/hover = ExtResource("3_l7x5o")
+theme_override_styles/pressed = ExtResource("2_gyoww")
+theme_override_styles/disabled = ExtResource("2_gyoww")
+theme_override_styles/focus = ExtResource("2_gyoww")
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
