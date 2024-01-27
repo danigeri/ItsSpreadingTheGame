@@ -223,6 +223,7 @@ visible = false
 layout_mode = 1
 
 [node name="JVCDIntro" parent="UI" instance=ExtResource("11_pkara")]
+visible = false
 
 [node name="UIUpdateTimer" type="Timer" parent="."]
 wait_time = 0.05

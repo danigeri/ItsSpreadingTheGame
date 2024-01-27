@@ -50,6 +50,7 @@ func _on_ui_update_timer_timeout() -> void:
 
 	ui.update_velocity(speed)
 	ui.update_distance(distance*5)
+	Globals.distance = distance*5
 
 	var spread_percentage : float = truck_scene.get_spread_percentage()
 	ui.update_scale(spread_percentage)
@@ -115,7 +116,7 @@ func trigger_game_over() -> void:
 
 		truck_scene.set_heelfire_visibility(false)
 		
-		Globals.distance = distance_done
+		
 		Globals.score = score
 
 		await get_tree().create_timer(1.0).timeout
