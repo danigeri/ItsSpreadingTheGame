@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://btnq5226lpow7"]
+[gd_scene load_steps=12 format=3 uid="uid://btnq5226lpow7"]
 
 [ext_resource type="Script" path="res://jean_portrait/jcvd_portrait.gd" id="1_8je57"]
-[ext_resource type="Texture2D" uid="uid://chwto5lbuiasd" path="res://jean_portrait/jcvd_reaction_1-Sheet.png" id="2_ua1ia"]
-[ext_resource type="Texture2D" uid="uid://bgassvxvxqkr5" path="res://jean_portrait/jcvd_reaction_2-Sheet.png" id="3_g6psn"]
-[ext_resource type="Texture2D" uid="uid://bm4b8elwuvwh0" path="res://jean_portrait/jcvd_reaction_3-Sheet.png" id="4_nm20i"]
+[ext_resource type="Texture2D" uid="uid://cdo4b0wbg4qwy" path="res://jean_portrait/jcvd_reaction_1-Sheet_70x70.png" id="2_yt6r4"]
+[ext_resource type="Texture2D" uid="uid://bpd1yusq5dn1r" path="res://jean_portrait/jcvd_reaction_2-Sheet_70x70.png" id="3_4nq83"]
+[ext_resource type="Texture2D" uid="uid://sysvpxywoeoo" path="res://jean_portrait/jcvd_reaction_3-Sheet_70x70.png" id="4_xvk1l"]
+[ext_resource type="Texture2D" uid="uid://doufkqrnb5k5l" path="res://jean_portrait/jcvd_reaction_gameover-Sheet_70x70.png" id="5_g0lb5"]
 
 [sub_resource type="Animation" id="Animation_pgmna"]
 length = 0.001
@@ -38,6 +39,18 @@ tracks/2/path = NodePath("Reaction3:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Reaction4:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -95,15 +108,33 @@ tracks/0/keys = {
 "values": [0, 35]
 }
 
+[sub_resource type="Animation" id="Animation_u1k16"]
+resource_name = "death"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reaction4:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 21]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2nmst"]
 _data = {
 "RESET": SubResource("Animation_pgmna"),
 "Reaction1": SubResource("Animation_sikiq"),
 "Reaction2": SubResource("Animation_5dhk4"),
-"Reaction3": SubResource("Animation_patv5")
+"Reaction3": SubResource("Animation_patv5"),
+"death": SubResource("Animation_u1k16")
 }
 
 [node name="JCVDPortrait" type="Control"]
+z_index = 10
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -114,21 +145,25 @@ script = ExtResource("1_8je57")
 
 [node name="Reaction1" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("2_ua1ia")
+texture = ExtResource("2_yt6r4")
 hframes = 36
 
 [node name="Reaction2" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("3_g6psn")
+texture = ExtResource("3_4nq83")
 hframes = 36
 
 [node name="Reaction3" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("4_nm20i")
+texture = ExtResource("4_xvk1l")
 hframes = 36
 
+[node name="Reaction4" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("5_g0lb5")
+hframes = 22
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Reaction3"
 libraries = {
 "": SubResource("AnimationLibrary_2nmst")
 }

@@ -1,14 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2wufkw7dnbfg"]
+[gd_scene load_steps=14 format=3 uid="uid://c2wufkw7dnbfg"]
 
 [ext_resource type="Script" path="res://gameplay_scene/gameplay_scene.gd" id="1_kpjtu"]
 [ext_resource type="PackedScene" uid="uid://bgrdxj4n70ckc" path="res://road_scene/road_scene.tscn" id="2_e7rti"]
 [ext_resource type="Script" path="res://gameplay_scene/UI.gd" id="3_ob5as"]
 [ext_resource type="PackedScene" uid="uid://yn6hai303u5m" path="res://truck_scene/truck_scene.tscn" id="4_1go4w"]
 [ext_resource type="PackedScene" uid="uid://c2560ig1u44xi" path="res://scale_gauge_scene/scale_gauge.tscn" id="5_diy58"]
+[ext_resource type="StyleBox" uid="uid://bsp1tv8rkjsnb" path="res://gui_styles/empty.tres" id="6_h3r36"]
+[ext_resource type="FontFile" uid="uid://chet2us7fxnuc" path="res://gui_styles/fonts/Tektur-SemiBold.ttf" id="6_p0x3f"]
 [ext_resource type="PackedScene" uid="uid://btnq5226lpow7" path="res://jean_portrait/jcvd_portrait.tscn" id="6_ydqvh"]
 [ext_resource type="PackedScene" uid="uid://dyus0bkw8lc26" path="res://epic_spread_label/epic_spread_label.tscn" id="7_0x8v5"]
 [ext_resource type="PackedScene" uid="uid://laba3xnjcjob" path="res://skin_shoutout_scene/skin_shoutout_scene.tscn" id="8_idhit"]
 [ext_resource type="PackedScene" uid="uid://delha6fc0fos8" path="res://buttons_tutorial_scene/buttons_tutorial_scene.tscn" id="9_j33ti"]
+[ext_resource type="PackedScene" uid="uid://b584fsahcxvpv" path="res://pause_menu_scene/pause_menu_scene.tscn" id="10_u1bow"]
+[ext_resource type="PackedScene" uid="uid://bcx2svdlx8hpa" path="res://jvcd_intro_scene/jvcd_intro.tscn" id="11_pkara"]
 
 [node name="GameplayScene" type="Node2D"]
 script = ExtResource("1_kpjtu")
@@ -30,66 +34,131 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -100.0
-offset_bottom = 26.0
+offset_left = -145.0
+offset_top = -1.0
+offset_right = -45.0
+offset_bottom = 52.0
 grow_horizontal = 0
+theme_override_styles/panel = ExtResource("6_h3r36")
 
 [node name="VelocityLabel" type="Label" parent="UI/VelocityGauge"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 8
-text = "0 mph"
+theme_override_colors/font_color = Color(1, 0.964706, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.313726, 0.219608, 0.733333, 1)
+theme_override_fonts/font = ExtResource("6_p0x3f")
+theme_override_font_sizes/font_size = 38
+text = "0"
+horizontal_alignment = 2
+
+[node name="VelocityGauge2" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -106.0
+offset_top = 7.0
+offset_right = -6.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_styles/panel = ExtResource("6_h3r36")
+
+[node name="VelocityLabel" type="Label" parent="UI/VelocityGauge2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(1, 0.964706, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.313726, 0.219608, 0.733333, 1)
+theme_override_fonts/font = ExtResource("6_p0x3f")
+theme_override_font_sizes/font_size = 17
+text = "mph"
+horizontal_alignment = 2
 
 [node name="DistancePanel" type="PanelContainer" parent="UI"]
 layout_mode = 0
-offset_left = 380.0
-offset_top = 27.0
-offset_right = 480.0
-offset_bottom = 53.0
+offset_left = 356.0
+offset_top = 36.0
+offset_right = 456.0
+offset_bottom = 73.0
+theme_override_styles/panel = ExtResource("6_h3r36")
 
 [node name="DistanceLabel" type="Label" parent="UI/DistancePanel"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 8
-text = "0 m"
+theme_override_colors/font_color = Color(0.14902, 0.890196, 0.72549, 1)
+theme_override_colors/font_shadow_color = Color(0.298039, 0.219608, 0.737255, 1)
+theme_override_fonts/font = ExtResource("6_p0x3f")
+theme_override_font_sizes/font_size = 26
+text = "0"
+horizontal_alignment = 2
+
+[node name="DistancePanel2" type="PanelContainer" parent="UI"]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 41.0
+offset_right = 472.0
+offset_bottom = 78.0
+theme_override_styles/panel = ExtResource("6_h3r36")
+
+[node name="DistanceLabel" type="Label" parent="UI/DistancePanel2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.14902, 0.890196, 0.72549, 1)
+theme_override_colors/font_shadow_color = Color(0.298039, 0.219608, 0.737255, 1)
+theme_override_fonts/font = ExtResource("6_p0x3f")
+theme_override_font_sizes/font_size = 14
+text = "m"
+horizontal_alignment = 2
 
 [node name="Score" type="PanelContainer" parent="UI"]
 layout_mode = 1
-offset_right = 100.0
-offset_bottom = 26.0
+offset_left = 8.0
+offset_right = 108.0
+offset_bottom = 53.0
+theme_override_styles/panel = ExtResource("6_h3r36")
 
 [node name="ScoreLabel" type="Label" parent="UI/Score"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 8
+theme_override_colors/font_color = Color(1, 0, 0.705882, 1)
+theme_override_colors/font_shadow_color = Color(0.337255, 0.2, 0.737255, 1)
+theme_override_fonts/font = ExtResource("6_p0x3f")
+theme_override_font_sizes/font_size = 38
 text = "0
 "
 
 [node name="Multiplier" type="PanelContainer" parent="UI"]
 layout_mode = 0
-offset_top = 27.0
-offset_right = 100.0
-offset_bottom = 53.0
+offset_left = 9.0
+offset_top = 36.0
+offset_right = 109.0
+offset_bottom = 73.0
+theme_override_styles/panel = ExtResource("6_h3r36")
 
 [node name="MultiplierLabel" type="Label" parent="UI/Multiplier"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 8
-text = "1x"
+theme_override_colors/font_color = Color(0.160784, 0.611765, 0.27451, 1)
+theme_override_colors/font_shadow_color = Color(0.301961, 0.207843, 0.737255, 1)
+theme_override_fonts/font = ExtResource("6_p0x3f")
+theme_override_font_sizes/font_size = 26
+text = "x1"
 
 [node name="Debug" type="PanelContainer" parent="UI"]
+visible = false
 layout_mode = 0
-offset_left = 380.0
+offset_left = 430.0
 offset_top = 54.0
-offset_right = 480.0
-offset_bottom = 80.0
+offset_right = 530.0
+offset_bottom = 155.0
+scale = Vector2(0.5, 0.5)
 
-[node name="DebugLabel" type="Label" parent="UI/Debug"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Debug"]
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/Debug"]
 layout_mode = 2
 
 [node name="Damage" type="Button" parent="UI/Debug/HBoxContainer"]
@@ -99,6 +168,11 @@ text = "HIT"
 [node name="SkinChange" type="Button" parent="UI/Debug/HBoxContainer"]
 layout_mode = 2
 text = "Skin"
+
+[node name="Restore" type="Button" parent="UI/Debug/HBoxContainer"]
+layout_mode = 2
+text = "Restore
+"
 
 [node name="ScaleGauge" parent="UI" instance=ExtResource("5_diy58")]
 layout_mode = 0
@@ -113,12 +187,13 @@ anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
-offset_top = -42.0
-offset_bottom = -42.0
+offset_top = -65.0
+offset_bottom = -65.0
 grow_vertical = 0
 
 [node name="EpicSpreadLabel" parent="UI" instance=ExtResource("7_0x8v5")]
 visible = false
+z_index = -1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -136,7 +211,18 @@ offset_right = 237.0
 offset_bottom = 108.0
 
 [node name="ButtonsTutorial" parent="UI" instance=ExtResource("9_j33ti")]
+visible = false
 layout_mode = 1
+offset_left = -9.0
+offset_top = 6.0
+offset_right = -9.0
+offset_bottom = 6.0
+
+[node name="PauseMenuScene" parent="UI" instance=ExtResource("10_u1bow")]
+visible = false
+layout_mode = 1
+
+[node name="JVCDIntro" parent="UI" instance=ExtResource("11_pkara")]
 
 [node name="UIUpdateTimer" type="Timer" parent="."]
 wait_time = 0.05
@@ -150,5 +236,6 @@ autostart = true
 [connection signal="jean_fell_off" from="TruckScene" to="." method="_on_truck_scene_jean_fell_off"]
 [connection signal="pressed" from="UI/Debug/HBoxContainer/Damage" to="." method="_on_damage_pressed"]
 [connection signal="pressed" from="UI/Debug/HBoxContainer/SkinChange" to="." method="_on_skin_change_pressed"]
+[connection signal="pressed" from="UI/Debug/HBoxContainer/Restore" to="." method="_on_restore_hit"]
 [connection signal="timeout" from="UIUpdateTimer" to="." method="_on_ui_update_timer_timeout"]
 [connection signal="timeout" from="SpeedIncreaseTimer" to="." method="_on_speed_increase_timer_timeout"]

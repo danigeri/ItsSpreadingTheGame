@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcx2svdlx8hpa"]
+
+[ext_resource type="Texture2D" uid="uid://by1rod0gq8j7k" path="res://jvcd_intro_scene/jcvd_intro_meditation_sheet.png" id="1_31hwp"]
+
+[sub_resource type="Animation" id="Animation_8o3qc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JcvdIntroMeditationSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("JcvdIntroMeditationSheet:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bs01i"]
+resource_name = "fade_out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JcvdIntroMeditationSheet:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hderw"]
+resource_name = "introduction"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JcvdIntroMeditationSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 39]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_558uv"]
+_data = {
+"RESET": SubResource("Animation_8o3qc"),
+"fade_out": SubResource("Animation_bs01i"),
+"introduction": SubResource("Animation_hderw")
+}
+
+[node name="JVCDIntro" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="JcvdIntroMeditationSheet" type="Sprite2D" parent="."]
+texture = ExtResource("1_31hwp")
+centered = false
+hframes = 40
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "introduction"
+libraries = {
+"": SubResource("AnimationLibrary_558uv")
+}

@@ -10,6 +10,8 @@
 
 [node name="RoadScene" type="Node2D"]
 script = ExtResource("1_gcsdn")
+ROAD1 = Color(0.423529, 0.360784, 0.580392, 1)
+ROAD2 = Color(0.45098, 0.392157, 0.603922, 1)
 
 [node name="LoopingBackground" type="Node2D" parent="."]
 script = ExtResource("2_yteeq")
