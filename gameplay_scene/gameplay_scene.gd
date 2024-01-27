@@ -26,7 +26,8 @@ func _ready() -> void:
 	randomize()
 	road_scene.start_spawning_obstacles()
 	SoundManager.play_truck_sound()
-	BackgroundMusicPlayer.play()
+	if !BackgroundMusicPlayer.playing:
+		BackgroundMusicPlayer.play()
 
 
 func _on_speed_increase_timer_timeout() -> void:
