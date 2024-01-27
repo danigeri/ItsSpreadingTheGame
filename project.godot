@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.1", "Mobile")
 SceneTransition="*res://utils/scene_transition.gd"
 BackgroundMusicPlayer="*res://background_music_scene/background_music_player.tscn"
 SoundManager="*res://sfx_scene/sfx_scene.tscn"
+Globals="*res://globals.gd"
 
 [display]
 
