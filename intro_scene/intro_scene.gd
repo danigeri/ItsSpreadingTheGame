@@ -5,6 +5,12 @@ extends Control
 
 
 func _ready():
+	SilentWolf.configure({
+		"api_key": "5YKFXFjGSFay90gLBTs0I63qRidzfwfR1Fnkybp3",
+		"game_id": "HeelsonFire",
+		"log_level": 1
+		})
+	
 	video_player.play()
 	video_player.paused = true
 
