@@ -114,6 +114,9 @@ func trigger_game_over() -> void:
 		ui.blink_gameover_portrait()
 
 		truck_scene.set_heelfire_visibility(false)
+		
+		Globals.distance = distance_done
+		Globals.score = score
 
 		await get_tree().create_timer(1.0).timeout
 		get_tree().root.add_child(game_over_scene.instantiate())

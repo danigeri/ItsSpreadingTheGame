@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4lr117hipltv"]
+[gd_scene load_steps=7 format=3 uid="uid://b4lr117hipltv"]
 
+[ext_resource type="StyleBox" uid="uid://bsp1tv8rkjsnb" path="res://gui_styles/empty.tres" id="1_8ea0u"]
 [ext_resource type="Texture2D" uid="uid://bunawoscoclqm" path="res://game_over_scene/retry.png" id="1_y5pkk"]
+[ext_resource type="StyleBox" uid="uid://dv5ra86ur4gc0" path="res://gui_styles/hover.tres" id="2_b6tpj"]
 [ext_resource type="Texture2D" uid="uid://f3xnat33h7y3" path="res://game_over_scene/game_over_standalone.png" id="2_dogfd"]
+[ext_resource type="FontFile" uid="uid://chet2us7fxnuc" path="res://gui_styles/fonts/Tektur-SemiBold.ttf" id="3_lfdqc"]
 
 [sub_resource type="GDScript" id="GDScript_6oq7a"]
 script/source = "extends Control
@@ -36,21 +39,68 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.501961)
+color = Color(0, 0, 0, 0.733333)
 
 [node name="RetryButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 199.0
-offset_top = 239.0
-offset_right = 287.0
-offset_bottom = 270.0
+offset_left = 200.0
+offset_top = 236.0
+offset_right = 288.0
+offset_bottom = 267.0
+theme_override_styles/normal = ExtResource("1_8ea0u")
+theme_override_styles/hover = ExtResource("2_b6tpj")
+theme_override_styles/pressed = ExtResource("1_8ea0u")
+theme_override_styles/disabled = ExtResource("1_8ea0u")
+theme_override_styles/focus = ExtResource("1_8ea0u")
 text = "
 "
-icon = ExtResource("1_y5pkk")
 flat = true
 
 [node name="GameOver" type="Sprite2D" parent="."]
+position = Vector2(0, -26)
 texture = ExtResource("2_dogfd")
 centered = false
+
+[node name="ScoreValue" type="Label" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 80.0
+offset_right = 296.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(1, 0, 0.705882, 1)
+theme_override_fonts/font = ExtResource("3_lfdqc")
+text = "100"
+
+[node name="ScoreText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 80.0
+offset_right = 257.0
+offset_bottom = 106.0
+theme_override_fonts/font = ExtResource("3_lfdqc")
+text = "Score: "
+
+[node name="DistanceValue2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 103.0
+offset_right = 296.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(0.14902, 0.890196, 0.72549, 1)
+theme_override_fonts/font = ExtResource("3_lfdqc")
+text = "100"
+
+[node name="DistanceText2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 103.0
+offset_right = 256.0
+offset_bottom = 129.0
+theme_override_fonts/font = ExtResource("3_lfdqc")
+text = "Distance: "
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(245, 250)
+texture = ExtResource("1_y5pkk")
 
 [connection signal="pressed" from="RetryButton" to="." method="_on_back_to_main_menu_button_pressed"]
