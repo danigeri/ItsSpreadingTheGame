@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcn3gdcompr0i"
-path="res://.godot/imported/arrows_2-Sheet_fixed.png-f5ff08e20e610a70976b3d69ffa89ec3.ctex"
+uid="uid://3hppjnm7qavf"
+path="res://.godot/imported/WASD_2-Sheet_60x60.png-b1cc728f83bf7b03dfe4988c680f99d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://buttons_tutorial_scene/arrows_2-Sheet_fixed.png"
-dest_files=["res://.godot/imported/arrows_2-Sheet_fixed.png-f5ff08e20e610a70976b3d69ffa89ec3.ctex"]
+source_file="res://buttons_tutorial_scene/WASD_2-Sheet_60x60.png"
+dest_files=["res://.godot/imported/WASD_2-Sheet_60x60.png-b1cc728f83bf7b03dfe4988c680f99d2.ctex"]
 
 [params]
 

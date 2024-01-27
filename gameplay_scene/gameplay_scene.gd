@@ -24,11 +24,7 @@ var active_skin_number : int = 0
 
 func _ready() -> void:
 	randomize()
-	SoundManager.play_jcvd_intro_sound()
-	await get_tree().create_timer(6.0).timeout
-	jvcd_intro_anim.play("fade_out")
-	await get_tree().create_timer(0.3).timeout
-	jvcd_intro.visible = false
+	road_scene.start_spawning_obstacles()
 	SoundManager.play_truck_sound()
 	BackgroundMusicPlayer.play()
 
@@ -39,7 +35,7 @@ func _on_speed_increase_timer_timeout() -> void:
 
 
 func get_calculated_speed_mph(distance : float) -> int:
-	return min(180,int(distance/2))
+	return min(180,int(distance/2.5))
 
 
 func _on_ui_update_timer_timeout() -> void:
