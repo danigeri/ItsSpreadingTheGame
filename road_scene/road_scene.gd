@@ -43,22 +43,24 @@ func get_horizon_y_position() -> float:
 	# Assuming a very large `i` so that it represents the horizon
 	return get_perspective(road_length_px, cam_y_position, position_px).Y
 
+
+func start_spawning_obstacles() -> void:
+	add_child(obstacle_timer)
+	obstacle_timer.wait_time = 5.0
+	obstacle_timer.connect("timeout", self._on_obstacle_timer_timeout)
+	obstacle_timer.start()
+
+
 func _ready() -> void:
 	randomize()
 	position_px = road_length_px
-	add_child(obstacle_timer)
-	obstacle_timer.wait_time = 12.0
-	obstacle_timer.connect("timeout", self._on_obstacle_timer_timeout)
-	obstacle_timer.start()
+
 	set_process(true)
 
 func _on_obstacle_timer_timeout() -> void:
 	spawn_obstacle()
 	obstacle_timer.wait_time = randi_range(2,10)
 
-func _on_repair_hit() -> void:
-	print("handling of repair hit in road scene")
-	pass
 
 func spawn_obstacle() -> void:
 	var obstacle = obstacle_scene.instantiate()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ky33mpd5fgfk"
-path="res://.godot/imported/WASD_2-Sheet_fixed.png-45ae9386a60918e5e7ea82797a18e54b.ctex"
+uid="uid://cdie784t3n7u1"
+path="res://.godot/imported/esc_button-Sheet_40x40.png-f3b422e9337e867e0867dcdf2ec05426.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://buttons_tutorial_scene/WASD_2-Sheet_fixed.png"
-dest_files=["res://.godot/imported/WASD_2-Sheet_fixed.png-45ae9386a60918e5e7ea82797a18e54b.ctex"]
+source_file="res://buttons_tutorial_scene/esc_button-Sheet_40x40.png"
+dest_files=["res://.godot/imported/esc_button-Sheet_40x40.png-f3b422e9337e867e0867dcdf2ec05426.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jis7ekbfbtpf"
-path="res://.godot/imported/game_over.png-728d2bfbd5bc58932c57c9661cec06fd.ctex"
+uid="uid://qmyqqsyrcnve"
+path="res://.godot/imported/arrows_2-Sheet_60x60.png-1c18277a32fbfc23b4ee6d4da554afd2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game_over_scene/game_over.png"
-dest_files=["res://.godot/imported/game_over.png-728d2bfbd5bc58932c57c9661cec06fd.ctex"]
+source_file="res://buttons_tutorial_scene/arrows_2-Sheet_60x60.png"
+dest_files=["res://.godot/imported/arrows_2-Sheet_60x60.png-1c18277a32fbfc23b4ee6d4da554afd2.ctex"]
 
 [params]
 
