@@ -13,8 +13,10 @@ script = ExtResource("1_amcpp")
 
 [node name="TruckSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_jl3l3")
+volume_db = -10.876
 
 [node name="ObstacleSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = -8.837
 
 [node name="EpicSpreadSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_6ma1j")
