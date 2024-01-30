@@ -210,7 +210,6 @@ offset_right = 237.0
 offset_bottom = 108.0
 
 [node name="ButtonsTutorial" parent="UI" instance=ExtResource("9_j33ti")]
-visible = false
 layout_mode = 1
 offset_left = -9.0
 offset_top = 6.0
