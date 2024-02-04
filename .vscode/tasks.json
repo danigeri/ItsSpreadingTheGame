@@ -1,0 +1,39 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run game",
+		 	"command": "godot",
+			"problemMatcher": []
+		},
+		{
+			// Godot_v4.1.2-stable_win64.exe ItsSpreadingTheGame\project.godot
+			"label": "Open editor",
+			"command": "godot",
+			"args": ["${workspaceFolder}\\project.godot"],
+			"problemMatcher": []
+		},
+		{
+			"label": "Export HTML",
+			"command": "godot",
+			"args": [
+				"--path ${workspaceFolder}\\project.godot",
+				"--export-release \"Web\"",
+				"release_name.zip",
+				"--verbose"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Export Windows",
+			"command": "godot",
+			"args": [
+				"--path ${workspaceFolder}\\project.godot",
+				"--export-release \"Windows Desktop\"",
+				"release_name.exe",
+				"--verbose"
+			],
+			"problemMatcher": []
+		},
+	]
+}
